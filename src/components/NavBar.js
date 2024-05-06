@@ -4,12 +4,15 @@ import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Offcanvas from "react-bootstrap/Offcanvas";
+import { NavLink } from "react-router-dom";
 
 const NavBar = () => {
   return (
     <Navbar expand="md" sticky="top" collapseOnSelect>
       <Container fluid>
-        <Navbar.Brand href="#">Snaps</Navbar.Brand>
+        <NavLink to="/">
+          <Navbar.Brand href="#">Snaps</Navbar.Brand>
+        </NavLink>
         <Navbar.Toggle aria-controls="offcanvasNavbar" />
         <Navbar.Offcanvas
           id="offcanvasNavbar"
@@ -21,9 +24,9 @@ const NavBar = () => {
           </Offcanvas.Header>
           <Offcanvas.Body>
             <Nav className="justify-content-end flex-grow-1 pe-3">
-              <Nav.Link href="#action1">Home</Nav.Link>
-              <Nav.Link href="#action2">Sign in</Nav.Link>
-              <Nav.Link href="#action2">Register</Nav.Link>
+              <NavLink to="/">Home</NavLink>
+              <NavLink to="/sign-in">Sign in</NavLink>
+              <NavLink to="/register">Register</NavLink>
             </Nav>
             <Form className="d-flex">
               <Form.Control
