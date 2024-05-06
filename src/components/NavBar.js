@@ -11,8 +11,8 @@ const NavBar = () => {
   return (
     <Navbar expand="md" sticky="top" collapseOnSelect>
       <Container fluid>
-        <NavLink to="/">
-          <Navbar.Brand href="#">Snaps</Navbar.Brand>
+        <NavLink className={styles.BrandText} to="/">
+          <Navbar.Brand className={styles.BrandTextSize}>Snaps</Navbar.Brand>
         </NavLink>
         <Navbar.Toggle aria-controls="offcanvasNavbar" />
         <Navbar.Offcanvas

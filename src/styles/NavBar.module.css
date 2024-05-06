@@ -1,3 +1,13 @@
+.BrandText {
+  text-decoration: none;
+  color: black;
+  text-decoration: none;
+}
+
+.BrandTextSize {
+  font-size: xx-large;
+}
+
 .NavLink {
   text-decoration: none;
   color: black;
