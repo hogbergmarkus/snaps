@@ -1,0 +1,9 @@
+.NavLink {
+  text-decoration: none;
+  color: black;
+  padding: 7px;
+}
+
+.NavLink.active {
+  font-weight: bold;
+}

@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "../styles/NavBar.module.css";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
@@ -24,9 +25,36 @@ const NavBar = () => {
           </Offcanvas.Header>
           <Offcanvas.Body>
             <Nav className="justify-content-end flex-grow-1 pe-3">
-              <NavLink to="/">Home</NavLink>
-              <NavLink to="/sign-in">Sign in</NavLink>
-              <NavLink to="/register">Register</NavLink>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive
+                    ? `${styles.NavLink} ${styles.active}`
+                    : styles.NavLink
+                }
+                to="/"
+              >
+                Home
+              </NavLink>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive
+                    ? `${styles.NavLink} ${styles.active}`
+                    : styles.NavLink
+                }
+                to="/sign-in"
+              >
+                Sign in
+              </NavLink>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive
+                    ? `${styles.NavLink} ${styles.active}`
+                    : styles.NavLink
+                }
+                to="/register"
+              >
+                Register
+              </NavLink>
             </Nav>
             <Form className="d-flex">
               <Form.Control
