@@ -12,6 +12,7 @@ function App() {
           <Route exact path="/" element={<h1>Home</h1>} />
           <Route exact path="/sign-in" element={<h1>Sign in</h1>} />
           <Route exact path="/register" element={<h1>Register</h1>} />
+          <Route path="*" element={<p>Page not found</p>} />
         </Routes>
       </Container>
     </div>
