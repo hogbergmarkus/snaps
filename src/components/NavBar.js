@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "../styles/NavBar.module.css";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
@@ -8,14 +8,22 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 import { NavLink } from "react-router-dom";
 
 const NavBar = () => {
+  const [show, setShow] = useState(false);
+
+  // Functions to toggle the navbar offcanvas show/hide
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
-    <Navbar expand="md" sticky="top" collapseOnSelect>
+    <Navbar expand="md" sticky="top">
       <Container fluid>
         <NavLink className={styles.BrandText} to="/">
           <Navbar.Brand className={styles.BrandTextSize}>Snaps</Navbar.Brand>
         </NavLink>
-        <Navbar.Toggle aria-controls="offcanvasNavbar" />
+        <Navbar.Toggle aria-controls="offcanvasNavbar" onClick={handleShow} />
         <Navbar.Offcanvas
+          show={show}
+          onHide={handleClose}
           id="offcanvasNavbar"
           aria-labelledby="offcanvasNavbarLabel"
           placement="end"
@@ -32,6 +40,7 @@ const NavBar = () => {
                     : styles.NavLink
                 }
                 to="/"
+                onClick={handleClose}
               >
                 Home
               </NavLink>
@@ -42,6 +51,7 @@ const NavBar = () => {
                     : styles.NavLink
                 }
                 to="/sign-in"
+                onClick={handleClose}
               >
                 Sign in
               </NavLink>
@@ -52,6 +62,7 @@ const NavBar = () => {
                     : styles.NavLink
                 }
                 to="/register"
+                onClick={handleClose}
               >
                 Register
               </NavLink>
