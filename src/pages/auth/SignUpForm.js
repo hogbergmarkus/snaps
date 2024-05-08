@@ -13,7 +13,11 @@ const SignUpForm = () => {
           <Col xs={12} md={8} lg={6}>
             <Form.Group className="mb-3" controlId="username">
               <Form.Label className="d-none">Username</Form.Label>
-              <Form.Control type="text" placeholder="Username" />
+              <Form.Control
+                type="text"
+                placeholder="Username"
+                name="username"
+              />
             </Form.Group>
           </Col>
         </Row>
@@ -21,7 +25,11 @@ const SignUpForm = () => {
           <Col xs={12} md={8} lg={6}>
             <Form.Group className="mb-3" controlId="password1">
               <Form.Label className="d-none">Password</Form.Label>
-              <Form.Control type="password" placeholder="Password" />
+              <Form.Control
+                type="password"
+                placeholder="Password"
+                name="password1"
+              />
             </Form.Group>
           </Col>
         </Row>
@@ -29,7 +37,11 @@ const SignUpForm = () => {
           <Col xs={12} md={8} lg={6}>
             <Form.Group className="mb-3" controlId="password2">
               <Form.Label className="d-none">Password again</Form.Label>
-              <Form.Control type="password" placeholder="Password again" />
+              <Form.Control
+                type="password"
+                placeholder="Password again"
+                name="password2"
+              />
             </Form.Group>
           </Col>
         </Row>
