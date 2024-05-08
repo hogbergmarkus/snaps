@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
@@ -6,6 +6,19 @@ import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 
 const SignInForm = () => {
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+  });
+  const { username, password } = formData;
+
+  const handleChange = (event) => {
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value,
+    });
+  };
+
   return (
     <Container>
       <Form>
@@ -17,6 +30,8 @@ const SignInForm = () => {
                 type="text"
                 placeholder="Username"
                 name="username"
+                value={username}
+                onChange={handleChange}
               />
             </Form.Group>
           </Col>
@@ -29,6 +44,8 @@ const SignInForm = () => {
                 type="password"
                 placeholder="Password"
                 name="password"
+                value={password}
+                onChange={handleChange}
               />
             </Form.Group>
           </Col>
