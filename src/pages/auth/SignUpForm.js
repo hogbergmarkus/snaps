@@ -4,6 +4,9 @@ import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
+import Alert from "react-bootstrap/Alert";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const SignUpForm = () => {
   const [formData, setFormData] = useState({
@@ -12,6 +15,8 @@ const SignUpForm = () => {
     password2: "",
   });
   const { username, password1, password2 } = formData;
+  const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
     setFormData({
@@ -20,9 +25,19 @@ const SignUpForm = () => {
     });
   };
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      await axios.post("/dj-rest-auth/registration/", formData);
+      navigate("/sign-in");
+    } catch (err) {
+      setErrors(err.response?.data);
+    }
+  };
+
   return (
     <Container>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <Row className="justify-content-center">
           <Col xs={12} md={8} lg={6}>
             <Form.Group className="mb-3" controlId="username">
@@ -35,6 +50,11 @@ const SignUpForm = () => {
                 onChange={handleChange}
               />
             </Form.Group>
+            {errors.username?.map((message, idx) => (
+              <Alert variant="warning" key={idx}>
+                {message}
+              </Alert>
+            ))}
           </Col>
         </Row>
         <Row className="justify-content-center">
@@ -49,6 +69,11 @@ const SignUpForm = () => {
                 onChange={handleChange}
               />
             </Form.Group>
+            {errors.password1?.map((message, idx) => (
+              <Alert variant="warning" key={idx}>
+                {message}
+              </Alert>
+            ))}
           </Col>
         </Row>
         <Row className="justify-content-center">
@@ -63,6 +88,11 @@ const SignUpForm = () => {
                 onChange={handleChange}
               />
             </Form.Group>
+            {errors.password2?.map((message, idx) => (
+              <Alert variant="warning" key={idx}>
+                {message}
+              </Alert>
+            ))}
           </Col>
         </Row>
         <Row className="justify-content-center">
@@ -70,6 +100,11 @@ const SignUpForm = () => {
             <Button variant="primary" type="submit">
               Submit
             </Button>
+            {errors.non_field_errors?.map((message, idx) => (
+              <Alert variant="warning" key={idx}>
+                {message}
+              </Alert>
+            ))}
           </Col>
         </Row>
       </Form>
