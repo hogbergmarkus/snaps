@@ -4,6 +4,7 @@ import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
+import Alert from "react-bootstrap/Alert";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -13,6 +14,7 @@ const SignInForm = () => {
     password: "",
   });
   const { username, password } = formData;
+  const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
   const handleChange = (event) => {
@@ -28,7 +30,7 @@ const SignInForm = () => {
       await axios.post("/dj-rest-auth/login/", formData);
       navigate("/");
     } catch (err) {
-      console.log(err);
+      setErrors(err.response?.data);
     }
   };
 
@@ -47,6 +49,11 @@ const SignInForm = () => {
                 onChange={handleChange}
               />
             </Form.Group>
+            {errors.username?.map((message, idx) => (
+              <Alert variant="warning" key={idx}>
+                {message}
+              </Alert>
+            ))}
           </Col>
         </Row>
         <Row className="justify-content-center">
@@ -61,6 +68,11 @@ const SignInForm = () => {
                 onChange={handleChange}
               />
             </Form.Group>
+            {errors.password?.map((message, idx) => (
+              <Alert variant="warning" key={idx}>
+                {message}
+              </Alert>
+            ))}
           </Col>
         </Row>
         <Row className="justify-content-center">
@@ -68,6 +80,11 @@ const SignInForm = () => {
             <Button variant="primary" type="submit">
               Submit
             </Button>
+            {errors.non_field_errors?.map((message, idx) => (
+              <Alert variant="warning" key={idx}>
+                {message}
+              </Alert>
+            ))}
           </Col>
         </Row>
       </Form>
