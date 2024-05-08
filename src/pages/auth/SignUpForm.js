@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
@@ -6,6 +6,20 @@ import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 
 const SignUpForm = () => {
+  const [formData, setFormData] = useState({
+    username: "",
+    password1: "",
+    password2: "",
+  });
+  const { username, password1, password2 } = formData;
+
+  const handleChange = (event) => {
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value,
+    });
+  };
+
   return (
     <Container>
       <Form>
@@ -17,6 +31,8 @@ const SignUpForm = () => {
                 type="text"
                 placeholder="Username"
                 name="username"
+                value={username}
+                onChange={handleChange}
               />
             </Form.Group>
           </Col>
@@ -29,6 +45,8 @@ const SignUpForm = () => {
                 type="password"
                 placeholder="Password"
                 name="password1"
+                value={password1}
+                onChange={handleChange}
               />
             </Form.Group>
           </Col>
@@ -41,6 +59,8 @@ const SignUpForm = () => {
                 type="password"
                 placeholder="Password again"
                 name="password2"
+                value={password2}
+                onChange={handleChange}
               />
             </Form.Group>
           </Col>
