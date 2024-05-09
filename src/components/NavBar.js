@@ -4,6 +4,7 @@ import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import NavDropdown from "react-bootstrap/NavDropdown";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { NavLink } from "react-router-dom";
 import { CurrentUserContext } from "../App";
@@ -38,7 +39,46 @@ const NavBar = () => {
       </NavLink>
     </>
   );
-  const loggedInIcons = <>{currentUser?.username}</>;
+  const loggedInIcons = (
+    <>
+      <NavDropdown title={currentUser?.username} id="offcanvasNavbarDropdown">
+        <NavDropdown.Item>
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? `${styles.NavLink} ${styles.active}` : styles.NavLink
+            }
+            to="/profile"
+            onClick={handleClose}
+          >
+            Profile
+          </NavLink>
+        </NavDropdown.Item>
+        <NavDropdown.Item>
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? `${styles.NavLink} ${styles.active}` : styles.NavLink
+            }
+            to="/albums"
+            onClick={handleClose}
+          >
+            Albums
+          </NavLink>
+        </NavDropdown.Item>
+        <NavDropdown.Item>
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? `${styles.NavLink} ${styles.active}` : styles.NavLink
+            }
+            to="/liked-posts"
+            onClick={handleClose}
+          >
+            Liked Posts
+          </NavLink>
+        </NavDropdown.Item>
+        <NavDropdown.Item href="#action5">Sign out</NavDropdown.Item>
+      </NavDropdown>
+    </>
+  );
 
   return (
     <Navbar expand="md" sticky="top">
