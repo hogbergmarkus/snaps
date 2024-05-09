@@ -10,13 +10,17 @@ import { NavLink } from "react-router-dom";
 import { CurrentUserContext } from "../App";
 
 const NavBar = () => {
+  // State to control the offcanvas menu
   const [show, setShow] = useState(false);
+
+  // Get current user from context
   const currentUser = useContext(CurrentUserContext);
 
   // Functions to toggle the navbar offcanvas show/hide
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  // Display navigation links for logged out users
   const loggedOutIcons = (
     <>
       <NavLink
@@ -39,6 +43,8 @@ const NavBar = () => {
       </NavLink>
     </>
   );
+
+  // Display navigation links for logged in users in a dropdown menu
   const loggedInIcons = (
     <>
       <NavDropdown title={currentUser?.username} id="offcanvasNavbarDropdown">
@@ -83,9 +89,11 @@ const NavBar = () => {
   return (
     <Navbar expand="md" sticky="top">
       <Container fluid>
+        {/* Brand text/logo here */}
         <NavLink className={styles.BrandText} to="/">
           <Navbar.Brand className={styles.BrandTextSize}>Snaps</Navbar.Brand>
         </NavLink>
+        {/* Toggle for offcanvas menu */}
         <Navbar.Toggle aria-controls="offcanvasNavbar" onClick={handleShow} />
         <Navbar.Offcanvas
           show={show}
@@ -110,6 +118,7 @@ const NavBar = () => {
               >
                 Home
               </NavLink>
+              {/* Display different navigation links based on user login status */}
               {currentUser ? loggedInIcons : loggedOutIcons}
             </Nav>
             <Form className="d-flex">

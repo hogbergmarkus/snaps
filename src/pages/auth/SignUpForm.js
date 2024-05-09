@@ -9,15 +9,19 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const SignUpForm = () => {
+  // Set initial form data
   const [formData, setFormData] = useState({
     username: "",
     password1: "",
     password2: "",
   });
   const { username, password1, password2 } = formData;
+
   const [errors, setErrors] = useState({});
+
   const navigate = useNavigate();
 
+  // Handle form input changes
   const handleChange = (event) => {
     setFormData({
       ...formData,
@@ -25,6 +29,7 @@ const SignUpForm = () => {
     });
   };
 
+  // Handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -40,6 +45,7 @@ const SignUpForm = () => {
       <Form onSubmit={handleSubmit}>
         <Row className="justify-content-center">
           <Col xs={12} md={8} lg={6}>
+            {/* Username input field with error messages below it */}
             <Form.Group className="mb-3" controlId="username">
               <Form.Label className="d-none">Username</Form.Label>
               <Form.Control
@@ -59,6 +65,7 @@ const SignUpForm = () => {
         </Row>
         <Row className="justify-content-center">
           <Col xs={12} md={8} lg={6}>
+            {/* Password1 input field with error messages below it */}
             <Form.Group className="mb-3" controlId="password1">
               <Form.Label className="d-none">Password</Form.Label>
               <Form.Control
@@ -78,6 +85,7 @@ const SignUpForm = () => {
         </Row>
         <Row className="justify-content-center">
           <Col xs={12} md={8} lg={6}>
+            {/* Password2 input field with error messages below it */}
             <Form.Group className="mb-3" controlId="password2">
               <Form.Label className="d-none">Password again</Form.Label>
               <Form.Control
@@ -97,6 +105,7 @@ const SignUpForm = () => {
         </Row>
         <Row className="justify-content-center">
           <Col xs={12} md={8} lg={6}>
+            {/* Submit button with non-field errors messages below it */}
             <Button variant="primary" type="submit">
               Submit
             </Button>
