@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import styles from "../styles/NavBar.module.css";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
@@ -7,14 +7,14 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { NavLink } from "react-router-dom";
-import { CurrentUserContext } from "../App";
+import { useCurrentUser } from "../contexts/CurrentUserContext";
 
 const NavBar = () => {
   // State to control the offcanvas menu
   const [show, setShow] = useState(false);
 
   // Get current user from context
-  const currentUser = useContext(CurrentUserContext);
+  const currentUser = useCurrentUser();
 
   // Functions to toggle the navbar offcanvas show/hide
   const handleClose = () => setShow(false);
