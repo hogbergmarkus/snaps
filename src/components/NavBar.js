@@ -7,7 +7,11 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { NavLink } from "react-router-dom";
-import { useCurrentUser } from "../contexts/CurrentUserContext";
+import {
+  useCurrentUser,
+  useSetCurrentUser,
+} from "../contexts/CurrentUserContext";
+import axios from "axios";
 
 const NavBar = () => {
   // State to control the offcanvas menu
@@ -16,9 +20,21 @@ const NavBar = () => {
   // Get current user from context
   const currentUser = useCurrentUser();
 
+  // Set current user in context
+  const setCurrentUser = useSetCurrentUser();
+
   // Functions to toggle the navbar offcanvas show/hide
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const handleSignOut = async () => {
+    try {
+      await axios.post("dj-rest-auth/logout/");
+      setCurrentUser(null);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   // Display navigation links for logged out users
   const loggedOutIcons = (
@@ -81,7 +97,20 @@ const NavBar = () => {
             Liked Posts
           </NavLink>
         </NavDropdown.Item>
-        <NavDropdown.Item href="#action5">Sign out</NavDropdown.Item>
+        <NavDropdown.Item>
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? `${styles.NavLink} ${styles.active}` : styles.NavLink
+            }
+            to="/"
+            onClick={() => {
+              handleSignOut();
+              handleClose();
+            }}
+          >
+            Sign out
+          </NavLink>
+        </NavDropdown.Item>
       </NavDropdown>
     </>
   );
