@@ -10,16 +10,22 @@ import { useNavigate } from "react-router-dom";
 import { SetCurrentUserContext } from "../../App";
 
 const SignInForm = () => {
+  // Get function to set current user from context
   const setCurrentUser = useContext(SetCurrentUserContext);
 
+  // Set initial form data
   const [formData, setFormData] = useState({
     username: "",
     password: "",
   });
+
   const { username, password } = formData;
+
   const [errors, setErrors] = useState({});
+
   const navigate = useNavigate();
 
+  // Handle form input changes
   const handleChange = (event) => {
     setFormData({
       ...formData,
@@ -27,6 +33,7 @@ const SignInForm = () => {
     });
   };
 
+  // Handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -43,6 +50,7 @@ const SignInForm = () => {
       <Form onSubmit={handleSubmit}>
         <Row className="justify-content-center">
           <Col xs={12} md={8} lg={6}>
+            {/* Username input field with error messages below it */}
             <Form.Group className="mb-3" controlId="username">
               <Form.Label className="d-none">Username</Form.Label>
               <Form.Control
@@ -62,6 +70,7 @@ const SignInForm = () => {
         </Row>
         <Row className="justify-content-center">
           <Col xs={12} md={8} lg={6}>
+            {/* Password input field with error messages below it */}
             <Form.Group className="mb-3" controlId="password">
               <Form.Label className="d-none">Password</Form.Label>
               <Form.Control
@@ -81,6 +90,7 @@ const SignInForm = () => {
         </Row>
         <Row className="justify-content-center">
           <Col xs={12} md={8} lg={6}>
+            {/* Submit button with non-field errors messages below it */}
             <Button variant="primary" type="submit">
               Submit
             </Button>

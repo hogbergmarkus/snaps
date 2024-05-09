@@ -8,12 +8,14 @@ import "./api/axiosDefaults";
 import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from "./pages/auth/SignInForm";
 
+// Create context for current user and context for setting current user
 export const CurrentUserContext = createContext();
 export const SetCurrentUserContext = createContext();
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
 
+  // Get and set current user when component mounts
   const handleMount = async () => {
     try {
       const { data } = await axios.get("/dj-rest-auth/user/");
@@ -23,11 +25,13 @@ function App() {
     }
   };
 
+  // Call handleMount when component mounts
   useEffect(() => {
     handleMount();
   }, []);
 
   return (
+    // Provide current user data through context to child components
     <CurrentUserContext.Provider value={currentUser}>
       <SetCurrentUserContext.Provider value={setCurrentUser}>
         <div className={styles.App}>
