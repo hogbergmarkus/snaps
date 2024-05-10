@@ -17,3 +17,16 @@
 .NavLink.active {
   font-weight: bold;
 }
+
+.NavLink:hover {
+  font-weight: 900;
+}
+
+.NavDropdown {
+  padding-left: 7px;
+  font-weight: 600;
+}
+
+.NavDropdown:hover {
+  font-weight: 900;
+}

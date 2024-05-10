@@ -69,7 +69,11 @@ const NavBar = () => {
       >
         Add post
       </NavLink>
-      <NavDropdown title={currentUser?.username} id="offcanvasNavbarDropdown">
+      <NavDropdown
+        title={currentUser?.username}
+        id="offcanvasNavbarDropdown"
+        className={styles.NavDropdown}
+      >
         <NavDropdown.Item>
           <NavLink
             className={({ isActive }) =>
