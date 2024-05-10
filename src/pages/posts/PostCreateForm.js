@@ -7,6 +7,7 @@ import Col from "react-bootstrap/Col";
 import ImageAsset from "../../components/ImageAsset";
 
 function PostCreateForm() {
+  // useState to manage form data
   const [postData, setPostData] = useState({
     title: "",
     content: "",
@@ -15,8 +16,10 @@ function PostCreateForm() {
   });
   const { title, content, tags, image } = postData;
 
+  // Handle image upload, sets image url in state
   const handleChangeImage = (event) => {
     if (event.target.files.length) {
+      // Revoke previous image url
       URL.revokeObjectURL(image);
       setPostData({
         ...postData,
@@ -28,6 +31,7 @@ function PostCreateForm() {
   return (
     <Container>
       <Form>
+        {/* Title form input */}
         <Row className="justify-content-center">
           <Col xs={12} md={8} lg={6}>
             <Form.Group controlId="title" className="mb-3">
@@ -37,6 +41,7 @@ function PostCreateForm() {
           </Col>
         </Row>
 
+        {/* Textarea form input */}
         <Row className="justify-content-center">
           <Col xs={12} md={8} lg={6}>
             <Form.Group controlId="content" className="mb-3">
@@ -46,6 +51,7 @@ function PostCreateForm() {
           </Col>
         </Row>
 
+        {/* Tags form input */}
         <Row className="justify-content-center">
           <Col xs={12} md={8} lg={6}>
             <Form.Group controlId="tags" className="mb-3">
@@ -55,6 +61,7 @@ function PostCreateForm() {
           </Col>
         </Row>
 
+        {/* Image upload */}
         <Row className="justify-content-center">
           <Col xs={12} md={8} lg={6}>
             <Form.Group controlId="image" className="mb-3">
@@ -70,14 +77,14 @@ function PostCreateForm() {
           </Col>
         </Row>
 
+        {/* Display preview image */}
         <Row className="justify-content-center">
           <Col xs={12} md={8} lg={6}>
-            {image && (
-              <ImageAsset src={image} alt={title} />
-            )}
+            {image && <ImageAsset src={image} alt={title} />}
           </Col>
         </Row>
 
+        {/* Submit button */}
         <Row className="justify-content-center">
           <Col xs={12} md={8} lg={6}>
             <Button variant="primary" type="submit" className="mt-3">
