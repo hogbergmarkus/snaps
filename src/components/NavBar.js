@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "../styles/NavBar.module.css";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
@@ -12,20 +12,17 @@ import {
   useSetCurrentUser,
 } from "../contexts/CurrentUserContext";
 import axios from "axios";
+import useToggleNavBar from "../hooks/useToggleNavBar";
 
 const NavBar = () => {
-  // State to control the offcanvas menu
-  const [show, setShow] = useState(false);
+  // Use hook to control the offcanvas menu
+  const { show, handleShow, handleClose } = useToggleNavBar();
 
   // Get current user from context
   const currentUser = useCurrentUser();
 
   // Set current user in context
   const setCurrentUser = useSetCurrentUser();
-
-  // Functions to toggle the navbar offcanvas show/hide
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
 
   const handleSignOut = async () => {
     try {
