@@ -18,6 +18,11 @@ function App() {
           <Route exact path="/profile" element={<h1>Profile</h1>} />
           <Route exact path="/albums" element={<h1>Albums</h1>} />
           <Route exact path="/liked-posts" element={<h1>Liked Posts</h1>} />
+          <Route
+            exact
+            path="/posts/create"
+            element={<h1>Create Post Page</h1>}
+          />
           <Route path="*" element={<p>Page not found</p>} />
         </Routes>
       </Container>

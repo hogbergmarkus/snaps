@@ -60,6 +60,15 @@ const NavBar = () => {
   // Display navigation links for logged in users in a dropdown menu
   const loggedInIcons = (
     <>
+      <NavLink
+        className={({ isActive }) =>
+          isActive ? `${styles.NavLink} ${styles.active}` : styles.NavLink
+        }
+        to="/posts/create"
+        onClick={handleClose}
+      >
+        Add post
+      </NavLink>
       <NavDropdown title={currentUser?.username} id="offcanvasNavbarDropdown">
         <NavDropdown.Item>
           <NavLink
