@@ -5,6 +5,7 @@ import { Route, Routes } from "react-router-dom";
 import "./api/axiosDefaults";
 import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from "./pages/auth/SignInForm";
+import PostCreateForm from "./pages/posts/PostCreateForm";
 
 function App() {
   return (
@@ -18,11 +19,7 @@ function App() {
           <Route exact path="/profile" element={<h1>Profile</h1>} />
           <Route exact path="/albums" element={<h1>Albums</h1>} />
           <Route exact path="/liked-posts" element={<h1>Liked Posts</h1>} />
-          <Route
-            exact
-            path="/posts/create"
-            element={<h1>Create Post Page</h1>}
-          />
+          <Route exact path="/posts/create" element={<PostCreateForm />} />
           <Route path="*" element={<p>Page not found</p>} />
         </Routes>
       </Container>
