@@ -1,9 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import { useParams } from "react-router-dom";
+import { axiosReq } from "../../api/axiosDefaults";
 
 function PostDetail() {
+  // Access id of post in the url
+  const { id } = useParams();
+  const [post, setPost] = useState({ results: [] });
+
+  // Fetch post details when component mounts
+  useEffect(() => {
+    const handleMount = async () => {
+      try {
+        const [{ data: post }] = await Promise.all([
+          axiosReq.get(`/posts/${id}`),
+        ]);
+        setPost({ results: [post] });
+        console.log(post);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    handleMount();
+  }, [id]);
+
   return (
     <Container>
       {/* Image title goes here */}
