@@ -35,7 +35,10 @@ const Post = (props) => {
           {title}
         </Col>
         <Col xs={6} md={6} lg={4}>
-          <p className="text-end">By: {owner}</p>
+          <p className="text-end">
+            By: {owner}{" "}
+            {is_owner && postPage && <i class="fa-solid fa-caret-down"></i>}
+          </p>
         </Col>
       </Row>
 
@@ -48,10 +51,21 @@ const Post = (props) => {
         </Col>
       </Row>
 
-      {/* Display Content here */}
+      {/* Display Content, Likes- Comments- and Download count */}
       <Row className="justify-content-center">
-        <Col xs={12} md={12} lg={8}>
-          <p className="text-center">{content}</p>
+        <Col xs={10} md={10} lg={6}>
+          <p className="text-start">{content}</p>
+        </Col>
+        <Col xs={2} md={2} lg={2}>
+          <span className="d-flex justify-content-end mt-1">
+            <i class="fa-regular fa-thumbs-up"></i> {likes_count}
+          </span>
+          <span className="d-flex justify-content-end mt-1">
+            <i class="fa-regular fa-comments"></i> {comments_count}
+          </span>
+          <span className="d-flex justify-content-end mt-1">
+            <i class="fa-solid fa-download"></i> {download_count}
+          </span>
         </Col>
       </Row>
     </Container>
