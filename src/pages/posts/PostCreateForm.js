@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
@@ -15,6 +15,9 @@ function PostCreateForm() {
     image: "",
   });
   const { title, content, tags, image } = postData;
+
+  // Ref to the image input to handle uploads
+  const imageInput = useRef(null);
 
   // Handle form input changes
   const handleChange = (event) => {
@@ -99,6 +102,7 @@ function PostCreateForm() {
                 type="file"
                 accept="image/*"
                 onChange={handleChangeImage}
+                ref={imageInput}
               />
             </Form.Group>
           </Col>
