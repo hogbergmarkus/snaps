@@ -4,9 +4,14 @@ import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Alert from "react-bootstrap/Alert";
 import ImageAsset from "../../components/ImageAsset";
+import { useNavigate } from "react-router-dom";
+import { axiosReq } from "../../api/axiosDefaults";
 
 function PostCreateForm() {
+  const [errors, setErrors] = useState({});
+
   // useState to manage form data
   const [postData, setPostData] = useState({
     title: "",
@@ -18,6 +23,8 @@ function PostCreateForm() {
 
   // Ref to the image input to handle uploads
   const imageInput = useRef(null);
+
+  const navigate = useNavigate();
 
   // Handle form input changes
   const handleChange = (event) => {
@@ -39,9 +46,29 @@ function PostCreateForm() {
     }
   };
 
+  // Handle form submission
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    // Create form data to send and append data
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("content", content);
+    formData.append("image", imageInput.current.files[0]);
+    formData.append("tags", tags);
+    try {
+      const { data } = await axiosReq.post("/posts/", formData);
+      navigate(`/posts/${data.id}`);
+    } catch (err) {
+      console.log(err);
+      if (err.response?.status !== 401) {
+        setErrors(err.response?.data);
+      }
+    }
+  };
+
   return (
     <Container>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         {/* Title form input */}
         <Row className="justify-content-center">
           <Col xs={12} md={8} lg={6}>
@@ -55,6 +82,11 @@ function PostCreateForm() {
                 onChange={handleChange}
               />
             </Form.Group>
+            {errors.title?.map((message, idx) => (
+              <Alert variant="warning" key={idx}>
+                {message}
+              </Alert>
+            ))}
           </Col>
         </Row>
 
@@ -72,6 +104,11 @@ function PostCreateForm() {
                 onChange={handleChange}
               />
             </Form.Group>
+            {errors.content?.map((message, idx) => (
+              <Alert variant="warning" key={idx}>
+                {message}
+              </Alert>
+            ))}
           </Col>
         </Row>
 
@@ -88,6 +125,11 @@ function PostCreateForm() {
                 onChange={handleChange}
               />
             </Form.Group>
+            {errors.tags?.map((message, idx) => (
+              <Alert variant="warning" key={idx}>
+                {message}
+              </Alert>
+            ))}
           </Col>
         </Row>
 
@@ -105,6 +147,11 @@ function PostCreateForm() {
                 ref={imageInput}
               />
             </Form.Group>
+            {errors.image?.map((message, idx) => (
+              <Alert variant="warning" key={idx}>
+                {message}
+              </Alert>
+            ))}
           </Col>
         </Row>
 
@@ -121,6 +168,11 @@ function PostCreateForm() {
             <Button variant="primary" type="submit" className="mt-3">
               Submit
             </Button>
+            {errors.non_field_errors?.map((message, idx) => (
+              <Alert variant="warning" key={idx}>
+                {message}
+              </Alert>
+            ))}
           </Col>
         </Row>
       </Form>
