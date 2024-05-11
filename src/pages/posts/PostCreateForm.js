@@ -162,10 +162,17 @@ function PostCreateForm() {
           </Col>
         </Row>
 
-        {/* Submit button */}
+        {/* Submit button and Cancel button */}
         <Row className="justify-content-center">
           <Col xs={12} md={8} lg={6}>
-            <Button variant="primary" type="submit" className="mt-3">
+            <Button
+              variant="secondary"
+              className="mt-3"
+              onClick={() => navigate(-1)}
+            >
+              Cancel
+            </Button>
+            <Button variant="primary" type="submit" className="mt-3 ms-2">
               Submit
             </Button>
             {errors.non_field_errors?.map((message, idx) => (
