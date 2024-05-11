@@ -2,6 +2,8 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
 import { Link } from "react-router-dom";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import ImageAsset from "../../components/ImageAsset";
@@ -26,6 +28,33 @@ const Post = (props) => {
 
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
+
+  // Set like button content based on user state
+  let likeButtonContent = null;
+  if (!like_id && !currentUser) {
+    likeButtonContent = (
+      <OverlayTrigger
+        placement="top"
+        overlay={<Tooltip>Sign in to like</Tooltip>}
+      >
+        <span className="d-flex justify-content-end mt-1">
+          <i className="fa-regular fa-thumbs-up"></i> {likes_count}
+        </span>
+      </OverlayTrigger>
+    );
+  } else if (!like_id && currentUser) {
+    likeButtonContent = (
+      <span className="d-flex justify-content-end mt-1" onClick={() => {}}>
+        <i className="fa-regular fa-thumbs-up"></i> {likes_count}
+      </span>
+    );
+  } else if (like_id && currentUser) {
+    likeButtonContent = (
+      <span className="d-flex justify-content-end mt-1" onClick={() => {}}>
+        <i className="fa-solid fa-thumbs-up"></i> {likes_count}
+      </span>
+    );
+  }
 
   return (
     <Container>
@@ -58,7 +87,7 @@ const Post = (props) => {
         </Col>
         <Col xs={2} md={2} lg={2}>
           <span className="d-flex justify-content-end mt-1">
-            <i class="fa-regular fa-thumbs-up"></i> {likes_count}
+            {likeButtonContent}
           </span>
           <span className="d-flex justify-content-end mt-1">
             <i class="fa-regular fa-comments"></i> {comments_count}
