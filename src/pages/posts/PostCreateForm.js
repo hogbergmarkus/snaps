@@ -16,6 +16,14 @@ function PostCreateForm() {
   });
   const { title, content, tags, image } = postData;
 
+  // Handle form input changes
+  const handleChange = (event) => {
+    setPostData({
+      ...postData,
+      [event.target.name]: event.target.value,
+    });
+  };
+
   // Handle image upload, sets image url in state
   const handleChangeImage = (event) => {
     if (event.target.files.length) {
@@ -36,7 +44,13 @@ function PostCreateForm() {
           <Col xs={12} md={8} lg={6}>
             <Form.Group controlId="title" className="mb-3">
               <Form.Label className="d-none">Title</Form.Label>
-              <Form.Control type="text" placeholder="Title" />
+              <Form.Control
+                type="text"
+                placeholder="Title"
+                name="title"
+                value={title}
+                onChange={handleChange}
+              />
             </Form.Group>
           </Col>
         </Row>
@@ -46,7 +60,14 @@ function PostCreateForm() {
           <Col xs={12} md={8} lg={6}>
             <Form.Group controlId="content" className="mb-3">
               <Form.Label className="d-none">Content</Form.Label>
-              <Form.Control as="textarea" rows={3} placeholder="Content" />
+              <Form.Control
+                as="textarea"
+                rows={3}
+                placeholder="Content"
+                name="content"
+                value={content}
+                onChange={handleChange}
+              />
             </Form.Group>
           </Col>
         </Row>
@@ -56,7 +77,13 @@ function PostCreateForm() {
           <Col xs={12} md={8} lg={6}>
             <Form.Group controlId="tags" className="mb-3">
               <Form.Label className="d-none">Tags</Form.Label>
-              <Form.Control type="text" placeholder="Tags" />
+              <Form.Control
+                type="text"
+                placeholder="Tags"
+                name="tags"
+                value={tags}
+                onChange={handleChange}
+              />
             </Form.Group>
           </Col>
         </Row>
