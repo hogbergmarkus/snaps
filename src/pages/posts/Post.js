@@ -135,9 +135,19 @@ const Post = (props) => {
                 <span>{comments_count}</span>
               </div>
             </Link>
-            <div className={`${styles.Icons}`}>
-              <i class="fa-solid fa-download"></i> <span>{download_count}</span>
-            </div>
+            <a
+              href={image}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Go to download post image, opens in a new tab"
+              className={`${styles.Link}`}
+              onClick={() => {}}
+            >
+              <div className={`${styles.Icons}`}>
+                <i class="fa-solid fa-download"></i>{" "}
+                <span>{download_count}</span>
+              </div>
+            </a>
           </div>
         </Col>
       </Row>
