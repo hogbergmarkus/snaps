@@ -136,7 +136,7 @@ const Post = (props) => {
           lg={4}
           className="d-flex align-self-center justify-content-end"
         >
-          <span className="me-1">
+          <span className={`${styles.IconDropdown}`}>
             <Link to={`/profiles/${profile_id}`} className={`${styles.Link}`}>
               <Avatar src={profile_image} text={owner} />{" "}
             </Link>
