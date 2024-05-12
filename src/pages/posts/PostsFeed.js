@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Alert from "react-bootstrap/Alert";
 import Spinner from "react-bootstrap/Spinner";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useLocation } from "react-router-dom";
 import Post from "./Post";
 
-function PostsFeed() {
+function PostsFeed({ message }) {
   const [posts, setPosts] = useState({ results: [] });
+  const [error, setError] = useState(null);
   const { pathName } = useLocation();
 
   // Fetch posts when component mounts
@@ -18,17 +20,22 @@ function PostsFeed() {
         setPosts(data);
       } catch (err) {
         console.log(err);
+        setError(`${message}: Unable to get posts.`);
       }
     };
 
     fetchPosts();
-  }, [pathName]);
+  }, [pathName, message]);
 
   return (
     <Row className="justify-content-center">
       <Col xs={12} md={12} lg={8} className="text-center">
-        {/* Display posts if they exist and have loaded */}
-        {posts.results && posts.results.length > 0 ? (
+        {/* Display error message, show posts on success, else show loading spinner */}
+        {error ? (
+          <div className="d-flex justify-content-center align-items-center vh-100">
+            <Alert variant="danger">{error}</Alert>
+          </div>
+        ) : posts.results && posts.results.length > 0 ? (
           posts.results.map((post) => (
             <Post key={post.id} {...post} setPosts={setPosts} />
           ))
