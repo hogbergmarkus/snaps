@@ -125,10 +125,10 @@ const Post = (props) => {
 
   return (
     <Container>
-      {/* Image title goes here */}
+      {/* Image title and Avatar goes here */}
       <Row className="justify-content-center">
         <Col xs={6} md={6} lg={4} className="align-self-center">
-          <span>{title}</span>
+          <span className="ms-1">{title}</span>
         </Col>
         <Col
           xs={6}
@@ -136,7 +136,7 @@ const Post = (props) => {
           lg={4}
           className="d-flex align-self-center justify-content-end"
         >
-          <span>
+          <span className="me-1">
             <Avatar src={profile_image} text={owner} />{" "}
             {is_owner && postPage && <i className="fa-solid fa-caret-down"></i>}
           </span>
@@ -152,7 +152,7 @@ const Post = (props) => {
         </Col>
       </Row>
 
-      {/* Display Likes- Comments- and Download count */}
+      {/* Display Likes- Comments- Download count and updated at */}
       <Row className="justify-content-center">
         <Col xs={12} md={12} lg={8}>
           <div className="d-flex justify-content-center">
@@ -176,6 +176,9 @@ const Post = (props) => {
                 <span>{download_count}</span>
               </div>
             </a>
+            <div className="d-flex flex-grow-1 align-self-center justify-content-end me-2">
+              <span>{updated_at}</span>
+            </div>
           </div>
         </Col>
       </Row>
