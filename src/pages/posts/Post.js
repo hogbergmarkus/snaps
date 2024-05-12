@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { axiosRes } from "../../api/axiosDefaults";
 import ImageAsset from "../../components/ImageAsset";
+import styles from "../../styles/Post.module.css";
 
 const Post = (props) => {
   const {
@@ -79,21 +80,22 @@ const Post = (props) => {
         placement="top"
         overlay={<Tooltip>Sign in to like</Tooltip>}
       >
-        <div className="m-3">
-          <i className="fa-regular fa-thumbs-up"></i> {likes_count}
+        <div className={`${styles.Icons}`}>
+          <i className="fa-regular fa-thumbs-up"></i> <span>{likes_count}</span>
         </div>
       </OverlayTrigger>
     );
   } else if (!like_id && currentUser) {
     likeButtonContent = (
-      <div className="m-3" onClick={handleLike}>
-        <i className="fa-regular fa-thumbs-up"></i> {likes_count}
+      <div className={`${styles.Icons}`} onClick={handleLike}>
+        <i className="fa-regular fa-thumbs-up"></i> <span>{likes_count}</span>
       </div>
     );
   } else if (like_id && currentUser) {
     likeButtonContent = (
-      <div className="m-3" onClick={handleUnlike}>
-        <i className="fa-solid fa-thumbs-up"></i> {likes_count}
+      <div className={`${styles.Icons}`} onClick={handleUnlike}>
+        <i className="fa-solid fa-thumbs-up"></i>
+        <span>{likes_count}</span>
       </div>
     );
   }
@@ -127,11 +129,12 @@ const Post = (props) => {
         <Col xs={12} md={12} lg={8}>
           <div className="d-flex justify-content-center">
             {likeButtonContent}
-            <div className="m-3">
-              <i class="fa-regular fa-comments"></i> {comments_count}
+            <div className={`${styles.Icons}`}>
+              <i class="fa-regular fa-comment"></i>{" "}
+              <span>{comments_count}</span>
             </div>
-            <div className="m-3">
-              <i class="fa-solid fa-download"></i> {download_count}
+            <div className={`${styles.Icons}`}>
+              <i class="fa-solid fa-download"></i> <span>{download_count}</span>
             </div>
           </div>
         </Col>
