@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Spinner from "react-bootstrap/Spinner";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useLocation } from "react-router-dom";
 import Post from "./Post";
 
-function PostsFeed({ message }) {
+function PostsFeed() {
   const [posts, setPosts] = useState({ results: [] });
   const { pathName } = useLocation();
 
@@ -32,7 +33,9 @@ function PostsFeed({ message }) {
             <Post key={post.id} {...post} setPosts={setPosts} />
           ))
         ) : (
-          <p>{message}</p>
+          <div className="d-flex justify-content-center align-items-center vh-100">
+            <Spinner animation="grow" />
+          </div>
         )}
       </Col>
     </Row>
