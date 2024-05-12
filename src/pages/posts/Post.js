@@ -79,22 +79,22 @@ const Post = (props) => {
         placement="top"
         overlay={<Tooltip>Sign in to like</Tooltip>}
       >
-        <span className="d-flex justify-content-end mt-1">
+        <div className="m-3">
           <i className="fa-regular fa-thumbs-up"></i> {likes_count}
-        </span>
+        </div>
       </OverlayTrigger>
     );
   } else if (!like_id && currentUser) {
     likeButtonContent = (
-      <span className="d-flex justify-content-end mt-1" onClick={handleLike}>
+      <div className="m-3" onClick={handleLike}>
         <i className="fa-regular fa-thumbs-up"></i> {likes_count}
-      </span>
+      </div>
     );
   } else if (like_id && currentUser) {
     likeButtonContent = (
-      <span className="d-flex justify-content-end mt-1" onClick={handleUnlike}>
+      <div className="m-3" onClick={handleUnlike}>
         <i className="fa-solid fa-thumbs-up"></i> {likes_count}
-      </span>
+      </div>
     );
   }
 
@@ -122,21 +122,25 @@ const Post = (props) => {
         </Col>
       </Row>
 
-      {/* Display Content, Likes- Comments- and Download count */}
+      {/* Display Likes- Comments- and Download count */}
       <Row className="justify-content-center">
-        <Col xs={10} md={10} lg={6}>
-          <p className="text-start">{content}</p>
-        </Col>
-        <Col xs={2} md={2} lg={2}>
-          <span className="d-flex justify-content-end mt-1">
+        <Col xs={12} md={12} lg={8}>
+          <div className="d-flex justify-content-center">
             {likeButtonContent}
-          </span>
-          <span className="d-flex justify-content-end mt-1">
-            <i class="fa-regular fa-comments"></i> {comments_count}
-          </span>
-          <span className="d-flex justify-content-end mt-1">
-            <i class="fa-solid fa-download"></i> {download_count}
-          </span>
+            <div className="m-3">
+              <i class="fa-regular fa-comments"></i> {comments_count}
+            </div>
+            <div className="m-3">
+              <i class="fa-solid fa-download"></i> {download_count}
+            </div>
+          </div>
+        </Col>
+      </Row>
+
+      {/* Display post content here */}
+      <Row className="justify-content-center">
+        <Col xs={12} md={12} lg={8}>
+          <p className="text-center">{content}</p>
         </Col>
       </Row>
     </Container>
