@@ -15,7 +15,11 @@ function App() {
       <NavBar />
       <Container>
         <Routes>
-          <Route exact path="/" element={<PostsFeed />} />
+          <Route
+            exact
+            path="/"
+            element={<PostsFeed message="No results found." />}
+          />
           <Route exact path="/sign-in" element={<SignInForm />} />
           <Route exact path="/register" element={<SignUpForm />} />
           <Route exact path="/profile" element={<h1>Profile</h1>} />
