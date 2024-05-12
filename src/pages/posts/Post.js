@@ -72,6 +72,28 @@ const Post = (props) => {
     }
   };
 
+  const handleDownload = async () => {
+    try {
+      await axiosRes.post(`/posts/${id}/download/`);
+
+      // Update posts state with new download
+      setPosts((prevPosts) => ({
+        ...prevPosts,
+        results: prevPosts.results.map((post) => {
+          return post.id === id
+            ? // Checks if the current post is the one being downloaded
+              {
+                ...post,
+                download_count: post.download_count + 1,
+              }
+            : post;
+        }),
+      }));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   // Set like button content based on user state
   let likeButtonContent = null;
   if (!like_id && !currentUser) {
@@ -110,7 +132,7 @@ const Post = (props) => {
         <Col xs={6} md={6} lg={4}>
           <p className="text-end">
             By: {owner}{" "}
-            {is_owner && postPage && <i class="fa-solid fa-caret-down"></i>}
+            {is_owner && postPage && <i className="fa-solid fa-caret-down"></i>}
           </p>
         </Col>
       </Row>
@@ -131,7 +153,7 @@ const Post = (props) => {
             {likeButtonContent}
             <Link to={`/posts/${id}`} className={`${styles.Link}`}>
               <div className={`${styles.Icons}`}>
-                <i class="fa-regular fa-comment"></i>{" "}
+                <i className="fa-regular fa-comment"></i>{" "}
                 <span>{comments_count}</span>
               </div>
             </Link>
@@ -141,10 +163,10 @@ const Post = (props) => {
               rel="noreferrer"
               aria-label="Go to download post image, opens in a new tab"
               className={`${styles.Link}`}
-              onClick={() => {}}
+              onClick={handleDownload}
             >
               <div className={`${styles.Icons}`}>
-                <i class="fa-solid fa-download"></i>{" "}
+                <i className="fa-solid fa-download"></i>{" "}
                 <span>{download_count}</span>
               </div>
             </a>
