@@ -7,6 +7,7 @@ import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from "./pages/auth/SignInForm";
 import PostCreateForm from "./pages/posts/PostCreateForm";
 import PostDetail from "./pages/posts/PostDetail";
+import PostsFeed from "./pages/posts/PostsFeed";
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
       <NavBar />
       <Container>
         <Routes>
-          <Route exact path="/" element={<h1>Home</h1>} />
+          <Route exact path="/" element={<PostsFeed />} />
           <Route exact path="/sign-in" element={<SignInForm />} />
           <Route exact path="/register" element={<SignUpForm />} />
           <Route exact path="/profile" element={<h1>Profile</h1>} />
