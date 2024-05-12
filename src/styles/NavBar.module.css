@@ -12,6 +12,8 @@
   text-decoration: none;
   color: black;
   padding: 7px;
+  width: 100px;
+  transition: font-weight 0.2s;
 }
 
 .NavLink.active {
@@ -25,6 +27,7 @@
 .NavDropdown {
   padding-left: 7px;
   font-weight: 600;
+  transition: font-weight 0.2s;
 }
 
 .NavDropdown:hover {
