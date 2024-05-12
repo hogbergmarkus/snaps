@@ -9,6 +9,7 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { axiosRes } from "../../api/axiosDefaults";
 import ImageAsset from "../../components/ImageAsset";
 import styles from "../../styles/Post.module.css";
+import Avatar from "../../components/Avatar";
 
 const Post = (props) => {
   const {
@@ -126,14 +127,19 @@ const Post = (props) => {
     <Container>
       {/* Image title goes here */}
       <Row className="justify-content-center">
-        <Col xs={6} md={6} lg={4}>
-          {title}
+        <Col xs={6} md={6} lg={4} className="align-self-center">
+          <span>{title}</span>
         </Col>
-        <Col xs={6} md={6} lg={4}>
-          <p className="text-end">
-            By: {owner}{" "}
+        <Col
+          xs={6}
+          md={6}
+          lg={4}
+          className="d-flex align-self-center justify-content-end"
+        >
+          <span>
+            <Avatar src={profile_image} text={owner} />{" "}
             {is_owner && postPage && <i className="fa-solid fa-caret-down"></i>}
-          </p>
+          </span>
         </Col>
       </Row>
 
