@@ -7,7 +7,7 @@ import { axiosReq } from "../../api/axiosDefaults";
 import { useLocation } from "react-router-dom";
 import Post from "./Post";
 
-function PostsFeed({ message }) {
+function PostsFeed({ message, filter = "" }) {
   const [posts, setPosts] = useState({ results: [] });
   const [error, setError] = useState(null);
   const { pathName } = useLocation();
@@ -16,7 +16,8 @@ function PostsFeed({ message }) {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const { data } = await axiosReq.get("/posts/");
+        // Filter applies to the liked-posts route
+        const { data } = await axiosReq.get(`/posts/?${filter}`);
         setPosts(data);
       } catch (err) {
         console.log(err);
@@ -25,7 +26,7 @@ function PostsFeed({ message }) {
     };
 
     fetchPosts();
-  }, [pathName, message]);
+  }, [pathName, message, filter]);
 
   return (
     <Row className="justify-content-center">

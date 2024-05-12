@@ -8,8 +8,12 @@ import SignInForm from "./pages/auth/SignInForm";
 import PostCreateForm from "./pages/posts/PostCreateForm";
 import PostDetail from "./pages/posts/PostDetail";
 import PostsFeed from "./pages/posts/PostsFeed";
+import { useCurrentUser } from "./contexts/CurrentUserContext";
 
 function App() {
+  const currentUser = useCurrentUser();
+  const profile_id = currentUser?.profile_id || "";
+
   return (
     <div className={styles.App}>
       <NavBar />
@@ -24,7 +28,16 @@ function App() {
           <Route exact path="/register" element={<SignUpForm />} />
           <Route exact path="/profile" element={<h1>Profile</h1>} />
           <Route exact path="/albums" element={<h1>Albums</h1>} />
-          <Route exact path="/liked-posts" element={<h1>Liked Posts</h1>} />
+          <Route
+            exact
+            path="/liked-posts"
+            element={
+              <PostsFeed
+                message="No results found."
+                filter={`likes__owner__profile=${profile_id}&ordering=-likes__created_at&`}
+              />
+            }
+          />
           <Route exact path="/posts/create" element={<PostCreateForm />} />
           <Route exact path="/posts/:id" element={<PostDetail />} />
           <Route path="*" element={<p>Page not found</p>} />
