@@ -129,10 +129,12 @@ const Post = (props) => {
         <Col xs={12} md={12} lg={8}>
           <div className="d-flex justify-content-center">
             {likeButtonContent}
-            <div className={`${styles.Icons}`}>
-              <i class="fa-regular fa-comment"></i>{" "}
-              <span>{comments_count}</span>
-            </div>
+            <Link to={`/posts/${id}`} className={`${styles.Link}`}>
+              <div className={`${styles.Icons}`}>
+                <i class="fa-regular fa-comment"></i>{" "}
+                <span>{comments_count}</span>
+              </div>
+            </Link>
             <div className={`${styles.Icons}`}>
               <i class="fa-solid fa-download"></i> <span>{download_count}</span>
             </div>
