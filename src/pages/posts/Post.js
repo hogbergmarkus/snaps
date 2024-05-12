@@ -137,7 +137,9 @@ const Post = (props) => {
           className="d-flex align-self-center justify-content-end"
         >
           <span className="me-1">
-            <Avatar src={profile_image} text={owner} />{" "}
+            <Link to={`/profiles/${profile_id}`} className={`${styles.Link}`}>
+              <Avatar src={profile_image} text={owner} />{" "}
+            </Link>
             {is_owner && postPage && <i className="fa-solid fa-caret-down"></i>}
           </span>
         </Col>
