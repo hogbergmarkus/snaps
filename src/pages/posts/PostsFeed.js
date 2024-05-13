@@ -13,6 +13,7 @@ function PostsFeed({ message, filter = "" }) {
   const [posts, setPosts] = useState({ results: [] });
   const [error, setError] = useState(null);
   const { pathName } = useLocation();
+  const [hasLoaded, setHasLoaded] = useState(false);
 
   // Set query state for search
   const [query, setQuery] = useState("");
@@ -24,6 +25,7 @@ function PostsFeed({ message, filter = "" }) {
         // Filter applies to the liked-posts route
         const { data } = await axiosReq.get(`/posts/?${filter}search=${query}`);
         setPosts(data);
+        setHasLoaded(true);
       } catch (err) {
         console.log(err);
         setError(`${message}: Unable to get posts.`);
@@ -51,8 +53,12 @@ function PostsFeed({ message, filter = "" }) {
       </Row>
       <Row className="justify-content-center">
         <Col xs={12} lg={8} className="text-center">
-          {/* Display error message, show posts on success, else show loading spinner */}
-          {error ? (
+          {/* Display loading spinner until data is loaded */}
+          {!hasLoaded ? (
+            <div className="d-flex justify-content-center align-items-center vh-100">
+              <Spinner animation="grow" />
+            </div>
+          ) : error ? (
             <div className="d-flex justify-content-center align-items-center vh-100">
               <Alert variant="danger">{error}</Alert>
             </div>
@@ -62,7 +68,7 @@ function PostsFeed({ message, filter = "" }) {
             ))
           ) : (
             <div className="d-flex justify-content-center align-items-center vh-100">
-              <Spinner animation="grow" />
+              <Alert variant="info">{message}</Alert>
             </div>
           )}
         </Col>
