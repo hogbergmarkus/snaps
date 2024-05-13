@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from "react";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import Alert from "react-bootstrap/Alert";
 import Spinner from "react-bootstrap/Spinner";
 import { useParams } from "react-router-dom";
@@ -33,20 +36,24 @@ function PostDetail() {
   }, [id]);
 
   return (
-    <div>
-      {/* Display loading spinner, error message, or post */}
-      {loading ? (
-        <div className="d-flex justify-content-center align-items-center vh-100">
-          <Spinner animation="grow" />
-        </div>
-      ) : error ? (
-        <div className="d-flex justify-content-center align-items-center vh-100">
-          <Alert variant="danger">{error}</Alert>
-        </div>
-      ) : (
-        <Post {...post.results[0]} setPosts={setPost} postPage />
-      )}
-    </div>
+    <Container>
+      <Row className="justify-content-center my-4">
+        <Col xs={12} lg={8}>
+          {/* Display loading spinner, error message, or post */}
+          {loading ? (
+            <div className="d-flex justify-content-center align-items-center vh-100">
+              <Spinner animation="grow" />
+            </div>
+          ) : error ? (
+            <div className="d-flex justify-content-center align-items-center vh-100">
+              <Alert variant="danger">{error}</Alert>
+            </div>
+          ) : (
+            <Post {...post.results[0]} setPosts={setPost} postPage />
+          )}
+        </Col>
+      </Row>
+    </Container>
   );
 }
 
