@@ -8,6 +8,8 @@ import Spinner from "react-bootstrap/Spinner";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useLocation } from "react-router-dom";
 import Post from "./Post";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { fetchMoreData } from "../../utils/utils";
 
 function PostsFeed({ message, filter = "" }) {
   const [posts, setPosts] = useState({ results: [] });
@@ -63,9 +65,15 @@ function PostsFeed({ message, filter = "" }) {
               <Alert variant="danger">{error}</Alert>
             </div>
           ) : posts.results && posts.results.length > 0 ? (
-            posts.results.map((post) => (
-              <Post key={post.id} {...post} setPosts={setPosts} />
-            ))
+            <InfiniteScroll
+              children={posts.results.map((post) => (
+                <Post key={post.id} {...post} setPosts={setPosts} />
+              ))}
+              dataLength={posts.results.length}
+              loader={<Spinner animation="grow" />}
+              hasMore={!!posts.next}
+              next={() => fetchMoreData(posts, setPosts)}
+            />
           ) : (
             <div className="d-flex justify-content-center align-items-center vh-100">
               <Alert variant="info">{message}</Alert>
