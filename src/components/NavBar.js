@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "../styles/NavBar.module.css";
 import Container from "react-bootstrap/Container";
-import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
@@ -126,11 +125,13 @@ const NavBar = () => {
   );
 
   return (
-    <Navbar expand="md" sticky="top">
+    <Navbar expand="md" sticky="top" className={`${styles.NavBar}`}>
       <Container fluid>
         {/* Brand text/logo here */}
-        <NavLink className={styles.BrandText} to="/">
-          <Navbar.Brand className={styles.BrandTextSize}>Snaps</Navbar.Brand>
+        <NavLink className={`${styles.BrandText}`} to="/">
+          <Navbar.Brand className={`${styles.BrandTextSize}`}>
+            Snaps
+          </Navbar.Brand>
         </NavLink>
         {/* Toggle for offcanvas menu */}
         <Navbar.Toggle aria-controls="offcanvasNavbar" onClick={handleShow} />
@@ -160,14 +161,6 @@ const NavBar = () => {
               {/* Display different navigation links based on user login status */}
               {currentUser ? loggedInIcons : loggedOutIcons}
             </Nav>
-            <Form className="d-flex">
-              <Form.Control
-                type="search"
-                placeholder="Search"
-                className="me-2"
-                aria-label="Search"
-              />
-            </Form>
           </Offcanvas.Body>
         </Navbar.Offcanvas>
       </Container>
