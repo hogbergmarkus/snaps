@@ -124,21 +124,16 @@ const Post = (props) => {
   }
 
   return (
-    <Container>
+    <Container fluid>
       {/* Image title and Avatar goes here */}
       <Row className="justify-content-center">
-        <Col xs={6} md={6} lg={4} className="align-self-center">
+        <Col xs={8} className="align-self-center text-start">
           <span className="ms-1">{title}</span>
         </Col>
-        <Col
-          xs={6}
-          md={6}
-          lg={4}
-          className="d-flex align-self-center justify-content-end"
-        >
+        <Col xs={4} className="d-flex align-self-center justify-content-end">
           <span className={`${styles.IconDropdown}`}>
             <Link to={`/profiles/${profile_id}`} className={`${styles.Link}`}>
-              <Avatar src={profile_image} text={owner} />{" "}
+              <Avatar src={profile_image} />{" "}
             </Link>
             {is_owner && postPage && <i className="fa-solid fa-caret-down"></i>}
           </span>
@@ -147,7 +142,7 @@ const Post = (props) => {
 
       {/* Display post image here */}
       <Row className="justify-content-center">
-        <Col xs={12} md={12} lg={8}>
+        <Col>
           <Link to={`/posts/${id}`}>
             <ImageAsset src={image} alt={title} />
           </Link>
@@ -156,7 +151,7 @@ const Post = (props) => {
 
       {/* Display Likes- Comments- Download count and updated at */}
       <Row className="justify-content-center">
-        <Col xs={12} md={12} lg={8}>
+        <Col>
           <div className="d-flex justify-content-center">
             {likeButtonContent}
             <Link to={`/posts/${id}`} className={`${styles.Link}`}>
@@ -187,9 +182,10 @@ const Post = (props) => {
 
       {/* Display post content here */}
       <Row className="justify-content-center">
-        <Col xs={12} md={12} lg={8}>
+        <Col>
           <p className="text-center">{content}</p>
         </Col>
+        <hr></hr>
       </Row>
     </Container>
   );

@@ -36,7 +36,7 @@ function PostsFeed({ message, filter = "" }) {
   return (
     <Container>
       <Row className="justify-content-center my-4">
-        <Col xs={12} md={12} lg={8}>
+        <Col xs={12} lg={8}>
           {/* Searchbar */}
           <Form onSubmit={(event) => event.preventDefault()}>
             <Form.Label className="d-none">Search</Form.Label>
@@ -50,7 +50,7 @@ function PostsFeed({ message, filter = "" }) {
         </Col>
       </Row>
       <Row className="justify-content-center">
-        <Col xs={12} md={12} lg={8} className="text-center">
+        <Col xs={12} lg={8} className="text-center">
           {/* Display error message, show posts on success, else show loading spinner */}
           {error ? (
             <div className="d-flex justify-content-center align-items-center vh-100">
