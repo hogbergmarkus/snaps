@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
@@ -6,7 +6,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Alert from "react-bootstrap/Alert";
 import ImageAsset from "../../components/ImageAsset";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 
 function PostEditForm() {
@@ -25,6 +25,24 @@ function PostEditForm() {
   const imageInput = useRef(null);
 
   const navigate = useNavigate();
+
+  const { id } = useParams();
+
+  // Fetch post details when component mounts
+  useEffect(() => {
+    const handleMount = async () => {
+      try {
+        const { data } = await axiosReq.get(`/posts/${id}/`);
+        const { title, content, image, tags, is_owner } = data;
+
+        is_owner ? setPostData({ title, content, image, tags }) : navigate("/");
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    handleMount();
+  }, [id, navigate]);
 
   // Handle form input changes
   const handleChange = (event) => {
@@ -53,11 +71,15 @@ function PostEditForm() {
     const formData = new FormData();
     formData.append("title", title);
     formData.append("content", content);
-    formData.append("image", imageInput.current.files[0]);
+
+    if (imageInput?.current?.files[0]) {
+      formData.append("image", imageInput.current.files[0]);
+    }
+
     formData.append("tags", tags);
     try {
-      const { data } = await axiosReq.post("/posts/", formData);
-      navigate(`/posts/${data.id}`);
+      await axiosReq.put(`/posts/${id}/`, formData);
+      navigate(`/posts/${id}/`);
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {
