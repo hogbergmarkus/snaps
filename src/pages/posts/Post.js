@@ -34,8 +34,19 @@ const Post = (props) => {
   const is_owner = currentUser?.username === owner;
   const navigate = useNavigate();
 
+  // Function to handle editing a post
   const handleEdit = () => {
     navigate(`/posts/${id}/edit`);
+  };
+
+  // Function to handle deleting a post
+  const handleDelete = async () => {
+    try {
+      await axiosRes.delete(`/posts/${id}/`);
+      navigate(-1);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   // Function to handle liking a post and updating the posts state
@@ -130,7 +141,7 @@ const Post = (props) => {
 
   return (
     <Container fluid>
-      {/* Image title and Avatar goes here */}
+      {/* Image title, Avatar and dropdown menu for post owner goes here */}
       <Row className="justify-content-center">
         <Col xs={8} className="align-self-center text-start">
           <span className="ms-1">{title}</span>
@@ -140,7 +151,12 @@ const Post = (props) => {
             <Link to={`/profiles/${profile_id}`} className={`${styles.Link}`}>
               <Avatar src={profile_image} />{" "}
             </Link>
-            {is_owner && postPage && <OwnerDropdown handleEdit={handleEdit} />}
+            {is_owner && postPage && (
+              <OwnerDropdown
+                handleEdit={handleEdit}
+                handleDelete={handleDelete}
+              />
+            )}
           </div>
         </Col>
       </Row>
