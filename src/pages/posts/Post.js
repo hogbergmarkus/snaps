@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 import { Link, useNavigate } from "react-router-dom";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { axiosRes } from "../../api/axiosDefaults";
@@ -34,19 +36,27 @@ const Post = (props) => {
   const is_owner = currentUser?.username === owner;
   const navigate = useNavigate();
 
+  // State to control delete confirmation modal
+  const [showModal, setShowModal] = useState(false);
+  const handleCloseModal = () => setShowModal(false);
+  const handleShowModal = () => setShowModal(true);
+
   // Function to handle editing a post
   const handleEdit = () => {
     navigate(`/posts/${id}/edit`);
   };
 
-  // Function to handle deleting a post
+  // Function to handle deleting a post if showModal is true
   const handleDelete = async () => {
-    try {
-      await axiosRes.delete(`/posts/${id}/`);
-      navigate(-1);
-    } catch (err) {
-      console.log(err);
+    if (showModal) {
+      try {
+        await axiosRes.delete(`/posts/${id}/`);
+        navigate(-1);
+      } catch (err) {
+        console.log(err);
+      }
     }
+    handleCloseModal();
   };
 
   // Function to handle liking a post and updating the posts state
@@ -154,7 +164,7 @@ const Post = (props) => {
             {is_owner && postPage && (
               <OwnerDropdown
                 handleEdit={handleEdit}
-                handleDelete={handleDelete}
+                handleDelete={handleShowModal}
               />
             )}
           </div>
@@ -208,6 +218,22 @@ const Post = (props) => {
         </Col>
         <hr></hr>
       </Row>
+
+      {/* Modal for Delete Confirmation */}
+      <Modal show={showModal} onHide={handleCloseModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Delete Post</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Are you sure you want to delete this post?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseModal}>
+            Cancel
+          </Button>
+          <Button variant="danger" onClick={handleDelete}>
+            Delete
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </Container>
   );
 };
