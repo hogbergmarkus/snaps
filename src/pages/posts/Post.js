@@ -158,9 +158,14 @@ const Post = (props) => {
         </Col>
         <Col xs={4} className="d-flex align-self-center justify-content-end">
           <div className="d-flex align-items-center">
-            <Link to={`/profiles/${profile_id}`} className={`${styles.Link}`}>
-              <Avatar src={profile_image} />{" "}
-            </Link>
+            <OverlayTrigger
+              placement="top"
+              overlay={<Tooltip>{owner}</Tooltip>}
+            >
+              <Link to={`/profiles/${profile_id}`} className={`${styles.Link}`}>
+                <Avatar src={profile_image} />{" "}
+              </Link>
+            </OverlayTrigger>
             {is_owner && postPage && (
               <OwnerDropdown
                 handleEdit={handleEdit}
