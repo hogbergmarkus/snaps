@@ -17,14 +17,18 @@ const CustomToggle = forwardRef(({ onClick }, ref) => (
 ));
 
 // Dropdown menu for post owner
-export const OwnerDropdown = () => {
+export const OwnerDropdown = ({ handleEdit }) => {
   return (
     <Dropdown>
       <Dropdown.Toggle as={CustomToggle}> </Dropdown.Toggle>
 
       <Dropdown.Menu popperConfig={{ strategy: "absolute" }}>
-        <Dropdown.Item href="#/action-1">Edit Post</Dropdown.Item>
-        <Dropdown.Item href="#/action-2">Delete Post</Dropdown.Item>
+        <Dropdown.Item onClick={handleEdit} aria-label="Edit Post">
+          Edit Post
+        </Dropdown.Item>
+        <Dropdown.Item onClick={() => {}} aria-label="Delete Post">
+          Delete Post
+        </Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
   );

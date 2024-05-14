@@ -4,7 +4,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { axiosRes } from "../../api/axiosDefaults";
 import ImageAsset from "../../components/ImageAsset";
@@ -32,6 +32,11 @@ const Post = (props) => {
 
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
+  const navigate = useNavigate();
+
+  const handleEdit = () => {
+    navigate(`/posts/${id}/edit`);
+  };
 
   // Function to handle liking a post and updating the posts state
   const handleLike = async () => {
@@ -135,7 +140,7 @@ const Post = (props) => {
             <Link to={`/profiles/${profile_id}`} className={`${styles.Link}`}>
               <Avatar src={profile_image} />{" "}
             </Link>
-            {is_owner && postPage && <OwnerDropdown />}
+            {is_owner && postPage && <OwnerDropdown handleEdit={handleEdit} />}
           </div>
         </Col>
       </Row>
