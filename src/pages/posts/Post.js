@@ -10,6 +10,7 @@ import { axiosRes } from "../../api/axiosDefaults";
 import ImageAsset from "../../components/ImageAsset";
 import styles from "../../styles/Post.module.css";
 import Avatar from "../../components/Avatar";
+import { OwnerDropdown } from "../../components/OwnerDropdown";
 
 const Post = (props) => {
   const {
@@ -131,12 +132,12 @@ const Post = (props) => {
           <span className="ms-1">{title}</span>
         </Col>
         <Col xs={4} className="d-flex align-self-center justify-content-end">
-          <span className={`${styles.IconDropdown}`}>
+          <div className="d-flex align-items-center">
             <Link to={`/profiles/${profile_id}`} className={`${styles.Link}`}>
               <Avatar src={profile_image} />{" "}
             </Link>
-            {is_owner && postPage && <i className="fa-solid fa-caret-down"></i>}
-          </span>
+            {is_owner && postPage && <OwnerDropdown />}
+          </div>
         </Col>
       </Row>
 
