@@ -7,6 +7,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Alert from "react-bootstrap/Alert";
 import Avatar from "../../components/Avatar";
+import CommentEditForm from "./CommentEditForm";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { OwnerDropdown } from "../../components/OwnerDropdown";
 import { axiosRes } from "../../api/axiosDefaults";
@@ -25,6 +26,8 @@ const Comment = (props) => {
 
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
+
+  const [showEditForm, setShowEditForm] = useState(false);
 
   const [error, setError] = useState(null);
 
@@ -71,22 +74,33 @@ const Comment = (props) => {
           <span className="ms-2">{owner}</span>
           {/* Display dropdown menu for comment owner */}
           <span className="ms-2">
-            {is_owner && (
-              <OwnerDropdown
-                handleEdit={() => {}}
-                handleDelete={handleShowModal}
-              />
-            )}
+            {is_owner &&
+              !showEditForm && ( // Hide dropdown in edit mode
+                <OwnerDropdown
+                  handleEdit={() => setShowEditForm(true)}
+                  handleDelete={handleShowModal}
+                />
+              )}
           </span>
           <div className="flex-grow-1"></div>
           <span className="text-muted me-2">{updated_at}</span>
         </Col>
       </Row>
 
-      {/* Display comment content */}
+      {/* Conditionally render either comment content or edit form */}
       <Row className="mt-2">
         <Col>
-          <p className="ms-2">{content}</p>
+          {showEditForm ? (
+            <CommentEditForm
+              id={id}
+              profile_id={profile_id}
+              content={content}
+              setComments={setComments}
+              setShowEditForm={setShowEditForm}
+            />
+          ) : (
+            <p className="ms-2">{content}</p>
+          )}
         </Col>
       </Row>
 
