@@ -5,6 +5,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import Alert from "react-bootstrap/Alert";
 import Avatar from "../../components/Avatar";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { OwnerDropdown } from "../../components/OwnerDropdown";
@@ -24,6 +25,8 @@ const Comment = (props) => {
 
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
+
+  const [error, setError] = useState(null);
 
   // State to control delete confirmation modal
   const [showModal, setShowModal] = useState(false);
@@ -50,7 +53,9 @@ const Comment = (props) => {
           // Filter out the deleted comment by its id
           results: prevComments.results.filter((comment) => comment.id !== id),
         }));
-      } catch (err) {}
+      } catch (err) {
+        setError("There was an error deleting the comment");
+      }
     }
     handleCloseModal();
   };
@@ -84,6 +89,17 @@ const Comment = (props) => {
           <p className="ms-2">{content}</p>
         </Col>
       </Row>
+
+      {/* Display error message if there is one */}
+      {error && (
+        <Row className="mt-3">
+          <Col className="text-center">
+            <Alert variant="danger">
+              <p>{error}</p>
+            </Alert>
+          </Col>
+        </Row>
+      )}
 
       {/* Modal for Delete Confirmation */}
       <Modal show={showModal} onHide={handleCloseModal}>
