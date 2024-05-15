@@ -23,11 +23,11 @@ export const OwnerDropdown = ({ handleEdit, handleDelete }) => {
       <Dropdown.Toggle as={CustomToggle}> </Dropdown.Toggle>
 
       <Dropdown.Menu popperConfig={{ strategy: "absolute" }}>
-        <Dropdown.Item onClick={handleEdit} aria-label="Edit Post">
-          Edit Post
+        <Dropdown.Item onClick={handleEdit} aria-label="Edit">
+          Edit
         </Dropdown.Item>
-        <Dropdown.Item onClick={handleDelete} aria-label="Delete Post">
-          Delete Post
+        <Dropdown.Item onClick={handleDelete} aria-label="Delete">
+          Delete
         </Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
