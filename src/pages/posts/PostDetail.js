@@ -32,7 +32,7 @@ function PostDetail() {
           axiosReq.get(`/comments/?post=${id}`),
         ]);
         setPost({ results: [post] });
-        setComments(comments)
+        setComments(comments);
         setLoading(false);
       } catch (err) {
         console.log(err);

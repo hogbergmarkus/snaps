@@ -47,7 +47,7 @@ function CommentCreateForm(props) {
 
   return (
     <>
-      <Row>
+      <Row className="mb-3">
         <Col>
           {/* Display profile image */}
           <Row className="justify-content-center">
