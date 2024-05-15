@@ -18,6 +18,8 @@ function PostDetail() {
   const [error, setError] = useState(null);
 
   const currentUser = useCurrentUser();
+  const [comments, setComments] = useState({ results: [] });
+  const profile_image = currentUser?.profile_image;
 
   // Fetch post details when component mounts
   useEffect(() => {
@@ -58,9 +60,20 @@ function PostDetail() {
         </Col>
       </Row>
 
+      {/* Display comment form if user is logged in */}
       <Row className="justify-content-center">
         <Col xs={12} lg={8}>
-          {currentUser ? <CommentCreateForm /> : null}
+          {currentUser ? (
+            <CommentCreateForm
+              profile_id={currentUser.profile_id}
+              profileImage={profile_image}
+              post={id}
+              setPost={setPost}
+              setComments={setComments}
+            />
+          ) : comments.results.length ? (
+            "Comments"
+          ) : null}
         </Col>
       </Row>
     </Container>
