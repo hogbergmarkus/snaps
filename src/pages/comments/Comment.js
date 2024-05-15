@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 import Avatar from "../../components/Avatar";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { OwnerDropdown } from "../../components/OwnerDropdown";
@@ -23,26 +25,34 @@ const Comment = (props) => {
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
 
+  // State to control delete confirmation modal
+  const [showModal, setShowModal] = useState(false);
+  const handleCloseModal = () => setShowModal(false);
+  const handleShowModal = () => setShowModal(true);
+
   // Function to handle deleting a comment
   const handleDelete = async () => {
-    try {
-      await axiosRes.delete(`/comments/${id}/`);
-      // Update the post state by decrementing comments count
-      setPost((prevPost) => ({
-        results: [
-          {
-            ...prevPost.results[0],
-            comments_count: prevPost.results[0].comments_count - 1,
-          },
-        ],
-      }));
-      // Update the comments state by deleting comment
-      setComments((prevComments) => ({
-        ...prevComments,
-        // Filter out the deleted comment by its id
-        results: prevComments.results.filter((comment) => comment.id !== id),
-      }));
-    } catch (err) {}
+    if (showModal) {
+      try {
+        await axiosRes.delete(`/comments/${id}/`);
+        // Update the post state by decrementing comments count
+        setPost((prevPost) => ({
+          results: [
+            {
+              ...prevPost.results[0],
+              comments_count: prevPost.results[0].comments_count - 1,
+            },
+          ],
+        }));
+        // Update the comments state by deleting comment
+        setComments((prevComments) => ({
+          ...prevComments,
+          // Filter out the deleted comment by its id
+          results: prevComments.results.filter((comment) => comment.id !== id),
+        }));
+      } catch (err) {}
+    }
+    handleCloseModal();
   };
 
   return (
@@ -59,7 +69,7 @@ const Comment = (props) => {
             {is_owner && (
               <OwnerDropdown
                 handleEdit={() => {}}
-                handleDelete={handleDelete}
+                handleDelete={handleShowModal}
               />
             )}
           </span>
@@ -74,6 +84,22 @@ const Comment = (props) => {
           <p className="ms-2">{content}</p>
         </Col>
       </Row>
+
+      {/* Modal for Delete Confirmation */}
+      <Modal show={showModal} onHide={handleCloseModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Delete Comment</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Are you sure you want to delete this comment?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseModal}>
+            Cancel
+          </Button>
+          <Button variant="danger" onClick={handleDelete}>
+            Delete
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </Card>
   );
 };
