@@ -6,7 +6,9 @@ import Alert from "react-bootstrap/Alert";
 import Spinner from "react-bootstrap/Spinner";
 import { useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import Post from "./Post";
+import CommentCreateForm from "../comments/CommentCreateForm";
 
 function PostDetail() {
   // Access id of post in the url
@@ -14,6 +16,8 @@ function PostDetail() {
   const [post, setPost] = useState({ results: [] });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  const currentUser = useCurrentUser();
 
   // Fetch post details when component mounts
   useEffect(() => {
@@ -51,6 +55,12 @@ function PostDetail() {
           ) : (
             <Post {...post.results[0]} setPosts={setPost} postPage />
           )}
+        </Col>
+      </Row>
+
+      <Row className="justify-content-center">
+        <Col xs={12} lg={8}>
+          {currentUser ? <CommentCreateForm /> : null}
         </Col>
       </Row>
     </Container>
