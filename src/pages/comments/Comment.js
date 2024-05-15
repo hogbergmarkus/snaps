@@ -6,12 +6,44 @@ import Col from "react-bootstrap/Col";
 import Avatar from "../../components/Avatar";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { OwnerDropdown } from "../../components/OwnerDropdown";
+import { axiosRes } from "../../api/axiosDefaults";
 
 const Comment = (props) => {
-  const { profile_id, profile_image, owner, updated_at, content } = props;
+  const {
+    profile_id,
+    profile_image,
+    owner,
+    updated_at,
+    content,
+    id,
+    setPost,
+    setComments,
+  } = props;
 
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
+
+  // Function to handle deleting a comment
+  const handleDelete = async () => {
+    try {
+      await axiosRes.delete(`/comments/${id}/`);
+      // Update the post state by decrementing comments count
+      setPost((prevPost) => ({
+        results: [
+          {
+            ...prevPost.results[0],
+            comments_count: prevPost.results[0].comments_count - 1,
+          },
+        ],
+      }));
+      // Update the comments state by deleting comment
+      setComments((prevComments) => ({
+        ...prevComments,
+        // Filter out the deleted comment by its id
+        results: prevComments.results.filter((comment) => comment.id !== id),
+      }));
+    } catch (err) {}
+  };
 
   return (
     <Card className="mt-3 mb-1">
@@ -25,7 +57,10 @@ const Comment = (props) => {
           {/* Display dropdown menu for comment owner */}
           <span className="ms-2">
             {is_owner && (
-              <OwnerDropdown handleEdit={() => {}} handleDelete={() => {}} />
+              <OwnerDropdown
+                handleEdit={() => {}}
+                handleDelete={handleDelete}
+              />
             )}
           </span>
           <div className="flex-grow-1"></div>
