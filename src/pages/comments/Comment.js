@@ -92,6 +92,30 @@ const Comment = (props) => {
     }
   };
 
+  // Function to handle un-liking a comment and updating the comments state
+  const handleUnlike = async () => {
+    try {
+      await axiosRes.delete(`/likes/${like_id}/`);
+
+      // Update comments state by removing a like
+      setComments((prevComments) => ({
+        ...prevComments,
+        results: prevComments.results.map((comment) => {
+          return comment.id === id
+            ? // Checks if the current comment is the one being un-liked
+              {
+                ...comment,
+                likes_count: comment.likes_count - 1,
+                like_id: null,
+              }
+            : comment;
+        }),
+      }));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   // Set like button content based on user state
   let likeButtonContent = null;
   if (!like_id && !currentUser) {
@@ -113,7 +137,7 @@ const Comment = (props) => {
     );
   } else if (like_id && currentUser) {
     likeButtonContent = (
-      <div className={`${styles.Icons}`} onClick={() => {}}>
+      <div className={`${styles.Icons}`} onClick={handleUnlike}>
         <i className="fa-solid fa-thumbs-up"></i>
         <span>{likes_count}</span>
       </div>
