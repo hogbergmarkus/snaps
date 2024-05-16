@@ -10,6 +10,7 @@ import PostDetail from "./pages/posts/PostDetail";
 import PostsFeed from "./pages/posts/PostsFeed";
 import { useCurrentUser } from "./contexts/CurrentUserContext";
 import PostEditForm from "./pages/posts/PostEditForm";
+import Albums from "./pages/albums/Albums";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -28,7 +29,7 @@ function App() {
           <Route exact path="/sign-in" element={<SignInForm />} />
           <Route exact path="/register" element={<SignUpForm />} />
           <Route exact path="/profile" element={<h1>Profile</h1>} />
-          <Route exact path="/albums" element={<h1>Albums</h1>} />
+          <Route exact path="/albums" element={<Albums />} />
           <Route
             exact
             path="/liked-posts"
