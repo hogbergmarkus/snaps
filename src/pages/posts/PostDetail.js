@@ -4,9 +4,11 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Alert from "react-bootstrap/Alert";
 import Spinner from "react-bootstrap/Spinner";
+import InfiniteScroll from "react-infinite-scroll-component";
 import { useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import { fetchMoreData } from "../../utils/utils";
 import Post from "./Post";
 import CommentCreateForm from "../comments/CommentCreateForm";
 import Comment from "../comments/Comment";
@@ -77,16 +79,24 @@ function PostDetail() {
           ) : comments.results.length ? (
             "Comments"
           ) : null}
+          {/* Display comments with infinite scroll */}
           {comments.results.length ? (
-            comments.results.map((comment) => (
-              <Comment
-                key={comment.id}
-                {...comment}
-                setPost={setPost}
-                setComments={setComments}
-              />
-            ))
-          ) : currentUser ? (
+            <InfiniteScroll
+              children={comments.results.map((comment) => (
+                <Comment
+                  key={comment.id}
+                  {...comment}
+                  setPost={setPost}
+                  setComments={setComments}
+                />
+              ))}
+              dataLength={comments.results.length}
+              loader={<Spinner animation="grow" />}
+              hasMore={!!comments.next}
+              next={() => fetchMoreData(comments, setComments)}
+            />
+          ) : // Display message if there are no comments
+          currentUser ? (
             <span>No comments yet, be the first to comment!</span>
           ) : (
             <span>No comments... yet</span>
