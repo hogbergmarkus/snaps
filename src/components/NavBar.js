@@ -74,6 +74,7 @@ const NavBar = () => {
         title={currentUser?.username}
         id="offcanvasNavbarDropdown"
         className={styles.NavDropdown}
+        drop="start"
       >
         <NavDropdown.Item
           as={NavLink}
