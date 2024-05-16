@@ -6,11 +6,14 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Alert from "react-bootstrap/Alert";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
 import Avatar from "../../components/Avatar";
 import CommentEditForm from "./CommentEditForm";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { OwnerDropdown } from "../../components/OwnerDropdown";
 import { axiosRes } from "../../api/axiosDefaults";
+import styles from "../../styles/Comment.module.css";
 
 const Comment = (props) => {
   const {
@@ -23,6 +26,8 @@ const Comment = (props) => {
     setPost,
     setComments,
   } = props;
+
+  const { like_id, likes_count } = props;
 
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
@@ -63,6 +68,58 @@ const Comment = (props) => {
     handleCloseModal();
   };
 
+  // Function to handle liking a comment and updating the comments state
+  const handleLike = async () => {
+    try {
+      const { data } = await axiosRes.post("/likes/", { comment: id });
+
+      // Update comments state with new like
+      setComments((prevComments) => ({
+        ...prevComments,
+        results: prevComments.results.map((comment) => {
+          return comment.id === id
+            ? // Checks if the current comment is the one being liked
+              {
+                ...comment,
+                likes_count: comment.likes_count + 1,
+                like_id: data.id,
+              }
+            : comment;
+        }),
+      }));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  // Set like button content based on user state
+  let likeButtonContent = null;
+  if (!like_id && !currentUser) {
+    likeButtonContent = (
+      <OverlayTrigger
+        placement="top"
+        overlay={<Tooltip>Sign in to like</Tooltip>}
+      >
+        <div className={`${styles.Icons}`}>
+          <i className="fa-regular fa-thumbs-up"></i> <span>{likes_count}</span>
+        </div>
+      </OverlayTrigger>
+    );
+  } else if (!like_id && currentUser) {
+    likeButtonContent = (
+      <div className={`${styles.Icons}`} onClick={handleLike}>
+        <i className="fa-regular fa-thumbs-up"></i> <span>{likes_count}</span>
+      </div>
+    );
+  } else if (like_id && currentUser) {
+    likeButtonContent = (
+      <div className={`${styles.Icons}`} onClick={() => {}}>
+        <i className="fa-solid fa-thumbs-up"></i>
+        <span>{likes_count}</span>
+      </div>
+    );
+  }
+
   return (
     <Card className="mt-3 mb-1">
       <Row className="d-flex">
@@ -82,6 +139,7 @@ const Comment = (props) => {
                 />
               )}
           </span>
+          {likeButtonContent}
           <div className="flex-grow-1"></div>
           <span className="text-muted me-2">{updated_at}</span>
         </Col>
