@@ -5,7 +5,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Offcanvas from "react-bootstrap/Offcanvas";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation, matchPath } from "react-router-dom";
 import {
   useCurrentUser,
   useSetCurrentUser,
@@ -16,6 +16,8 @@ import useToggleNavBar from "../hooks/useToggleNavBar";
 const NavBar = () => {
   // Use hook to control the offcanvas menu
   const { show, handleShow, handleClose } = useToggleNavBar();
+
+  const location = useLocation();
 
   // Get current user from context
   const currentUser = useCurrentUser();
@@ -73,52 +75,49 @@ const NavBar = () => {
         id="offcanvasNavbarDropdown"
         className={styles.NavDropdown}
       >
-        <NavDropdown.Item>
-          <NavLink
-            className={({ isActive }) =>
-              isActive ? `${styles.NavLink} ${styles.active}` : styles.NavLink
-            }
-            to="/profile"
-            onClick={handleClose}
-          >
-            Profile
-          </NavLink>
+        <NavDropdown.Item
+          as={NavLink}
+          to="/profile"
+          className={`${styles.NavLink} ${
+            !!matchPath(location.pathname, "/profile") && styles.active
+          }`}
+          onClick={handleClose}
+        >
+          Profile
         </NavDropdown.Item>
-        <NavDropdown.Item>
-          <NavLink
-            className={({ isActive }) =>
-              isActive ? `${styles.NavLink} ${styles.active}` : styles.NavLink
-            }
-            to="/albums"
-            onClick={handleClose}
-          >
-            Albums
-          </NavLink>
+
+        <NavDropdown.Item
+          as={NavLink}
+          to="/albums"
+          className={`${styles.NavLink} ${
+            !!matchPath(location.pathname, "/albums") && styles.active
+          }`}
+          onClick={handleClose}
+        >
+          Albums
         </NavDropdown.Item>
-        <NavDropdown.Item>
-          <NavLink
-            className={({ isActive }) =>
-              isActive ? `${styles.NavLink} ${styles.active}` : styles.NavLink
-            }
-            to="/liked-posts"
-            onClick={handleClose}
-          >
-            Liked Posts
-          </NavLink>
+
+        <NavDropdown.Item
+          as={NavLink}
+          to="/liked-posts"
+          className={`${styles.NavLink} ${
+            !!matchPath(location.pathname, "/liked-posts") && styles.active
+          }`}
+          onClick={handleClose}
+        >
+          Liked Posts
         </NavDropdown.Item>
-        <NavDropdown.Item>
-          <NavLink
-            className={({ isActive }) =>
-              isActive ? `${styles.NavLink} ${styles.active}` : styles.NavLink
-            }
-            to="/"
-            onClick={() => {
-              handleSignOut();
-              handleClose();
-            }}
-          >
-            Sign out
-          </NavLink>
+
+        <NavDropdown.Item
+          as={NavLink}
+          to="/"
+          onClick={() => {
+            handleSignOut();
+            handleClose();
+          }}
+          className={`${styles.NavLink}`}
+        >
+          Sign out
         </NavDropdown.Item>
       </NavDropdown>
     </>

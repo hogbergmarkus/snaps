@@ -24,6 +24,12 @@
   font-weight: bold;
 }
 
+.NavDropdown .NavLink.active {
+  font-weight: bold;
+  background-color: white;
+  color: black;
+}
+
 .NavLink:hover {
   font-weight: 900;
 }
@@ -36,4 +42,9 @@
 
 .NavDropdown:hover {
   font-weight: 900;
+}
+
+.NavDropdown .NavLink:hover {
+  font-weight: 900;
+  background-color: white;
 }
