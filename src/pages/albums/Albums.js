@@ -9,17 +9,25 @@ import AlbumCard from "./AlbumCard";
 import { axiosReq } from "../../api/axiosDefaults";
 
 function Albums() {
-  const [albums, setAlbums] = useState([]);
+  const [albums, setAlbums] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
   const [error, setError] = useState(null);
 
   // Fetch all albums
   useEffect(() => {
     const fetchAlbums = async () => {
+      let allAlbums = [];
+      let url = "/albums/";
       try {
-        const { data } = await axiosReq.get("/albums/");
-        // Update state with fetched data
-        setAlbums(data);
+        // While paginated data exists fetch next page
+        while (url) {
+          const { data } = await axiosReq.get(url);
+          // Add results to allAlbums array
+          allAlbums = [...allAlbums, ...data.results];
+          // Set next page url, returns null if no more pages
+          url = data.next;
+        }
+        setAlbums({ results: allAlbums });
         setHasLoaded(true);
       } catch (err) {
         setError("Unable to get albums.");
