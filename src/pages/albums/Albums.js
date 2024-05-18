@@ -2,10 +2,9 @@ import React, { useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Card from "react-bootstrap/Card";
 import AlbumCreateForm from "./AlbumCreateForm";
+import AlbumCard from "./AlbumCard";
 import { axiosReq } from "../../api/axiosDefaults";
-import { Link } from "react-router-dom";
 import { Alert } from "react-bootstrap";
 
 function Albums() {
@@ -37,13 +36,8 @@ function Albums() {
       <Row className="justify-content-center m-4">
         {albums.results && albums.results.length > 0 ? (
           albums.results.map((album) => (
-            <Col key={album.id} xs={6} md={4} lg={2}>
-              <Card as={Link} to={`/albums/${album.id}`}>
-                <Card.Body>
-                  <i className="fa-solid fa-folder-open fa-2x"></i>
-                  <Card.Title>{album.title}</Card.Title>
-                </Card.Body>
-              </Card>
+            <Col key={album.id} xs={12} sm={6} md={4}>
+              <AlbumCard album={album} />
             </Col>
           ))
         ) : (
