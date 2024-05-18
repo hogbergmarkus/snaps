@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { axiosRes } from "../../api/axiosDefaults";
+import styles from "../../styles/CommentEditForm.module.css";
 
 function CommentEditForm(props) {
   const { id, content, setShowEditForm, setComments } = props;
@@ -52,6 +53,7 @@ function CommentEditForm(props) {
                 Update your comment here
               </Form.Label>
               <Form.Control
+                className={`${styles.CommentContent}`}
                 as="textarea"
                 placeholder="Leave your comment here"
                 rows={2}
