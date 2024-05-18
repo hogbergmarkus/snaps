@@ -1,5 +1,10 @@
+.PostContent {
+  font-family: "Gelasio", serif;
+  text-align: center;
+}
+
 .Icons i {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   margin-top: 15px;
   margin-bottom: 15px;
   margin-left: 10px;
@@ -10,7 +15,7 @@
 
 .Icons i:hover {
   cursor: pointer;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
 }
 
 .Icons span {

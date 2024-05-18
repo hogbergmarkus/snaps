@@ -219,7 +219,7 @@ const Post = (props) => {
       {/* Display post content here */}
       <Row className="justify-content-center">
         <Col>
-          <p className="text-center">{content}</p>
+          <p className={`${styles.PostContent}`}>{content}</p>
         </Col>
         <hr></hr>
       </Row>
