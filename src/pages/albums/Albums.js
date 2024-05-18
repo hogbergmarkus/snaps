@@ -2,13 +2,16 @@ import React, { useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Spinner from "react-bootstrap/Spinner";
+import Alert from "react-bootstrap/Alert";
 import AlbumCreateForm from "./AlbumCreateForm";
 import AlbumCard from "./AlbumCard";
 import { axiosReq } from "../../api/axiosDefaults";
-import { Alert } from "react-bootstrap";
 
 function Albums() {
   const [albums, setAlbums] = useState([]);
+  const [hasLoaded, setHasLoaded] = useState(false);
+  const [error, setError] = useState(null);
 
   // Fetch all albums
   useEffect(() => {
@@ -17,8 +20,9 @@ function Albums() {
         const { data } = await axiosReq.get("/albums/");
         // Update state with fetched data
         setAlbums(data);
+        setHasLoaded(true);
       } catch (err) {
-        console.log(err);
+        setError("Unable to get albums.");
       }
     };
     fetchAlbums();
@@ -32,17 +36,28 @@ function Albums() {
           <AlbumCreateForm />
         </Col>
       </Row>
-      {/* Display albums */}
       <Row className="justify-content-center m-4">
-        {albums.results && albums.results.length > 0 ? (
-          albums.results.map((album) => (
-            <Col key={album.id} xs={12} sm={6} md={4}>
-              <AlbumCard album={album} />
-            </Col>
-          ))
+        {/* Display loading animation until data is loaded */}
+        {!hasLoaded ? (
+          <div className="d-flex justify-content-center align-items-center vh-100">
+            <Spinner animation="grow" />
+          </div>
+        ) : error ? (
+          <div className="d-flex justify-content-center align-items-center vh-100">
+            <Alert variant="danger">{error}</Alert>
+          </div>
+        ) : albums.results && albums.results.length > 0 ? (
+          <>
+            {/* Display albums */}
+            {albums.results.map((album) => (
+              <Col key={album.id} xs={12} sm={6} md={4}>
+                <AlbumCard album={album} />
+              </Col>
+            ))}
+          </>
         ) : (
           <div className="d-flex justify-content-center align-items-center vh-100">
-            <Alert className="variant-info">No albums found</Alert>
+            <Alert variant="info">No albums found</Alert>
           </div>
         )}
       </Row>
