@@ -36,6 +36,16 @@ function Albums() {
     fetchAlbums();
   }, []);
 
+  // Update state when albums are deleted
+  const handleAlbumDelete = (deletedAlbumId) => {
+    setAlbums((prevAlbums) => ({
+      ...prevAlbums,
+      results: prevAlbums.results.filter(
+        (album) => album.id !== deletedAlbumId
+      ),
+    }));
+  };
+
   return (
     <Container>
       {/* Form for creating new albums */}
@@ -59,7 +69,11 @@ function Albums() {
             {/* Display albums */}
             {albums.results.map((album) => (
               <Col key={album.id} xs={12} sm={6} md={4}>
-                <AlbumCard album={album} />
+                <AlbumCard
+                  album={album}
+                  id={album.id}
+                  onDelete={handleAlbumDelete}
+                />
               </Col>
             ))}
           </>
