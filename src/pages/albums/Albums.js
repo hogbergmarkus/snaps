@@ -50,11 +50,11 @@ function Albums() {
     <Container>
       {/* Form for creating new albums */}
       <Row className="justify-content-center me-5">
-        <Col xs={12} lg={8}>
+        <Col xs={12}>
           <AlbumCreateForm />
         </Col>
       </Row>
-      <Row className="justify-content-center m-4">
+      <Row>
         {/* Display loading animation until data is loaded */}
         {!hasLoaded ? (
           <div className="d-flex justify-content-center align-items-center vh-100">

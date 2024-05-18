@@ -1,0 +1,16 @@
+.Card {
+  margin: 20px 0px 10px 0;
+}
+
+.AlbumLink {
+  text-decoration: none;
+  color: black;
+  margin: 0 10px 5px 0;
+  height: 40px;
+  width: 40px;
+  transition: font-size 0.2s;
+}
+
+.AlbumLink:hover {
+  font-size: 1.1rem;
+}
