@@ -6,6 +6,7 @@ import Col from "react-bootstrap/Col";
 import { Link } from "react-router-dom";
 import { axiosRes } from "../../api/axiosDefaults";
 import Avatar from "../../components/Avatar";
+import styles from "../../styles/CommentCreateForm.module.css";
 
 function CommentCreateForm(props) {
   const { post, setPost, setComments, profileImage, profile_id } = props;
@@ -63,7 +64,7 @@ function CommentCreateForm(props) {
               <Form.Label className="d-none">
                 Leave your comment here
               </Form.Label>
-              <Form.Control
+              <Form.Control className={`${styles.CommentContent}`}
                 as="textarea"
                 placeholder="Leave your comment here"
                 rows={2}

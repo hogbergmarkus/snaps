@@ -181,7 +181,7 @@ const Comment = (props) => {
               setShowEditForm={setShowEditForm}
             />
           ) : (
-            <p className="ms-2">{content}</p>
+            <p className={`${styles.CommentContent}`}>{content}</p>
           )}
         </Col>
       </Row>
