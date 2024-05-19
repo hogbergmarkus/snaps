@@ -58,6 +58,28 @@ function PostDetail() {
     handleMount();
   }, [id, currentUser]);
 
+  // Function to add post to an album
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      // Fetch details of selected album
+      const { data: album } = await axiosReq.get(`/albums/${selectedAlbum}/`);
+
+      // Create a new list of posts and add selected post to it
+      const updatedPosts = [...album.posts, id];
+
+      // Update album with new list of posts
+      await axiosReq.put(`/albums/${selectedAlbum}/`, {
+        posts: updatedPosts,
+      });
+
+      // Clear selected album input
+      setSelectedAlbum("");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <Container>
       <Row className="justify-content-center my-4">
@@ -82,7 +104,7 @@ function PostDetail() {
         <Row className="justify-content-center my-4">
           <Col xs={12} lg={8}>
             <p>Add this post to an album</p>
-            <Form>
+            <Form onSubmit={handleSubmit}>
               <Form.Group controlId="title">
                 <Form.Label visuallyHidden>Select Album</Form.Label>
                 <Form.Control
