@@ -1,17 +1,55 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Alert from "react-bootstrap/Alert";
+import { useParams } from "react-router-dom";
+import { axiosReq } from "../../api/axiosDefaults";
+import Post from "../posts/Post";
 
 function AlbumDetail() {
+  const { id } = useParams();
+  const [albumPosts, setAlbumPosts] = useState([]);
+  const [error, setError] = useState(null);
+
+  // Fetch album posts
+  useEffect(() => {
+    const fetchAlbumPosts = async () => {
+      try {
+        // Fetch album details to get post ids
+        const albumResponse = await axiosReq.get(`/albums/${id}`);
+        const postIds = albumResponse.data.posts;
+
+        // Fetch posts for each post id
+        const postPromises = postIds.map((postId) =>
+          axiosReq.get(`/posts/${postId}/`)
+        );
+        // Wait for all post requests
+        const postResponses = await Promise.all(postPromises);
+
+        // Extract post data and set state
+        const posts = postResponses.map((response) => response.data);
+        setAlbumPosts(posts);
+      } catch (err) {
+        setError("Unable to get album posts.");
+      }
+    };
+    fetchAlbumPosts();
+  }, [id]);
+
   return (
     <Container>
       <Row className="justify-content-center my-4">
         <Col xs={12} lg={8} className="text-center">
-          <Alert variant="info">
-            <span>No posts in this album yet</span>
-          </Alert>
+          {error ? (
+            <Alert variant="danger">{error}</Alert>
+          ) : albumPosts && albumPosts.length > 0 ? (
+            albumPosts.map((post) => (
+              <Post key={post.id} {...post} setPosts={setAlbumPosts} />
+            ))
+          ) : (
+            <Alert variant="info">No posts in this album yet.</Alert>
+          )}
         </Col>
       </Row>
     </Container>
