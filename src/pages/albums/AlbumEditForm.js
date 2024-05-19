@@ -55,6 +55,7 @@ function AlbumEditForm({ album, setIsEditing, setAlbums }) {
             <Form.Group controlId="title">
               <Form.Label visuallyHidden>Album title</Form.Label>
               <Form.Control
+                className={`${styles.FormFont}`}
                 type="text"
                 placeholder={album.title}
                 name="title"
