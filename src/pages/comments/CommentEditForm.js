@@ -55,7 +55,7 @@ function CommentEditForm(props) {
               <Form.Control
                 className={`${styles.CommentContent}`}
                 as="textarea"
-                placeholder="Leave your comment here"
+                placeholder="Update your comment here"
                 rows={2}
                 value={formContent}
                 onChange={handleChange}
@@ -70,7 +70,7 @@ function CommentEditForm(props) {
               Cancel
             </Button>
             <Button variant="primary" disabled={!content.trim()} type="submit">
-              Submit
+              Save
             </Button>
           </Form>
         </Col>
