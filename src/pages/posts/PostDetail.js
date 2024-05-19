@@ -4,6 +4,8 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Alert from "react-bootstrap/Alert";
 import Spinner from "react-bootstrap/Spinner";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
@@ -20,6 +22,9 @@ function PostDetail() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  const [albums, setAlbums] = useState({ results: [] });
+  const [selectedAlbum, setSelectedAlbum] = useState("");
+
   const currentUser = useCurrentUser();
   const [comments, setComments] = useState({ results: [] });
   const profile_image = currentUser?.profile_image;
@@ -29,22 +34,29 @@ function PostDetail() {
     const handleMount = async () => {
       setLoading(true);
       try {
-        const [{ data: post }, { data: comments }] = await Promise.all([
-          axiosReq.get(`/posts/${id}`),
-          axiosReq.get(`/comments/?post=${id}`),
-        ]);
+        // Get post, comments, and if a user is logged in also get albums
+        const postPromise = axiosReq.get(`/posts/${id}`);
+        const commentsPromise = axiosReq.get(`/comments/?post=${id}`);
+        const albumsPromise = currentUser
+          ? axiosReq.get(`/albums/?owner=${currentUser.profile_id}`)
+          : Promise.resolve({ data: { results: [] } });
+
+        const [{ data: post }, { data: comments }, { data: albums }] =
+          await Promise.all([postPromise, commentsPromise, albumsPromise]);
+
+        // Set state with fetched data
         setPost({ results: [post] });
         setComments(comments);
+        setAlbums(albums);
         setLoading(false);
       } catch (err) {
-        console.log(err);
         setError("Error: Unable to get post.");
         setLoading(false);
       }
     };
 
     handleMount();
-  }, [id]);
+  }, [id, currentUser]);
 
   return (
     <Container>
@@ -64,6 +76,35 @@ function PostDetail() {
           )}
         </Col>
       </Row>
+
+      {/* Display form for adding post to an album if user is logged in */}
+      {currentUser ? (
+        <Row className="justify-content-center my-4">
+          <Col xs={12} lg={8}>
+            <p>Add this post to an album</p>
+            <Form>
+              <Form.Group controlId="title">
+                <Form.Label visuallyHidden>Select Album</Form.Label>
+                <Form.Control
+                  as="select"
+                  value={selectedAlbum}
+                  onChange={(event) => setSelectedAlbum(event.target.value)}
+                >
+                  <option value="">Choose an Album...</option>
+                  {albums.results.map((album) => (
+                    <option key={album.id} value={album.id}>
+                      {album.title}
+                    </option>
+                  ))}
+                </Form.Control>
+              </Form.Group>
+              <Button variant="primary" type="submit" className="mt-2">
+                Save to Album
+              </Button>
+            </Form>
+          </Col>
+        </Row>
+      ) : null}
 
       {/* Display comment form if user is logged in */}
       <Row className="justify-content-center">
