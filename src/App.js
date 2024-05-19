@@ -11,6 +11,7 @@ import PostsFeed from "./pages/posts/PostsFeed";
 import { useCurrentUser } from "./contexts/CurrentUserContext";
 import PostEditForm from "./pages/posts/PostEditForm";
 import Albums from "./pages/albums/Albums";
+import AlbumDetail from "./pages/albums/AlbumDetail";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -30,6 +31,7 @@ function App() {
           <Route exact path="/register" element={<SignUpForm />} />
           <Route exact path="/profile" element={<h1>Profile</h1>} />
           <Route exact path="/albums" element={<Albums />} />
+          <Route exact path="/albums/:id" element={<AlbumDetail />} />
           <Route
             exact
             path="/liked-posts"
