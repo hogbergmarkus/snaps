@@ -14,10 +14,12 @@ import { fetchMoreData } from "../../utils/utils";
 import Post from "./Post";
 import CommentCreateForm from "../comments/CommentCreateForm";
 import Comment from "../comments/Comment";
+import styles from "../../styles/PostDetail.module.css";
 
 function PostDetail() {
   // Access id of post in the url
   const { id } = useParams();
+
   const [post, setPost] = useState({ results: [] });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -109,6 +111,7 @@ function PostDetail() {
                 <Form.Label visuallyHidden>Select Album</Form.Label>
                 <Form.Control
                   as="select"
+                  className={`${styles.AlbumSelect}`}
                   value={selectedAlbum}
                   onChange={(event) => setSelectedAlbum(event.target.value)}
                 >
