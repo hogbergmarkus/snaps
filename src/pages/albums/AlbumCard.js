@@ -32,7 +32,7 @@ function AlbumCard({ album, id, onDelete, onEdit }) {
           {/* Dropdown menu for album options */}
           <OwnerDropdown handleDelete={handleDelete} handleEdit={handleEdit} />
         </span>
-        <Card.Title>{album.title}</Card.Title>
+        <Card.Title className={`${styles.AlbumFont}`}>{album.title}</Card.Title>
       </Card.Body>
     </Card>
   );

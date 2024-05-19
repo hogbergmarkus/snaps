@@ -5,6 +5,7 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import { axiosRes } from "../../api/axiosDefaults";
 import { useNavigate } from "react-router-dom";
+import styles from "../../styles/AlbumCreateForm.module.css";
 
 const AlbumCreateForm = () => {
   const [content, setContent] = useState("");
@@ -37,6 +38,7 @@ const AlbumCreateForm = () => {
           <Form.Group controlId="title">
             <Form.Label visuallyHidden>Album title</Form.Label>
             <Form.Control
+              className={`${styles.FormFont}`}
               type="text"
               placeholder="New album title"
               name="title"

@@ -4,6 +4,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import { axiosRes } from "../../api/axiosDefaults";
+import styles from "../../styles/AlbumEditForm.module.css";
 
 function AlbumEditForm({ album, setIsEditing, setAlbums }) {
   const [formData, setFormData] = useState({ title: album.title });
@@ -44,36 +45,52 @@ function AlbumEditForm({ album, setIsEditing, setAlbums }) {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Row className="justify-content-center">
-        <Col xs={12} lg={8}>
-          <Form.Group controlId="title">
-            <Form.Label visuallyHidden>Album title</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder={album.title}
-              name="title"
-              value={formData.title}
-              onChange={handleChange}
-            />
-            <Form.Control.Feedback type="invalid">
-              {/* Display error message */}
-              <p>Something went wrong</p>
-            </Form.Control.Feedback>
-          </Form.Group>
-        </Col>
-      </Row>
+    <>
+      <span className="text-center">
+        <h4>Edit name of album here</h4>
+      </span>
+      <Form className="mb-3" onSubmit={handleSubmit}>
+        <Row className="justify-content-center">
+          <Col xs={12} lg={8}>
+            <Form.Group controlId="title">
+              <Form.Label visuallyHidden>Album title</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder={album.title}
+                name="title"
+                value={formData.title}
+                onChange={handleChange}
+              />
+              <Form.Control.Feedback type="invalid">
+                {/* Display error message */}
+                <p>Something went wrong</p>
+              </Form.Control.Feedback>
+            </Form.Group>
+          </Col>
+        </Row>
 
-      <Row className="justify-content-center">
-        <Col xs={12} lg={8}>
-          <Button type="submit">Save</Button>
+        <Row className="justify-content-center">
+          <Col xs={12} lg={8}>
+            <Button
+              variant="primary"
+              type="submit"
+              className={`${styles.Button}`}
+            >
+              Save
+            </Button>
 
-          <Button variant="secondary" type="submit" onClick={handleCancel}>
-            Cancel
-          </Button>
-        </Col>
-      </Row>
-    </Form>
+            <Button
+              variant="secondary"
+              type="submit"
+              className={`${styles.Button}`}
+              onClick={handleCancel}
+            >
+              Cancel
+            </Button>
+          </Col>
+        </Row>
+      </Form>
+    </>
   );
 }
 
