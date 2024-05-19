@@ -56,12 +56,14 @@ function Albums() {
 
   return (
     <Container>
-      {/* Form for creating new albums */}
-      <Row className="justify-content-center me-5">
-        <Col xs={12}>
-          <AlbumCreateForm />
-        </Col>
-      </Row>
+      {/* Form for creating new albums, rendered only if not editing */}
+      {!isEditing && (
+        <Row className="justify-content-center me-5">
+          <Col xs={12}>
+            <AlbumCreateForm />
+          </Col>
+        </Row>
+      )}
       <Row>
         {/* Display loading animation until data is loaded */}
         {!hasLoaded ? (
