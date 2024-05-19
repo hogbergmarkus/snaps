@@ -3,11 +3,13 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
+import Alert from "react-bootstrap/Alert";
 import { axiosRes } from "../../api/axiosDefaults";
 import styles from "../../styles/AlbumEditForm.module.css";
 
 function AlbumEditForm({ album, setIsEditing, setAlbums }) {
   const [formData, setFormData] = useState({ title: album.title });
+  const [errors, setErrors] = useState({});
 
   // Handle form input changes
   const handleChange = (event) => {
@@ -40,7 +42,7 @@ function AlbumEditForm({ album, setIsEditing, setAlbums }) {
       // Close the edit form
       setIsEditing(false);
     } catch (err) {
-      console.log(err);
+      setErrors(err.response?.data);
     }
   };
 
@@ -67,6 +69,11 @@ function AlbumEditForm({ album, setIsEditing, setAlbums }) {
                 <p>Something went wrong</p>
               </Form.Control.Feedback>
             </Form.Group>
+            {errors.non_field_errors?.map((message, idx) => (
+              <Alert variant="warning" key={idx}>
+                {message}
+              </Alert>
+            ))}
           </Col>
         </Row>
 
