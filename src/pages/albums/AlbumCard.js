@@ -5,7 +5,7 @@ import { OwnerDropdown } from "../../components/OwnerDropdown";
 import { axiosRes } from "../../api/axiosDefaults";
 import styles from "../../styles/AlbumCard.module.css";
 
-function AlbumCard({ album, id, onDelete }) {
+function AlbumCard({ album, id, onDelete, onEdit }) {
   // Function to handle deleting an album
   const handleDelete = async () => {
     try {
@@ -16,6 +16,11 @@ function AlbumCard({ album, id, onDelete }) {
     }
   };
 
+  // Function to handle editing an album
+  const handleEdit = () => {
+    onEdit(album);
+  };
+
   return (
     <Card className={`${styles.Card}`}>
       <Card.Body>
@@ -24,7 +29,8 @@ function AlbumCard({ album, id, onDelete }) {
             <i className="fa-solid fa-folder-open fa-2x"></i>
           </Link>
           <div className="flex-grow-1"></div>
-          <OwnerDropdown handleDelete={handleDelete} />
+          {/* Dropdown menu for album options */}
+          <OwnerDropdown handleDelete={handleDelete} handleEdit={handleEdit} />
         </span>
         <Card.Title>{album.title}</Card.Title>
       </Card.Body>

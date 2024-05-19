@@ -7,10 +7,13 @@ import Alert from "react-bootstrap/Alert";
 import AlbumCreateForm from "./AlbumCreateForm";
 import AlbumCard from "./AlbumCard";
 import { axiosReq } from "../../api/axiosDefaults";
+import AlbumEditForm from "./AlbumEditForm";
 
 function Albums() {
   const [albums, setAlbums] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [albumToEdit, setAlbumToEdit] = useState(null);
   const [error, setError] = useState(null);
 
   // Fetch all albums
@@ -46,6 +49,11 @@ function Albums() {
     }));
   };
 
+  const handleAlbumEdit = (album) => {
+    setIsEditing(true);
+    setAlbumToEdit(album);
+  };
+
   return (
     <Container>
       {/* Form for creating new albums */}
@@ -64,6 +72,13 @@ function Albums() {
           <div className="d-flex justify-content-center align-items-center vh-100">
             <Alert variant="danger">{error}</Alert>
           </div>
+        ) : isEditing ? (
+          // Form for editing an album
+          <AlbumEditForm
+            album={albumToEdit}
+            setIsEditing={setIsEditing}
+            setAlbums={setAlbums}
+          />
         ) : albums.results && albums.results.length > 0 ? (
           <>
             {/* Display albums */}
@@ -73,6 +88,7 @@ function Albums() {
                   album={album}
                   id={album.id}
                   onDelete={handleAlbumDelete}
+                  onEdit={handleAlbumEdit}
                 />
               </Col>
             ))}
