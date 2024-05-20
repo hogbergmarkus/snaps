@@ -78,7 +78,7 @@ const NavBar = () => {
       >
         <NavDropdown.Item
           as={NavLink}
-          to="/profile"
+          to={`/profiles/${currentUser?.profile_id}`}
           className={`${styles.NavLink} ${
             !!matchPath(location.pathname, "/profile") && styles.active
           }`}

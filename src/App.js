@@ -29,7 +29,7 @@ function App() {
           />
           <Route exact path="/sign-in" element={<SignInForm />} />
           <Route exact path="/register" element={<SignUpForm />} />
-          <Route exact path="/profile" element={<h1>Profile</h1>} />
+          <Route exact path="/profiles/:id" element={<h1>Profile</h1>} />
           <Route exact path="/albums" element={<Albums />} />
           <Route exact path="/albums/:id" element={<AlbumDetail />} />
           <Route
