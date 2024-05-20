@@ -5,7 +5,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Offcanvas from "react-bootstrap/Offcanvas";
-import { NavLink, useLocation, matchPath } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import {
   useCurrentUser,
   useSetCurrentUser,
@@ -74,13 +74,15 @@ const NavBar = () => {
         title={currentUser?.username}
         id="offcanvasNavbarDropdown"
         className={styles.NavDropdown}
-        drop="start"
+        drop="down"
       >
         <NavDropdown.Item
           as={NavLink}
           to={`/profiles/${currentUser?.profile_id}`}
           className={`${styles.NavLink} ${
-            !!matchPath(location.pathname, "/profile") && styles.active
+            location.pathname === `/profiles/${currentUser?.profile_id}`
+              ? styles.active
+              : ""
           }`}
           onClick={handleClose}
         >
@@ -91,7 +93,7 @@ const NavBar = () => {
           as={NavLink}
           to="/albums"
           className={`${styles.NavLink} ${
-            !!matchPath(location.pathname, "/albums") && styles.active
+            location.pathname.startsWith("/albums") ? styles.active : ""
           }`}
           onClick={handleClose}
         >
@@ -102,7 +104,7 @@ const NavBar = () => {
           as={NavLink}
           to="/liked-posts"
           className={`${styles.NavLink} ${
-            !!matchPath(location.pathname, "/liked-posts") && styles.active
+            location.pathname === "/liked-posts" ? styles.active : ""
           }`}
           onClick={handleClose}
         >
@@ -116,7 +118,9 @@ const NavBar = () => {
             handleSignOut();
             handleClose();
           }}
-          className={`${styles.NavLink}`}
+          className={`${styles.NavLink} ${
+            location.pathname === "/" ? styles.active : ""
+          }`}
         >
           Sign out
         </NavDropdown.Item>
