@@ -3,6 +3,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Alert from "react-bootstrap/Alert";
+import Spinner from "react-bootstrap/Spinner";
 import { useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import Post from "../posts/Post";
@@ -10,6 +11,7 @@ import Post from "../posts/Post";
 function AlbumDetail() {
   const { id } = useParams();
   const [albumPosts, setAlbumPosts] = useState([]);
+  const [hasLoaded, setHasLoaded] = useState(false);
   const [error, setError] = useState(null);
 
   // Fetch album posts
@@ -30,8 +32,10 @@ function AlbumDetail() {
         // Extract post data and set state
         const posts = postResponses.map((response) => response.data);
         setAlbumPosts(posts);
+        setHasLoaded(true);
       } catch (err) {
         setError("Unable to get album posts.");
+        setHasLoaded(true);
       }
     };
     fetchAlbumPosts();
@@ -41,8 +45,14 @@ function AlbumDetail() {
     <Container>
       <Row className="justify-content-center my-4">
         <Col xs={12} lg={8} className="text-center">
-          {error ? (
-            <Alert variant="danger">{error}</Alert>
+          {!hasLoaded ? (
+            <div className="d-flex justify-content-center align-items-center vh-100">
+              <Spinner animation="grow" />
+            </div>
+          ) : error ? (
+            <div className="d-flex justify-content-center align-items-center vh-100">
+              <Alert variant="danger">{error}</Alert>
+            </div>
           ) : albumPosts && albumPosts.length > 0 ? (
             albumPosts.map((post) => (
               <Post key={post.id} {...post} setPosts={setAlbumPosts} />
