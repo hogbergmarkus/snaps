@@ -23,15 +23,37 @@ function Profile() {
   }, [id]);
 
   return (
-    <Row>
-      <Col>
-        {profile ? (
-          <img src={profile.image} alt={`${profile.username}'s profile`} />
-        ) : (
-          <div>Loading...</div>
-        )}
-      </Col>
-    </Row>
+    <>
+      <Row>
+        <Col>
+          {/* Display profile image and owner */}
+          {profile ? (
+            <>
+              <div className="d-flex justify-content-center align-items-center">
+                <img src={profile.image} alt={`${profile.owner}'s profile`} />
+              </div>
+              <div className="d-flex justify-content-center align-items-center">
+                {profile ? <h2>{profile.owner}</h2> : <div>Loading...</div>}
+              </div>
+            </>
+          ) : (
+            <div>Loading...</div>
+          )}
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          {/* Display profile bio if they have written one */}
+          {profile ? (
+            <>
+              <div className="d-flex justify-content-center align-items-center">
+                <p>{profile.bio}</p>
+              </div>
+            </>
+          ) : null}
+        </Col>
+      </Row>
+    </>
   );
 }
 

@@ -11,7 +11,7 @@ const ProfilePage = () => {
 
   return (
     <Container>
-      <Row>
+      <Row className="justify-content-center">
         <Col xs={12} lg={8}>
           <Profile />
         </Col>
