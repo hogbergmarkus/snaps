@@ -33,7 +33,11 @@ function Profile() {
                 <img src={profile.image} alt={`${profile.owner}'s profile`} />
               </div>
               <div className="d-flex justify-content-center align-items-center">
-                {profile ? <h2>{profile.owner}</h2> : <div>Loading...</div>}
+                {profile.username ? (
+                  <h2>{profile.username}</h2>
+                ) : (
+                  <h2>{profile.owner}</h2>
+                )}
               </div>
             </>
           ) : (
