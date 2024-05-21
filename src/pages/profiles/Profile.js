@@ -5,6 +5,8 @@ import { axiosReq } from "../../api/axiosDefaults";
 import { useNavigate, useParams } from "react-router-dom";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { OwnerDropdown } from "../../components/OwnerDropdown";
+import ImageAsset from "../../components/ImageAsset";
+import styles from "../../styles/Profile.module.css";
 
 function Profile() {
   const { id } = useParams();
@@ -39,25 +41,33 @@ function Profile() {
           {/* Display profile image and owner */}
           {profile ? (
             <>
-              <div className="d-flex justify-content-center align-items-center">
-                <img src={profile.image} alt={`${profile.owner}'s profile`} />
-              </div>
-              <div className="d-flex justify-content-center align-items-center">
-                {profile.username ? (
-                  <h2>{profile.username}</h2>
-                ) : (
-                  <h2>{profile.owner}</h2>
-                )}
-                {/* Display owner dropdown if the current user is the profile owner */}
-                {is_owner && (
-                  <div className="d-flex justify-content-center align-items-center">
-                    <OwnerDropdown
-                      handleEdit={handleEdit}
-                      handleDelete={() => {}}
-                    />
+              <Row className="d-flex justify-content-center align-items-center">
+                <Col xs={12} lg={8} className="d-flex justify-content-center">
+                  <div className={styles.ProfileImage}>
+                    <ImageAsset src={profile.image} />
                   </div>
-                )}
-              </div>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <div className="d-flex justify-content-center align-items-center">
+                    {profile.username ? (
+                      <h2>{profile.username}</h2>
+                    ) : (
+                      <h2>{profile.owner}</h2>
+                    )}
+                    {/* Display owner dropdown if the current user is the profile owner */}
+                    {is_owner && (
+                      <div className="d-flex justify-content-center align-items-center">
+                        <OwnerDropdown
+                          handleEdit={handleEdit}
+                          handleDelete={() => {}}
+                        />
+                      </div>
+                    )}
+                  </div>
+                </Col>
+              </Row>
             </>
           ) : (
             <div>Loading...</div>
@@ -70,7 +80,7 @@ function Profile() {
           {profile ? (
             <>
               <div className="d-flex justify-content-center align-items-center">
-                <p>{profile.bio}</p>
+                <p className={`${styles.BioText}`}>{profile.bio}</p>
               </div>
             </>
           ) : null}
