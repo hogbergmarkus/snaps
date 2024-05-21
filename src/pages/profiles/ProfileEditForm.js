@@ -1,11 +1,68 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import { useNavigate, useParams } from "react-router-dom";
+import { axiosReq } from "../../api/axiosDefaults";
+import {
+  useCurrentUser,
+  useSetCurrentUser,
+} from "../../contexts/CurrentUserContext";
+import ImageAsset from "../../components/ImageAsset";
 
 function ProfileEditForm() {
+  const currentUser = useCurrentUser();
+  const setCurrentUser = useSetCurrentUser();
+  const { id } = useParams();
+  const [profileData, setProfileData] = useState({
+    username: "",
+    bio: "",
+    image: "",
+  });
+  const { username, bio, image } = profileData;
+
+  const navigate = useNavigate();
+
+  // Ref to the image input to handle uploads
+  const imageInput = useRef(null);
+
+  // Fetch profile details when component mounts
+  useEffect(() => {
+    const handleMount = async () => {
+      try {
+        const { data } = await axiosReq.get(`/profiles/${id}/`);
+
+        if (currentUser?.profile_id?.toString() === id) {
+          const { username, bio, image } = data;
+          setProfileData({ username, bio, image });
+        } else {
+          navigate("/");
+        }
+      } catch (err) {
+        console.log(err);
+        navigate("/");
+      }
+    };
+
+    // Check if currentUser is available before proceeding
+    if (currentUser) {
+      handleMount();
+    }
+  }, [currentUser, navigate, id]);
+
+  const handleChangeImage = (event) => {
+    if (event.target.files.length) {
+      // Revoke previous image url
+      URL.revokeObjectURL(image);
+      setProfileData({
+        ...profileData,
+        image: URL.createObjectURL(event.target.files[0]),
+      });
+    }
+  };
+
   return (
     <Container>
       <Form>
@@ -13,11 +70,12 @@ function ProfileEditForm() {
         <Row className="justify-content-center">
           <Col xs={12} md={8} lg={6}>
             <Form.Group controlId="username" className="mb-3">
-              <Form.Label visuallyHidden>Title</Form.Label>
+              <Form.Label visuallyHidden>Username</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Username"
                 name="username"
+                value={username}
               />
             </Form.Group>
           </Col>
@@ -33,6 +91,7 @@ function ProfileEditForm() {
                 rows={3}
                 placeholder="Bio"
                 name="bio"
+                value={bio}
               />
             </Form.Group>
           </Col>
@@ -43,7 +102,12 @@ function ProfileEditForm() {
           <Col xs={12} md={8} lg={6}>
             <Form.Group controlId="image" className="mb-3">
               <Form.Label visuallyHidden>Profile Image</Form.Label>
-              <Form.Control type="file" accept="image/*" onChange={() => {}} />
+              <Form.Control
+                type="file"
+                accept="image/*"
+                onChange={handleChangeImage}
+                ref={imageInput}
+              />
             </Form.Group>
           </Col>
         </Row>
@@ -51,14 +115,18 @@ function ProfileEditForm() {
         {/* Display preview image */}
         <Row className="justify-content-center">
           <Col xs={12} md={8} lg={6}>
-            <p>Preview image</p>
+            {image && <ImageAsset src={image} />}
           </Col>
         </Row>
 
         {/* Submit button and Cancel button */}
         <Row className="justify-content-center">
           <Col xs={12} md={8} lg={6}>
-            <Button variant="secondary" className="mt-3">
+            <Button
+              variant="secondary"
+              className="mt-3"
+              onClick={() => navigate(-1)}
+            >
               Cancel
             </Button>
             <Button variant="primary" type="submit" className="mt-3 ms-2">

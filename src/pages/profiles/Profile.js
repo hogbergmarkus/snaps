@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { axiosReq } from "../../api/axiosDefaults";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { OwnerDropdown } from "../../components/OwnerDropdown";
 
@@ -11,6 +11,8 @@ function Profile() {
   const [profile, setProfile] = useState(null);
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === profile?.owner;
+
+  const navigate = useNavigate();
 
   // Fetch profile
   useEffect(() => {
@@ -25,6 +27,10 @@ function Profile() {
 
     fetchProfile();
   }, [id]);
+
+  const handleEdit = () => {
+    navigate(`/profiles/${id}/edit`);
+  };
 
   return (
     <>
@@ -46,7 +52,7 @@ function Profile() {
                 {is_owner && (
                   <div className="d-flex justify-content-center align-items-center">
                     <OwnerDropdown
-                      handleEdit={() => {}}
+                      handleEdit={handleEdit}
                       handleDelete={() => {}}
                     />
                   </div>
