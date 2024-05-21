@@ -14,6 +14,7 @@ import Albums from "./pages/albums/Albums";
 import AlbumDetail from "./pages/albums/AlbumDetail";
 import ProfilePage from "./pages/profiles/ProfilePage";
 import ProfileEditForm from "./pages/profiles/ProfileEditForm";
+import NotFound from "./components/NotFound";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -52,7 +53,7 @@ function App() {
           <Route exact path="/posts/create" element={<PostCreateForm />} />
           <Route exact path="/posts/:id" element={<PostDetail />} />
           <Route exact path="/posts/:id/edit" element={<PostEditForm />} />
-          <Route path="*" element={<p>Page not found</p>} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Container>
     </div>
