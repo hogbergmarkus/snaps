@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Card from "react-bootstrap/Card";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
+import Alert from "react-bootstrap/Alert";
 import { Link } from "react-router-dom";
 import { OwnerDropdown } from "../../components/OwnerDropdown";
 import { axiosRes } from "../../api/axiosDefaults";
@@ -13,6 +14,8 @@ function AlbumCard({ album, id, onDelete, onEdit }) {
   const handleCloseModal = () => setShowModal(false);
   const handleShowModal = () => setShowModal(true);
 
+  const [error, setError] = useState(null);
+
   // Function to handle deleting an album
   const handleDelete = async () => {
     if (showModal) {
@@ -20,7 +23,7 @@ function AlbumCard({ album, id, onDelete, onEdit }) {
         await axiosRes.delete(`/albums/${id}/`);
         onDelete(id);
       } catch (err) {
-        console.log(err);
+        setError(err.response?.data);
       }
     }
     handleCloseModal();
@@ -46,6 +49,9 @@ function AlbumCard({ album, id, onDelete, onEdit }) {
           />
         </span>
         <Card.Title className={`${styles.AlbumFont}`}>{album.title}</Card.Title>
+
+        {/* Error message */}
+        {error && <Alert variant="danger">{error}</Alert>}
       </Card.Body>
 
       {/* Modal for Delete Confirmation */}
