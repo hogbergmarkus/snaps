@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "../styles/NavBar.module.css";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Offcanvas from "react-bootstrap/Offcanvas";
+import Alert from "react-bootstrap/Alert";
 import { NavLink, useLocation } from "react-router-dom";
 import {
   useCurrentUser,
@@ -19,6 +20,8 @@ const NavBar = () => {
 
   const location = useLocation();
 
+  const [error, setError] = useState(null);
+
   // Get current user from context
   const currentUser = useCurrentUser();
 
@@ -30,7 +33,7 @@ const NavBar = () => {
       await axios.post("dj-rest-auth/logout/");
       setCurrentUser(null);
     } catch (err) {
-      console.log(err);
+      setError(err.response?.data);
     }
   };
 
@@ -165,6 +168,12 @@ const NavBar = () => {
               {/* Display different navigation links based on user login status */}
               {currentUser ? loggedInIcons : loggedOutIcons}
             </Nav>
+            {/* Error message */}
+            {error && (
+              <Alert variant="danger" className="mt-3">
+                {error}
+              </Alert>
+            )}
           </Offcanvas.Body>
         </Navbar.Offcanvas>
       </Container>
