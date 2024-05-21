@@ -3,10 +3,14 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useParams } from "react-router-dom";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import { OwnerDropdown } from "../../components/OwnerDropdown";
 
 function Profile() {
   const { id } = useParams();
   const [profile, setProfile] = useState(null);
+  const currentUser = useCurrentUser();
+  const is_owner = currentUser?.username === profile?.owner;
 
   // Fetch profile
   useEffect(() => {
@@ -37,6 +41,15 @@ function Profile() {
                   <h2>{profile.username}</h2>
                 ) : (
                   <h2>{profile.owner}</h2>
+                )}
+                {/* Display owner dropdown if the current user is the profile owner */}
+                {is_owner && (
+                  <div className="d-flex justify-content-center align-items-center">
+                    <OwnerDropdown
+                      handleEdit={() => {}}
+                      handleDelete={() => {}}
+                    />
+                  </div>
                 )}
               </div>
             </>
