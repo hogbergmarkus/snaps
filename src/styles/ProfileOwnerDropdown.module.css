@@ -1,0 +1,13 @@
+.IconDropdown i {
+  font-size: 1.2rem;
+  margin-left: 10px;
+  margin-right: 5px;
+  width: 12px;
+  height: 12px;
+  transition: font-size 0.2s;
+}
+
+.IconDropdown i:hover {
+  cursor: pointer;
+  font-size: 1.5rem;
+}

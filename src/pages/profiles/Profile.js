@@ -4,9 +4,9 @@ import Col from "react-bootstrap/Col";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useNavigate, useParams } from "react-router-dom";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { OwnerDropdown } from "../../components/OwnerDropdown";
 import ImageAsset from "../../components/ImageAsset";
 import styles from "../../styles/Profile.module.css";
+import { ProfileOwnerDropdown } from "../../components/ProfileOwnerDropdown";
 
 function Profile() {
   const { id } = useParams();
@@ -59,10 +59,7 @@ function Profile() {
                     {/* Display owner dropdown if the current user is the profile owner */}
                     {is_owner && (
                       <div className="d-flex justify-content-center align-items-center">
-                        <OwnerDropdown
-                          handleEdit={handleEdit}
-                          handleDelete={() => {}}
-                        />
+                        <ProfileOwnerDropdown handleEdit={handleEdit} />
                       </div>
                     )}
                   </div>
