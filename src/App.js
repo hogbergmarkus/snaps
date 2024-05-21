@@ -13,6 +13,7 @@ import PostEditForm from "./pages/posts/PostEditForm";
 import Albums from "./pages/albums/Albums";
 import AlbumDetail from "./pages/albums/AlbumDetail";
 import ProfilePage from "./pages/profiles/ProfilePage";
+import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -31,6 +32,11 @@ function App() {
           <Route exact path="/sign-in" element={<SignInForm />} />
           <Route exact path="/register" element={<SignUpForm />} />
           <Route exact path="/profiles/:id" element={<ProfilePage />} />
+          <Route
+            exact
+            path="/profiles/:id/edit"
+            element={<ProfileEditForm />}
+          />
           <Route exact path="/albums" element={<Albums />} />
           <Route exact path="/albums/:id" element={<AlbumDetail />} />
           <Route
