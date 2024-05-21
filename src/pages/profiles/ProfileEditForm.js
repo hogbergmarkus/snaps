@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Alert from "react-bootstrap/Alert";
 import { useNavigate, useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import {
@@ -22,6 +23,7 @@ function ProfileEditForm() {
     image: "",
   });
   const { username, bio, image } = profileData;
+  const [errors, setErrors] = useState({});
 
   const navigate = useNavigate();
 
@@ -63,9 +65,43 @@ function ProfileEditForm() {
     }
   };
 
+  // Handle form input changes
+  const handleChange = (event) => {
+    setProfileData({
+      ...profileData,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  // Handle form submission
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    // Create form data to send and append data
+    const formData = new FormData();
+    formData.append("username", username);
+    formData.append("bio", bio);
+
+    if (imageInput?.current?.files[0]) {
+      formData.append("image", imageInput.current.files[0]);
+    }
+
+    try {
+      const { data } = await axiosReq.put(`/profiles/${id}/`, formData);
+      setCurrentUser((currentUser) => ({
+        ...currentUser,
+        image: data.image,
+      }));
+      navigate(`/profiles/${id}/`);
+    } catch (err) {
+      if (err.response?.status !== 401) {
+        setErrors(err.response?.data);
+      }
+    }
+  };
+
   return (
     <Container>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         {/* Username form input */}
         <Row className="justify-content-center">
           <Col xs={12} md={8} lg={6}>
@@ -76,8 +112,14 @@ function ProfileEditForm() {
                 placeholder="Username"
                 name="username"
                 value={username}
+                onChange={handleChange}
               />
             </Form.Group>
+            {errors.username?.map((message, idx) => (
+              <Alert variant="warning" key={idx}>
+                {message}
+              </Alert>
+            ))}
           </Col>
         </Row>
 
@@ -92,8 +134,14 @@ function ProfileEditForm() {
                 placeholder="Bio"
                 name="bio"
                 value={bio}
+                onChange={handleChange}
               />
             </Form.Group>
+            {errors.bio?.map((message, idx) => (
+              <Alert variant="warning" key={idx}>
+                {message}
+              </Alert>
+            ))}
           </Col>
         </Row>
 
@@ -109,6 +157,11 @@ function ProfileEditForm() {
                 ref={imageInput}
               />
             </Form.Group>
+            {errors.image?.map((message, idx) => (
+              <Alert variant="warning" key={idx}>
+                {message}
+              </Alert>
+            ))}
           </Col>
         </Row>
 
@@ -132,6 +185,11 @@ function ProfileEditForm() {
             <Button variant="primary" type="submit" className="mt-3 ms-2">
               Save
             </Button>
+            {errors.non_field_errors?.map((message, idx) => (
+              <Alert variant="warning" key={idx}>
+                {message}
+              </Alert>
+            ))}
           </Col>
         </Row>
       </Form>
