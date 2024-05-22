@@ -73,7 +73,7 @@ function PostCreateForm() {
         <Row className="justify-content-center">
           <Col xs={12} md={8} lg={6}>
             <Form.Group controlId="title" className="mb-3">
-              <Form.Label className="d-none">Title</Form.Label>
+              <Form.Label visuallyHidden>Title</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Title"
@@ -94,7 +94,7 @@ function PostCreateForm() {
         <Row className="justify-content-center">
           <Col xs={12} md={8} lg={6}>
             <Form.Group controlId="content" className="mb-3">
-              <Form.Label className="d-none">Content</Form.Label>
+              <Form.Label visuallyHidden>Content</Form.Label>
               <Form.Control
                 as="textarea"
                 rows={3}
@@ -116,7 +116,7 @@ function PostCreateForm() {
         <Row className="justify-content-center">
           <Col xs={12} md={8} lg={6}>
             <Form.Group controlId="tags" className="mb-3">
-              <Form.Label className="d-none">Tags</Form.Label>
+              <Form.Label visuallyHidden>Tags</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Tags"
