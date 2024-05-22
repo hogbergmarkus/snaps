@@ -7,6 +7,7 @@ import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import styles from "../../styles/SignUpForm.module.css";
 
 const SignUpForm = () => {
   // Set initial form data
@@ -44,10 +45,10 @@ const SignUpForm = () => {
     <Container>
       <Form onSubmit={handleSubmit}>
         <Row className="justify-content-center">
-          <Col xs={12} md={8} lg={6}>
+          <Col xs={12} md={8} lg={6} className={`${styles.FormInputs}`}>
             {/* Username input field with error messages below it */}
-            <Form.Group className="mb-3" controlId="username">
-              <Form.Label className="d-none">Username</Form.Label>
+            <Form.Group controlId="username">
+              <Form.Label visuallyHidden>Username</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Username"
@@ -64,9 +65,9 @@ const SignUpForm = () => {
           </Col>
         </Row>
         <Row className="justify-content-center">
-          <Col xs={12} md={8} lg={6}>
+          <Col xs={12} md={8} lg={6} className={`${styles.FormInputs}`}>
             {/* Password1 input field with error messages below it */}
-            <Form.Group className="mb-3" controlId="password1">
+            <Form.Group controlId="password1">
               <Form.Label className="d-none">Password</Form.Label>
               <Form.Control
                 type="password"
@@ -84,9 +85,9 @@ const SignUpForm = () => {
           </Col>
         </Row>
         <Row className="justify-content-center">
-          <Col xs={12} md={8} lg={6}>
+          <Col xs={12} md={8} lg={6} className={`${styles.FormInputs}`}>
             {/* Password2 input field with error messages below it */}
-            <Form.Group className="mb-3" controlId="password2">
+            <Form.Group controlId="password2">
               <Form.Label className="d-none">Password again</Form.Label>
               <Form.Control
                 type="password"
@@ -107,7 +108,7 @@ const SignUpForm = () => {
           <Col xs={12} md={8} lg={6}>
             {/* Submit button with non-field errors messages below it */}
             <Button variant="primary" type="submit">
-              Submit
+              Sign Up!
             </Button>
             {errors.non_field_errors?.map((message, idx) => (
               <Alert variant="warning" key={idx}>
