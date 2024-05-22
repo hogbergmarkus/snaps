@@ -34,7 +34,7 @@ const AlbumCreateForm = () => {
   return (
     <Form onSubmit={handleSubmit}>
       <Row>
-        <Col xs={10}>
+        <Col xs={12}>
           <Form.Group controlId="title">
             <Form.Label visuallyHidden>Album title</Form.Label>
             <Form.Control
@@ -50,9 +50,9 @@ const AlbumCreateForm = () => {
               {errors.title}
             </Form.Control.Feedback>
           </Form.Group>
-        </Col>
-        <Col xs={2}>
-          <Button type="submit">Create</Button>
+          <Button type="submit" className="mt-2">
+            Create
+          </Button>
         </Col>
       </Row>
     </Form>
