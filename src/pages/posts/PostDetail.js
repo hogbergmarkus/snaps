@@ -130,9 +130,21 @@ function PostDetail() {
                   )}
                 </Form.Control>
               </Form.Group>
-              <Button variant="primary" type="submit" className="mt-2">
-                Save to Album
-              </Button>
+              {/* Display submit button if user has albums, else disable it */}
+              {albums.results.length > 0 ? (
+                <Button variant="primary" type="submit" className="mt-2">
+                  Save to Album
+                </Button>
+              ) : (
+                <Button
+                  variant="primary"
+                  type="submit"
+                  className="mt-2"
+                  disabled
+                >
+                  Save to Album
+                </Button>
+              )}
             </Form>
           </Col>
         </Row>
