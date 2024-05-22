@@ -32,7 +32,7 @@ const AlbumCreateForm = () => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit} className="my-3">
       <Row>
         <Col xs={12}>
           <Form.Group controlId="title">

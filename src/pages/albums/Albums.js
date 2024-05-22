@@ -8,7 +8,7 @@ import AlbumCreateForm from "./AlbumCreateForm";
 import AlbumCard from "./AlbumCard";
 import { axiosReq } from "../../api/axiosDefaults";
 import AlbumEditForm from "./AlbumEditForm";
-import styles from "../../styles/Albums.module.css";
+import Accordian from "../../components/Accordian";
 
 function Albums() {
   const [albums, setAlbums] = useState({ results: [] });
@@ -61,16 +61,12 @@ function Albums() {
         <Col>
           <h4>Albums</h4>
           <hr />
-          <p className={`${styles.AlbumsDescription}`}>
-            Add a new album by filling out the form below. When you come across
-            a post you want to save, select an album and click the "Save to
-            Album" button.
-          </p>
+          <Accordian />
         </Col>
       </Row>
       {/* Form for creating new albums, rendered only if not editing */}
       {!isEditing && (
-        <Row className="justify-content-center me-5">
+        <Row className="justify-content-center">
           <Col xs={12}>
             <AlbumCreateForm />
           </Col>
