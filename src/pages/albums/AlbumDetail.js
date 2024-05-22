@@ -10,6 +10,7 @@ import Post from "../posts/Post";
 
 function AlbumDetail() {
   const { id } = useParams();
+  const [album, setAlbum] = useState(null);
   const [albumPosts, setAlbumPosts] = useState([]);
   const [hasLoaded, setHasLoaded] = useState(false);
   const [error, setError] = useState(null);
@@ -18,8 +19,10 @@ function AlbumDetail() {
   useEffect(() => {
     const fetchAlbumPosts = async () => {
       try {
-        // Fetch album details to get post ids
+        // Fetch album details to get post ids, and get the album title
         const albumResponse = await axiosReq.get(`/albums/${id}`);
+        // Need this to display album title
+        setAlbum(albumResponse.data);
         const postIds = albumResponse.data.posts;
 
         // Fetch posts for each post id
@@ -43,6 +46,11 @@ function AlbumDetail() {
 
   return (
     <Container>
+      <Row className="justify-content-center">
+        <Col xs={12} lg={8} className="text-center">
+          <h4>{album?.title}</h4>
+        </Col>
+      </Row>
       <Row className="justify-content-center my-4">
         <Col xs={12} lg={8} className="text-center">
           {!hasLoaded ? (
