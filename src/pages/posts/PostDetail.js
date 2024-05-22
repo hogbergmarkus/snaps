@@ -115,12 +115,19 @@ function PostDetail() {
                   value={selectedAlbum}
                   onChange={(event) => setSelectedAlbum(event.target.value)}
                 >
+                  {/* Conditionally render options depending on if user has albums */}
                   <option value="">Choose an Album...</option>
-                  {albums.results.map((album) => (
-                    <option key={album.id} value={album.id}>
-                      {album.title}
+                  {albums.results.length === 0 ? (
+                    <option value="" disabled>
+                      You have not added any albums yet
                     </option>
-                  ))}
+                  ) : (
+                    albums.results.map((album) => (
+                      <option key={album.id} value={album.id}>
+                        {album.title}
+                      </option>
+                    ))
+                  )}
                 </Form.Control>
               </Form.Group>
               <Button variant="primary" type="submit" className="mt-2">
