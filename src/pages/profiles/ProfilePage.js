@@ -18,7 +18,10 @@ const ProfilePage = () => {
       </Row>
       <Row>
         <Col>
-          <PostsFeed filter={`owner__profile__id=${id}&`} />
+          <PostsFeed
+            filter={`owner__profile__id=${id}&`}
+            message="You have not added any posts yet."
+          />
         </Col>
       </Row>
     </Container>
