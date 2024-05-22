@@ -49,9 +49,7 @@ function CommentEditForm(props) {
           {/* Form for adding a comment */}
           <Form onSubmit={handleSubmit} className="mt-2">
             <Form.Group className="mb-3">
-              <Form.Label className="d-none">
-                Update your comment here
-              </Form.Label>
+              <Form.Label visuallyHidden>Update your comment here</Form.Label>
               <Form.Control
                 className={`${styles.CommentContent}`}
                 as="textarea"
