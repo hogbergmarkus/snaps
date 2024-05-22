@@ -68,7 +68,7 @@ const SignUpForm = () => {
           <Col xs={12} md={8} lg={6} className={`${styles.FormInputs}`}>
             {/* Password1 input field with error messages below it */}
             <Form.Group controlId="password1">
-              <Form.Label className="d-none">Password</Form.Label>
+              <Form.Label visuallyHidden>Password</Form.Label>
               <Form.Control
                 type="password"
                 placeholder="Password"
@@ -88,7 +88,7 @@ const SignUpForm = () => {
           <Col xs={12} md={8} lg={6} className={`${styles.FormInputs}`}>
             {/* Password2 input field with error messages below it */}
             <Form.Group controlId="password2">
-              <Form.Label className="d-none">Password again</Form.Label>
+              <Form.Label visuallyHidden>Password again</Form.Label>
               <Form.Control
                 type="password"
                 placeholder="Password again"
