@@ -2,3 +2,16 @@
   font-family: "Gelasio", serif;
   margin-bottom: 20px;
 }
+
+.SignInText {
+  margin-top: 40px;
+}
+
+.Header {
+  font-family: "Gelasio", serif;
+  margin-bottom: 20px;
+}
+
+.Header span {
+  font-family: "Playfair Display SC", sans-serif;
+}

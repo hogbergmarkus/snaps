@@ -6,7 +6,7 @@ import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "../../styles/SignUpForm.module.css";
 
 const SignUpForm = () => {
@@ -43,6 +43,13 @@ const SignUpForm = () => {
 
   return (
     <Container>
+      <Row className="justify-content-center">
+        <Col xs={12} md={8} lg={6}>
+          <h2 className={`${styles.Header}`}>
+            Welcome to <span>Snaps</span>
+          </h2>
+        </Col>
+      </Row>
       <Form onSubmit={handleSubmit}>
         <Row className="justify-content-center">
           <Col xs={12} md={8} lg={6} className={`${styles.FormInputs}`}>
@@ -118,6 +125,14 @@ const SignUpForm = () => {
           </Col>
         </Row>
       </Form>
+      <Row className="justify-content-center">
+        <Col xs={12} md={8} lg={6}>
+          <p className={`${styles.SignInText}`}>
+            Already have an account? Then please,{" "}
+            <Link to="/sign-in">Sign In.</Link>
+          </p>
+        </Col>
+      </Row>
     </Container>
   );
 };
