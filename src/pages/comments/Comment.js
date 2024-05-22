@@ -145,7 +145,7 @@ const Comment = (props) => {
   }
 
   return (
-    <Card className="mt-3 mb-1">
+    <Card className="mt-3 mb-1 overflow-hidden">
       <Row className="d-flex">
         <Col className="d-flex align-items-center mt-2">
           {/* Display profile image */}
