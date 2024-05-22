@@ -61,10 +61,9 @@ function CommentCreateForm(props) {
           {/* Form for adding a comment */}
           <Form onSubmit={handleSubmit} className="mt-2">
             <Form.Group className="mb-3" controlId="comment">
-              <Form.Label className="d-none">
-                Leave your comment here
-              </Form.Label>
-              <Form.Control className={`${styles.CommentContent}`}
+              <Form.Label visuallyHidden>Leave your comment here</Form.Label>
+              <Form.Control
+                className={`${styles.CommentContent}`}
                 as="textarea"
                 placeholder="Leave your comment here"
                 rows={2}
