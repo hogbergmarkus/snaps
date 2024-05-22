@@ -48,12 +48,12 @@ function AlbumEditForm({ album, setIsEditing, setAlbums }) {
 
   return (
     <>
-      <span className="text-center">
+      <span className="mt-3">
         <h4>Edit name of album here</h4>
       </span>
-      <Form className="mb-3" onSubmit={handleSubmit}>
-        <Row className="justify-content-center">
-          <Col xs={12} lg={8}>
+      <Form className="my-3" onSubmit={handleSubmit}>
+        <Row>
+          <Col xs={12}>
             <Form.Group controlId="title">
               <Form.Label visuallyHidden>Album title</Form.Label>
               <Form.Control
@@ -69,16 +69,7 @@ function AlbumEditForm({ album, setIsEditing, setAlbums }) {
                 <p>Something went wrong</p>
               </Form.Control.Feedback>
             </Form.Group>
-            {errors.non_field_errors?.map((message, idx) => (
-              <Alert variant="warning" key={idx}>
-                {message}
-              </Alert>
-            ))}
-          </Col>
-        </Row>
 
-        <Row className="justify-content-center">
-          <Col xs={12} lg={8}>
             <Button
               variant="primary"
               type="submit"
@@ -95,6 +86,11 @@ function AlbumEditForm({ album, setIsEditing, setAlbums }) {
             >
               Cancel
             </Button>
+            {errors.non_field_errors?.map((message, idx) => (
+              <Alert variant="warning" key={idx}>
+                {message}
+              </Alert>
+            ))}
           </Col>
         </Row>
       </Form>
