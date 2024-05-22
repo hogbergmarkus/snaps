@@ -1,0 +1,17 @@
+.Header {
+  font-family: "Gelasio", serif;
+  margin-bottom: 20px;
+}
+
+.Header span {
+  font-family: "Playfair Display SC", sans-serif;
+}
+
+.FormInputs {
+  font-family: "Gelasio", serif;
+  margin-bottom: 20px;
+}
+
+.SignUpText {
+  margin-top: 40px;
+}

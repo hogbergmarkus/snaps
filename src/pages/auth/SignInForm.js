@@ -6,8 +6,9 @@ import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
+import styles from "../../styles/SignInForm.module.css";
 
 const SignInForm = () => {
   // Get function to set current user from context
@@ -47,12 +48,19 @@ const SignInForm = () => {
 
   return (
     <Container>
+      <Row className="justify-content-center">
+        <Col xs={12} md={8} lg={6}>
+          <h2 className={`${styles.Header}`}>
+            Sign in to <span>Snaps</span>
+          </h2>
+        </Col>
+      </Row>
       <Form onSubmit={handleSubmit}>
         <Row className="justify-content-center">
-          <Col xs={12} md={8} lg={6}>
+          <Col xs={12} md={8} lg={6} className={`${styles.FormInputs}`}>
             {/* Username input field with error messages below it */}
-            <Form.Group className="mb-3" controlId="username">
-              <Form.Label className="d-none">Username</Form.Label>
+            <Form.Group controlId="username">
+              <Form.Label visuallyHidden>Username</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Username"
@@ -69,10 +77,10 @@ const SignInForm = () => {
           </Col>
         </Row>
         <Row className="justify-content-center">
-          <Col xs={12} md={8} lg={6}>
+          <Col xs={12} md={8} lg={6} className={`${styles.FormInputs}`}>
             {/* Password input field with error messages below it */}
-            <Form.Group className="mb-3" controlId="password">
-              <Form.Label className="d-none">Password</Form.Label>
+            <Form.Group controlId="password">
+              <Form.Label visuallyHidden>Password</Form.Label>
               <Form.Control
                 type="password"
                 placeholder="Password"
@@ -92,7 +100,7 @@ const SignInForm = () => {
           <Col xs={12} md={8} lg={6}>
             {/* Submit button with non-field errors messages below it */}
             <Button variant="primary" type="submit">
-              Submit
+              Sign In!
             </Button>
             {errors.non_field_errors?.map((message, idx) => (
               <Alert variant="warning" key={idx}>
@@ -102,6 +110,14 @@ const SignInForm = () => {
           </Col>
         </Row>
       </Form>
+      <Row className="justify-content-center">
+        <Col xs={12} md={8} lg={6}>
+          <p className={`${styles.SignUpText}`}>
+            Don't have an account? Then please,{" "}
+            <Link to="/register">Register</Link>
+          </p>
+        </Col>
+      </Row>
     </Container>
   );
 };
