@@ -11,7 +11,7 @@ import Post from "./Post";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
 
-function PostsFeed({ message, filter = "" }) {
+function PostsFeed({ message = "No posts found.", filter = "" }) {
   const [posts, setPosts] = useState({ results: [] });
   const [error, setError] = useState(null);
   const { pathName } = useLocation();
@@ -75,7 +75,7 @@ function PostsFeed({ message, filter = "" }) {
               next={() => fetchMoreData(posts, setPosts)}
             />
           ) : (
-            <div className="d-flex justify-content-center align-items-center vh-100">
+            <div className="d-flex justify-content-center">
               <Alert variant="info">{message}</Alert>
             </div>
           )}
