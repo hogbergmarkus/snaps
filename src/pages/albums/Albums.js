@@ -8,6 +8,7 @@ import AlbumCreateForm from "./AlbumCreateForm";
 import AlbumCard from "./AlbumCard";
 import { axiosReq } from "../../api/axiosDefaults";
 import AlbumEditForm from "./AlbumEditForm";
+import styles from "../../styles/Albums.module.css";
 
 function Albums() {
   const [albums, setAlbums] = useState({ results: [] });
@@ -56,6 +57,17 @@ function Albums() {
 
   return (
     <Container>
+      <Row>
+        <Col>
+          <h4>Albums</h4>
+          <hr />
+          <p className={`${styles.AlbumsDescription}`}>
+            Add a new album by filling out the form below. When you come across
+            a post you want to save, select an album and click the "Save to
+            Album" button.
+          </p>
+        </Col>
+      </Row>
       {/* Form for creating new albums, rendered only if not editing */}
       {!isEditing && (
         <Row className="justify-content-center me-5">
@@ -96,8 +108,8 @@ function Albums() {
             ))}
           </>
         ) : (
-          <div className="d-flex justify-content-center align-items-center vh-100">
-            <Alert variant="info">No albums found</Alert>
+          <div className="mt-5 ms-1">
+            <p>You don't have any albums yet...</p>
           </div>
         )}
       </Row>
