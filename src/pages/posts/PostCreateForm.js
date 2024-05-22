@@ -8,6 +8,7 @@ import Alert from "react-bootstrap/Alert";
 import ImageAsset from "../../components/ImageAsset";
 import { useNavigate } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
+import styles from "../../styles/PostCreateForm.module.css";
 
 function PostCreateForm() {
   const [errors, setErrors] = useState({});
@@ -67,7 +68,7 @@ function PostCreateForm() {
   };
 
   return (
-    <Container>
+    <Container className="mb-5">
       <Form onSubmit={handleSubmit}>
         {/* Title form input */}
         <Row className="justify-content-center">
@@ -96,9 +97,10 @@ function PostCreateForm() {
             <Form.Group controlId="content" className="mb-3">
               <Form.Label visuallyHidden>Content</Form.Label>
               <Form.Control
+                className={`${styles.PostCaption}`}
                 as="textarea"
                 rows={3}
-                placeholder="Content"
+                placeholder="Caption"
                 name="content"
                 value={content}
                 onChange={handleChange}
@@ -137,8 +139,9 @@ function PostCreateForm() {
         <Row className="justify-content-center">
           <Col xs={12} md={8} lg={6}>
             <Form.Group controlId="image" className="mb-3">
-              <Form.Label>
-                Image formats supported are jpg, jpeg and png
+              <Form.Label className={`${styles.LabelText}`}>
+                Image formats supported are jpg, jpeg and png. Images larger
+                than 5MB will not be accepted.
               </Form.Label>
               <Form.Control
                 type="file"
@@ -167,13 +170,13 @@ function PostCreateForm() {
           <Col xs={12} md={8} lg={6}>
             <Button
               variant="secondary"
-              className="mt-3"
+              className="mt-1"
               onClick={() => navigate(-1)}
             >
               Cancel
             </Button>
-            <Button variant="primary" type="submit" className="mt-3 ms-2">
-              Submit
+            <Button variant="primary" type="submit" className="mt-1 ms-2">
+              Upload
             </Button>
             {errors.non_field_errors?.map((message, idx) => (
               <Alert variant="warning" key={idx}>
