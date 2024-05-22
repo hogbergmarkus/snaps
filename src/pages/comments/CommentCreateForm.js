@@ -72,7 +72,7 @@ function CommentCreateForm(props) {
               />
             </Form.Group>
             <Button variant="primary" type="submit">
-              Submit
+              Post Comment
             </Button>
           </Form>
         </Col>
