@@ -51,11 +51,7 @@ function Profile() {
               <Row>
                 <Col>
                   <div className="d-flex justify-content-center align-items-center">
-                    {profile.username ? (
-                      <h2>{profile.username}</h2>
-                    ) : (
-                      <h2>{profile.owner}</h2>
-                    )}
+                    <h2>{profile.owner}</h2>
                     {/* Display owner dropdown if the current user is the profile owner */}
                     {is_owner && (
                       <div className="d-flex justify-content-center align-items-center">
