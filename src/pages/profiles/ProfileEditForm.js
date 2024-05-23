@@ -89,6 +89,7 @@ function ProfileEditForm() {
       const { data } = await axiosReq.put(`/profiles/${id}/`, formData);
       setCurrentUser((currentUser) => ({
         ...currentUser,
+        username: data.username,
         image: data.image,
       }));
       navigate(`/profiles/${id}/`);
