@@ -10,7 +10,7 @@ const ProfilePage = () => {
   const { id } = useParams();
 
   return (
-    <Container>
+    <Container className="p-3">
       <Row className="justify-content-center">
         <Col xs={12} lg={8}>
           <Profile />
