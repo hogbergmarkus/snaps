@@ -12,6 +12,7 @@ import {
   useSetCurrentUser,
 } from "../../contexts/CurrentUserContext";
 import ImageAsset from "../../components/ImageAsset";
+import styles from "../../styles/ProfileEditForm.module.css";
 
 function ProfileEditForm() {
   const currentUser = useCurrentUser();
@@ -109,6 +110,7 @@ function ProfileEditForm() {
             <Form.Group controlId="username" className="mb-3">
               <Form.Label visuallyHidden>Username</Form.Label>
               <Form.Control
+                className={`${styles.ProfileFormFont}`}
                 type="text"
                 placeholder="Username"
                 name="username"
@@ -130,6 +132,7 @@ function ProfileEditForm() {
             <Form.Group controlId="bio" className="mb-3">
               <Form.Label visuallyHidden>Bio</Form.Label>
               <Form.Control
+                className={`${styles.ProfileFormFont}`}
                 as="textarea"
                 rows={3}
                 placeholder="Bio"
