@@ -83,9 +83,7 @@ const NavBar = () => {
           as={NavLink}
           to={`/profiles/${currentUser?.profile_id}`}
           className={`${styles.NavLink} ${
-            location.pathname === `/profiles/${currentUser?.profile_id}`
-              ? styles.active
-              : ""
+            location.pathname.startsWith("/profiles") ? styles.active : ""
           }`}
           onClick={handleClose}
         >
