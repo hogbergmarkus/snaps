@@ -102,7 +102,12 @@ function ProfileEditForm() {
   };
 
   return (
-    <Container>
+    <Container className="pb-5">
+      <Row className="justify-content-center pb-3">
+        <Col xs={12} md={8} lg={6}>
+          <h4>Edit Profile</h4>
+        </Col>
+      </Row>
       <Form onSubmit={handleSubmit}>
         {/* Username form input */}
         <Row className="justify-content-center">
