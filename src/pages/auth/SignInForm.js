@@ -40,6 +40,7 @@ const SignInForm = () => {
     try {
       const { data } = await axios.post("/dj-rest-auth/login/", formData);
       setCurrentUser(data.user);
+      localStorage.setItem("showSignInToast", "true");
       navigate("/");
     } catch (err) {
       setErrors(err.response?.data);

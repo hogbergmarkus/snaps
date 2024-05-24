@@ -10,12 +10,14 @@ import { useLocation } from "react-router-dom";
 import Post from "./Post";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
+import SuccessToastNotification from "../../components/SuccessToastNotification";
 
 function PostsFeed({ message = "No posts found.", filter = "" }) {
   const [posts, setPosts] = useState({ results: [] });
   const [error, setError] = useState(null);
   const { pathName } = useLocation();
   const [hasLoaded, setHasLoaded] = useState(false);
+  const [toastShow, setToastShow] = useState(false);
 
   // Set query state for search
   const [query, setQuery] = useState("");
@@ -36,6 +38,14 @@ function PostsFeed({ message = "No posts found.", filter = "" }) {
 
     fetchPosts();
   }, [pathName, message, filter, query]);
+
+  // Show toast notification when user signs in
+  useEffect(() => {
+    if (localStorage.getItem("showSignInToast") === "true") {
+      setToastShow(true);
+      localStorage.removeItem("showSignInToast");
+    }
+  }, []);
 
   return (
     <Container>
@@ -81,6 +91,14 @@ function PostsFeed({ message = "No posts found.", filter = "" }) {
           )}
         </Col>
       </Row>
+
+      {/* Success Toast Notification */}
+      <SuccessToastNotification
+        show={toastShow}
+        onClose={() => setToastShow(false)}
+        position="bottom-end"
+        message="You have successfully signed in!"
+      />
     </Container>
   );
 }
