@@ -98,7 +98,7 @@ function PostDetail() {
   };
 
   return (
-    <Container className="mb-5">
+    <Container className="pb-5">
       <Row className="justify-content-center my-4">
         <Col xs={12} lg={8}>
           {/* Display loading spinner, error message, or post */}
