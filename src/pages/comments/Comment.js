@@ -13,6 +13,7 @@ import CommentEditForm from "./CommentEditForm";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { OwnerDropdown } from "../../components/OwnerDropdown";
 import { axiosRes } from "../../api/axiosDefaults";
+import SuccessToastNotification from "../../components/SuccessToastNotification";
 import styles from "../../styles/Comment.module.css";
 
 const Comment = (props) => {
@@ -33,6 +34,7 @@ const Comment = (props) => {
   const is_owner = currentUser?.username === owner;
 
   const [showEditForm, setShowEditForm] = useState(false);
+  const [commentEditToast, setCommentEditToast] = useState(false);
 
   const [error, setError] = useState(null);
 
@@ -179,6 +181,7 @@ const Comment = (props) => {
               content={content}
               setComments={setComments}
               setShowEditForm={setShowEditForm}
+              onEdit={setCommentEditToast}
             />
           ) : (
             <p className={`${styles.CommentContent}`}>{content}</p>
@@ -212,6 +215,14 @@ const Comment = (props) => {
           </Button>
         </Modal.Footer>
       </Modal>
+
+      {/* Success Toast Notification on editing comment */}
+      <SuccessToastNotification
+        show={commentEditToast}
+        onClose={() => setCommentEditToast(false)}
+        position="bottom-end"
+        message="Comment edited successfully!"
+      />
     </Card>
   );
 };
