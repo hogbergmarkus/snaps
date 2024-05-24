@@ -58,6 +58,7 @@ function PostCreateForm() {
     formData.append("tags", tags);
     try {
       const { data } = await axiosReq.post("/posts/", formData);
+      localStorage.setItem("showPostCreateToast", "true");
       navigate(`/posts/${data.id}`);
     } catch (err) {
       console.log(err);

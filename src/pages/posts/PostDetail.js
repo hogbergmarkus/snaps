@@ -14,6 +14,7 @@ import { fetchMoreData } from "../../utils/utils";
 import Post from "./Post";
 import CommentCreateForm from "../comments/CommentCreateForm";
 import Comment from "../comments/Comment";
+import SuccessToastNotification from "../../components/SuccessToastNotification";
 import styles from "../../styles/PostDetail.module.css";
 
 function PostDetail() {
@@ -26,6 +27,8 @@ function PostDetail() {
 
   const [albums, setAlbums] = useState({ results: [] });
   const [selectedAlbum, setSelectedAlbum] = useState("");
+
+  const [toastShow, setToastShow] = useState(false);
 
   const currentUser = useCurrentUser();
   const [comments, setComments] = useState({ results: [] });
@@ -59,6 +62,14 @@ function PostDetail() {
 
     handleMount();
   }, [id, currentUser]);
+
+  // Show toast notification when user successfully adds a post
+  useEffect(() => {
+    if (localStorage.getItem("showPostCreateToast") === "true") {
+      setToastShow(true);
+      localStorage.removeItem("showPostCreateToast");
+    }
+  }, []);
 
   // Function to add post to an album
   const handleSubmit = async (event) => {
@@ -188,6 +199,14 @@ function PostDetail() {
           )}
         </Col>
       </Row>
+
+      {/* Success Toast Notification */}
+      <SuccessToastNotification
+        show={toastShow}
+        onClose={() => setToastShow(false)}
+        position="bottom-end"
+        message="Post added successfully!"
+      />
     </Container>
   );
 }
