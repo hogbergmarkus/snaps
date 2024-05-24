@@ -29,6 +29,7 @@ function PostDetail() {
   const [selectedAlbum, setSelectedAlbum] = useState("");
 
   const [toastShow, setToastShow] = useState(false);
+  const [albumToastShow, setAlbumToastShow] = useState(false);
 
   const currentUser = useCurrentUser();
   const [comments, setComments] = useState({ results: [] });
@@ -85,6 +86,9 @@ function PostDetail() {
       await axiosReq.put(`/albums/${selectedAlbum}/`, {
         posts: updatedPosts,
       });
+
+      // Add success toast notification
+      setAlbumToastShow(true);
 
       // Clear selected album input
       setSelectedAlbum("");
@@ -200,12 +204,19 @@ function PostDetail() {
         </Col>
       </Row>
 
-      {/* Success Toast Notification */}
+      {/* Success Toast Notification on uploading post */}
       <SuccessToastNotification
         show={toastShow}
         onClose={() => setToastShow(false)}
         position="bottom-end"
         message="Post added successfully!"
+      />
+      {/* Success Toast Notification on adding post to album */}
+      <SuccessToastNotification
+        show={albumToastShow}
+        onClose={() => setAlbumToastShow(false)}
+        position="bottom-end"
+        message="Added to album successfully!"
       />
     </Container>
   );
