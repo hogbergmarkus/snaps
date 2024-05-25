@@ -7,7 +7,7 @@ import { axiosRes } from "../../api/axiosDefaults";
 import styles from "../../styles/CommentEditForm.module.css";
 
 function CommentEditForm(props) {
-  const { id, content, setShowEditForm, setComments, onEdit } = props;
+  const { id, content, setShowEditForm, setComments } = props;
   const [formContent, setFormContent] = useState(content);
 
   // Handle form input changes
@@ -37,7 +37,6 @@ function CommentEditForm(props) {
         }),
       }));
       setShowEditForm(false);
-      onEdit();
     } catch (err) {
       console.log(err);
     }
