@@ -7,12 +7,14 @@ import Spinner from "react-bootstrap/Spinner";
 import { useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import Post from "../posts/Post";
+import SuccessToastNotification from "../../components/SuccessToastNotification";
 
 function AlbumDetail() {
   const { id } = useParams();
   const [album, setAlbum] = useState(null);
   const [albumPosts, setAlbumPosts] = useState([]);
   const [hasLoaded, setHasLoaded] = useState(false);
+  const [toastShow, setToastShow] = useState(false);
   const [error, setError] = useState(null);
 
   // Fetch album posts
@@ -44,6 +46,14 @@ function AlbumDetail() {
     fetchAlbumPosts();
   }, [id]);
 
+  // Show toast notification when user signs in
+  useEffect(() => {
+    if (localStorage.getItem("showAlbumCreateToast") === "true") {
+      setToastShow(true);
+      localStorage.removeItem("showAlbumCreateToast");
+    }
+  }, []);
+
   return (
     <Container>
       <Row className="justify-content-center">
@@ -70,6 +80,14 @@ function AlbumDetail() {
           )}
         </Col>
       </Row>
+
+      {/* Success Toast Notification */}
+      <SuccessToastNotification
+        show={toastShow}
+        onClose={() => setToastShow(false)}
+        position="bottom-end"
+        message="Album created!"
+      />
     </Container>
   );
 }

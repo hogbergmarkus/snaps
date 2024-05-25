@@ -24,6 +24,7 @@ const AlbumCreateForm = () => {
       const response = await axiosRes.post("/albums/", { title: content });
       setContent("");
       setErrors({});
+      localStorage.setItem("showAlbumCreateToast", "true");
       navigate(`/albums/${response.data.id}`);
     } catch (err) {
       setErrors(err.response?.data);
