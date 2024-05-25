@@ -25,6 +25,7 @@ const Comment = (props) => {
     id,
     setPost,
     setComments,
+    onDelete,
   } = props;
 
   const { like_id, likes_count } = props;
@@ -66,6 +67,7 @@ const Comment = (props) => {
       }
     }
     handleCloseModal();
+    onDelete();
   };
 
   // Function to handle liking a comment and updating the comments state
