@@ -99,140 +99,135 @@ function PostDetail() {
   };
 
   return (
-    <>
-      <Container className="pb-5">
+    <Container className="pb-5">
+      <Row className="justify-content-center my-4">
+        <Col xs={12} lg={8}>
+          {/* Display loading spinner, error message, or post */}
+          {loading ? (
+            <div className="d-flex justify-content-center align-items-center vh-100">
+              <Spinner animation="grow" />
+            </div>
+          ) : error ? (
+            <div className="d-flex justify-content-center align-items-center vh-100">
+              <Alert variant="danger">{error}</Alert>
+            </div>
+          ) : (
+            <Post {...post.results[0]} setPosts={setPost} postPage />
+          )}
+        </Col>
+      </Row>
+
+      {/* Display form for adding post to an album if user is logged in */}
+      {currentUser ? (
         <Row className="justify-content-center my-4">
           <Col xs={12} lg={8}>
-            {/* Display loading spinner, error message, or post */}
-            {loading ? (
-              <div className="d-flex justify-content-center align-items-center vh-100">
-                <Spinner animation="grow" />
-              </div>
-            ) : error ? (
-              <div className="d-flex justify-content-center align-items-center vh-100">
-                <Alert variant="danger">{error}</Alert>
-              </div>
-            ) : (
-              <Post {...post.results[0]} setPosts={setPost} postPage />
-            )}
-          </Col>
-        </Row>
-
-        {/* Display form for adding post to an album if user is logged in */}
-        {currentUser ? (
-          <Row className="justify-content-center my-4">
-            <Col xs={12} lg={8}>
-              <p>Add this post to an album</p>
-              <Form onSubmit={handleSubmit}>
-                <Form.Group controlId="title">
-                  <Form.Label visuallyHidden>Select Album</Form.Label>
-                  <Form.Control
-                    as="select"
-                    className={`${styles.AlbumSelect}`}
-                    value={selectedAlbum}
-                    onChange={(event) => setSelectedAlbum(event.target.value)}
-                  >
-                    {/* Conditionally render options depending on if user has albums */}
-                    <option value="">Choose an Album...</option>
-                    {albums.results.length === 0 ? (
-                      <option value="" disabled>
-                        You have not added any albums yet
+            <p>Add this post to an album</p>
+            <Form onSubmit={handleSubmit}>
+              <Form.Group controlId="title">
+                <Form.Label visuallyHidden>Select Album</Form.Label>
+                <Form.Control
+                  as="select"
+                  className={`${styles.AlbumSelect}`}
+                  value={selectedAlbum}
+                  onChange={(event) => setSelectedAlbum(event.target.value)}
+                >
+                  {/* Conditionally render options depending on if user has albums */}
+                  <option value="">Choose an Album...</option>
+                  {albums.results.length === 0 ? (
+                    <option value="" disabled>
+                      You have not added any albums yet
+                    </option>
+                  ) : (
+                    albums.results.map((album) => (
+                      <option key={album.id} value={album.id}>
+                        {album.title}
                       </option>
-                    ) : (
-                      albums.results.map((album) => (
-                        <option key={album.id} value={album.id}>
-                          {album.title}
-                        </option>
-                      ))
-                    )}
-                  </Form.Control>
-                </Form.Group>
-                {/* Display submit button if user has albums, else disable it */}
-                {albums.results.length > 0 ? (
-                  <Button variant="primary" type="submit" className="mt-2">
-                    Save to Album
-                  </Button>
-                ) : (
-                  <Button
-                    variant="primary"
-                    type="submit"
-                    className="mt-2"
-                    disabled
-                  >
-                    Save to Album
-                  </Button>
-                )}
-              </Form>
-            </Col>
-          </Row>
-        ) : null}
-
-        {/* Display comment form if user is logged in */}
-        <Row className="justify-content-center">
-          <Col xs={12} lg={8}>
-            {currentUser ? (
-              <CommentCreateForm
-                profile_id={currentUser.profile_id}
-                profileImage={profile_image}
-                post={id}
-                setPost={setPost}
-                setComments={setComments}
-              />
-            ) : comments.results.length ? (
-              "Comments"
-            ) : null}
-            {/* Display comments with infinite scroll */}
-            {comments.results.length ? (
-              <InfiniteScroll
-                children={comments.results.map((comment) => (
-                  <Comment
-                    key={comment.id}
-                    {...comment}
-                    setPost={setPost}
-                    setComments={setComments}
-                    onDelete={() => setCommentToastShow(true)}
-                  />
-                ))}
-                dataLength={comments.results.length}
-                loader={<Spinner animation="grow" />}
-                hasMore={!!comments.next}
-                next={() => fetchMoreData(comments, setComments)}
-              />
-            ) : // Display message if there are no comments
-            currentUser ? (
-              <span>No comments yet, be the first to comment!</span>
-            ) : (
-              <span>No comments... yet</span>
-            )}
+                    ))
+                  )}
+                </Form.Control>
+              </Form.Group>
+              {/* Display submit button if user has albums, else disable it */}
+              {albums.results.length > 0 ? (
+                <Button variant="primary" type="submit" className="mt-2">
+                  Save to Album
+                </Button>
+              ) : (
+                <Button
+                  variant="primary"
+                  type="submit"
+                  className="mt-2"
+                  disabled
+                >
+                  Save to Album
+                </Button>
+              )}
+            </Form>
           </Col>
         </Row>
+      ) : null}
 
-        {/* Success Toast Notification on uploading post */}
-        <SuccessToastNotification
-          show={toastShow}
-          onClose={() => setToastShow(false)}
-          position="bottom-end"
-          message="Post added successfully!"
-        />
-        {/* Success Toast Notification on adding post to album */}
-        <SuccessToastNotification
-          show={albumToastShow}
-          onClose={() => setAlbumToastShow(false)}
-          position="bottom-end"
-          message="Added to album successfully!"
-        />
-      </Container>
+      {/* Display comment form if user is logged in */}
+      <Row className="justify-content-center">
+        <Col xs={12} lg={8}>
+          {currentUser ? (
+            <CommentCreateForm
+              profile_id={currentUser.profile_id}
+              profileImage={profile_image}
+              post={id}
+              setPost={setPost}
+              setComments={setComments}
+            />
+          ) : comments.results.length ? (
+            "Comments"
+          ) : null}
+          {/* Display comments with infinite scroll */}
+          {comments.results.length ? (
+            <InfiniteScroll
+              children={comments.results.map((comment) => (
+                <Comment
+                  key={comment.id}
+                  {...comment}
+                  setPost={setPost}
+                  setComments={setComments}
+                  onDelete={() => setCommentToastShow(true)}
+                />
+              ))}
+              dataLength={comments.results.length}
+              loader={<Spinner animation="grow" />}
+              hasMore={!!comments.next}
+              next={() => fetchMoreData(comments, setComments)}
+            />
+          ) : // Display message if there are no comments
+          currentUser ? (
+            <span>No comments yet, be the first to comment!</span>
+          ) : (
+            <span>No comments... yet</span>
+          )}
+        </Col>
+      </Row>
 
+      {/* Success Toast Notification on uploading post */}
+      <SuccessToastNotification
+        show={toastShow}
+        onClose={() => setToastShow(false)}
+        position="bottom-end"
+        message="Post added successfully!"
+      />
+      {/* Success Toast Notification on adding post to album */}
+      <SuccessToastNotification
+        show={albumToastShow}
+        onClose={() => setAlbumToastShow(false)}
+        position="bottom-end"
+        message="Added to album successfully!"
+      />
       {/* Success Toast Notification on deleting comment */}
-      <div className="position-relative">
-        <SuccessToastNotification
-          show={commentToastShow}
-          onClose={() => setCommentToastShow(false)}
-          position="bottom-end"
-          message="Comment deleted!"
-        />
-      </div>
-    </>
+      <SuccessToastNotification
+        show={commentToastShow}
+        onClose={() => setCommentToastShow(false)}
+        position="bottom-end"
+        message="Comment deleted!"
+      />
+    </Container>
   );
 }
 
