@@ -9,12 +9,14 @@ import AlbumCard from "./AlbumCard";
 import { axiosReq } from "../../api/axiosDefaults";
 import AlbumEditForm from "./AlbumEditForm";
 import Accordian from "../../components/Accordian";
+import SuccessToastNotification from "../../components/SuccessToastNotification";
 
 function Albums() {
   const [albums, setAlbums] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [albumToEdit, setAlbumToEdit] = useState(null);
+  const [toastShow, setToastShow] = useState(false);
   const [error, setError] = useState(null);
 
   // Fetch all albums
@@ -48,6 +50,7 @@ function Albums() {
         (album) => album.id !== deletedAlbumId
       ),
     }));
+    setToastShow(true);
   };
 
   const handleAlbumEdit = (album) => {
@@ -109,6 +112,14 @@ function Albums() {
           </div>
         )}
       </Row>
+
+      {/* Success Toast Notification on Album Delete */}
+      <SuccessToastNotification
+        show={toastShow}
+        onClose={() => setToastShow(false)}
+        position="bottom-end"
+        message="Album deleted!"
+      />
     </Container>
   );
 }
