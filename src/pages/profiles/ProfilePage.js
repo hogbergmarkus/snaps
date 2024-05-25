@@ -1,13 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { useParams } from "react-router-dom";
 import PostsFeed from "../posts/PostsFeed";
 import Profile from "./Profile";
+import SuccessToastNotification from "../../components/SuccessToastNotification";
 
 const ProfilePage = () => {
   const { id } = useParams();
+
+  const [toastShow, setToastShow] = useState(false);
+
+  useEffect(() => {
+    if (localStorage.getItem("showPostDeleteToast") === "true") {
+      setToastShow(true);
+      localStorage.removeItem("showPostDeleteToast");
+    }
+  }, []);
 
   return (
     <Container className="p-3">
@@ -24,6 +34,14 @@ const ProfilePage = () => {
           />
         </Col>
       </Row>
+
+      {/* Success Toast Notification on Post delete */}
+      <SuccessToastNotification
+        show={toastShow}
+        onClose={() => setToastShow(false)}
+        position="bottom-end"
+        message="Post deleted!"
+      />
     </Container>
   );
 };

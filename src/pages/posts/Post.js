@@ -51,7 +51,8 @@ const Post = (props) => {
     if (showModal) {
       try {
         await axiosRes.delete(`/posts/${id}/`);
-        navigate(-1);
+        localStorage.setItem("showPostDeleteToast", "true");
+        navigate(`/profiles/${profile_id}`);
       } catch (err) {
         console.log(err);
       }
