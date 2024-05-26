@@ -6,7 +6,7 @@ import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
 import Spinner from "react-bootstrap/Spinner";
 import { axiosReq } from "../../api/axiosDefaults";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import Post from "./Post";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
@@ -17,7 +17,10 @@ function PostsFeed({ message = "No posts found.", filter = "" }) {
   const [error, setError] = useState(null);
   const { pathName } = useLocation();
   const [hasLoaded, setHasLoaded] = useState(false);
+  const [searchParams] = useSearchParams();
   const [toastShow, setToastShow] = useState(false);
+  const [toastSignOutShow, setToastSignOutShow] = useState(false);
+  const navigate = useNavigate();
 
   // Set query state for search
   const [query, setQuery] = useState("");
@@ -46,6 +49,14 @@ function PostsFeed({ message = "No posts found.", filter = "" }) {
       localStorage.removeItem("showSignInToast");
     }
   }, []);
+
+  // Show toast notification when user signs out
+  useEffect(() => {
+    if (searchParams.get("sign-out") === "success") {
+      setToastSignOutShow(true);
+      navigate("/", { replace: true });
+    }
+  }, [searchParams, navigate]);
 
   return (
     <Container>
@@ -97,7 +108,15 @@ function PostsFeed({ message = "No posts found.", filter = "" }) {
         show={toastShow}
         onClose={() => setToastShow(false)}
         position="bottom-end"
-        message="You have successfully signed in!"
+        message="You have signed in!"
+      />
+
+      {/* Success Toast Notification on Sign Out */}
+      <SuccessToastNotification
+        show={toastSignOutShow}
+        onClose={() => setToastSignOutShow(false)}
+        position="bottom-end"
+        message="You have signed out!"
       />
     </Container>
   );

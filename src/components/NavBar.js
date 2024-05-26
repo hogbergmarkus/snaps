@@ -6,7 +6,7 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import Alert from "react-bootstrap/Alert";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import {
   useCurrentUser,
   useSetCurrentUser,
@@ -19,6 +19,7 @@ const NavBar = () => {
   const { show, handleShow, handleClose } = useToggleNavBar();
 
   const location = useLocation();
+  const navigate = useNavigate();
 
   const [error, setError] = useState(null);
 
@@ -32,6 +33,7 @@ const NavBar = () => {
     try {
       await axios.post("dj-rest-auth/logout/");
       setCurrentUser(null);
+      navigate("/?sign-out=success");
     } catch (err) {
       setError(err.response?.data);
     }
