@@ -15,7 +15,7 @@ import SuccessToastNotification from "../../components/SuccessToastNotification"
 function PostsFeed({ message = "No posts found.", filter = "" }) {
   const [posts, setPosts] = useState({ results: [] });
   const [error, setError] = useState(null);
-  const { pathName } = useLocation();
+  const { pathname } = useLocation();
   const [hasLoaded, setHasLoaded] = useState(false);
   const [searchParams] = useSearchParams();
   const [toastShow, setToastShow] = useState(false);
@@ -40,7 +40,7 @@ function PostsFeed({ message = "No posts found.", filter = "" }) {
     };
 
     fetchPosts();
-  }, [pathName, message, filter, query]);
+  }, [pathname, message, filter, query]);
 
   // Show toast notification when user signs in
   useEffect(() => {
