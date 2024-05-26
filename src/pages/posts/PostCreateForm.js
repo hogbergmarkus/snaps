@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
@@ -8,9 +8,11 @@ import Alert from "react-bootstrap/Alert";
 import ImageAsset from "../../components/ImageAsset";
 import { useNavigate } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import styles from "../../styles/PostCreateForm.module.css";
 
 function PostCreateForm() {
+  const currentUser = useCurrentUser();
   const [errors, setErrors] = useState({});
 
   // useState to manage form data
@@ -26,6 +28,13 @@ function PostCreateForm() {
   const imageInput = useRef(null);
 
   const navigate = useNavigate();
+
+  // Redirect to home if user is not logged in
+  useEffect(() => {
+    if (!currentUser) {
+      navigate("/");
+    }
+  }, [currentUser, navigate]);
 
   // Handle form input changes
   const handleChange = (event) => {
