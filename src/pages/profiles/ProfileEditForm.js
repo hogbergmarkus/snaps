@@ -44,8 +44,7 @@ function ProfileEditForm() {
           navigate("/");
         }
       } catch (err) {
-        console.log(err);
-        navigate("/");
+        navigate("/?edit-profile=error");
       }
     };
 

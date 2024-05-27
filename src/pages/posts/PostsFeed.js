@@ -11,6 +11,7 @@ import Post from "./Post";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
 import SuccessToastNotification from "../../components/SuccessToastNotification";
+import ErrorToastNotification from "../../components/ErrorToastNotification";
 
 function PostsFeed({ message = "No posts found.", filter = "" }) {
   const [posts, setPosts] = useState({ results: [] });
@@ -20,6 +21,7 @@ function PostsFeed({ message = "No posts found.", filter = "" }) {
   const [searchParams] = useSearchParams();
   const [toastShow, setToastShow] = useState(false);
   const [toastSignOutShow, setToastSignOutShow] = useState(false);
+  const [profileEditError, setProfileEditError] = useState(false);
   const navigate = useNavigate();
 
   // Set query state for search
@@ -54,6 +56,14 @@ function PostsFeed({ message = "No posts found.", filter = "" }) {
   useEffect(() => {
     if (searchParams.get("sign-out") === "success") {
       setToastSignOutShow(true);
+      navigate("/", { replace: true });
+    }
+  }, [searchParams, navigate]);
+
+  // Show toast notification for edit profile error
+  useEffect(() => {
+    if (searchParams.get("edit-profile") === "error") {
+      setProfileEditError(true);
       navigate("/", { replace: true });
     }
   }, [searchParams, navigate]);
@@ -117,6 +127,14 @@ function PostsFeed({ message = "No posts found.", filter = "" }) {
         onClose={() => setToastSignOutShow(false)}
         position="bottom-end"
         message="You have signed out!"
+      />
+
+      {/*Error Toast Notification on fetching profile */}
+      <ErrorToastNotification
+        show={profileEditError}
+        onClose={() => setProfileEditError(false)}
+        position="bottom-end"
+        message="There was an error fetching the profile data"
       />
     </Container>
   );
