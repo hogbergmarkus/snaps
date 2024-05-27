@@ -6,11 +6,13 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Alert from "react-bootstrap/Alert";
 import ImageAsset from "../../components/ImageAsset";
+import ErrorToastNotification from "../../components/ErrorToastNotification";
 import { useNavigate, useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 
 function PostEditForm() {
   const [errors, setErrors] = useState({});
+  const [postErrorShow, setPostErrorShow] = useState(false);
 
   // useState to manage form data
   const [postData, setPostData] = useState({
@@ -36,7 +38,9 @@ function PostEditForm() {
         const { title, content, image, tags, is_owner } = data;
 
         is_owner ? setPostData({ title, content, image, tags }) : navigate("/");
-      } catch (err) {}
+      } catch (err) {
+        setPostErrorShow(true);
+      }
     };
 
     handleMount();
@@ -202,6 +206,14 @@ function PostEditForm() {
           </Col>
         </Row>
       </Form>
+
+      {/*Error Toast Notification on fetching post data */}
+      <ErrorToastNotification
+        show={postErrorShow}
+        onClose={() => setPostErrorShow(false)}
+        position="bottom-end"
+        message="There was an error fetching the post data"
+      />
     </Container>
   );
 }
