@@ -37,7 +37,8 @@ function PostsFeed({ message = "No posts found.", filter = "" }) {
         setHasLoaded(true);
       } catch (err) {
         console.log(err);
-        setError(`${message}: Unable to get posts.`);
+        setHasLoaded(true);
+        setError("There was an error trying to get posts.");
       }
     };
 
