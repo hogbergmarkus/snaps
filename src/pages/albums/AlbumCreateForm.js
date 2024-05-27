@@ -28,7 +28,6 @@ const AlbumCreateForm = () => {
       navigate(`/albums/${response.data.id}`);
     } catch (err) {
       setErrors(err.response?.data);
-      console.log(err);
     }
   };
 
