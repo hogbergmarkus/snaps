@@ -44,28 +44,26 @@ function PostsFeed({ message = "No posts found.", filter = "" }) {
     fetchPosts();
   }, [pathname, message, filter, query]);
 
-  // Show toast notification when user signs in
+  // Toast notifications for sign-in, sign-out, and error editing profile
   useEffect(() => {
-    if (localStorage.getItem("showSignInToast") === "true") {
-      setToastShow(true);
-      localStorage.removeItem("showSignInToast");
-    }
-  }, []);
+    const showToastNotifications = () => {
+      if (localStorage.getItem("showSignInToast") === "true") {
+        setToastShow(true);
+        localStorage.removeItem("showSignInToast");
+      }
 
-  // Show toast notification when user signs out
-  useEffect(() => {
-    if (searchParams.get("sign-out") === "success") {
-      setToastSignOutShow(true);
-      navigate("/", { replace: true });
-    }
-  }, [searchParams, navigate]);
+      if (searchParams.get("sign-out") === "success") {
+        setToastSignOutShow(true);
+        navigate("/", { replace: true });
+      }
 
-  // Show toast notification for edit profile error
-  useEffect(() => {
-    if (searchParams.get("edit-profile") === "error") {
-      setProfileEditError(true);
-      navigate("/", { replace: true });
-    }
+      if (searchParams.get("edit-profile") === "error") {
+        setProfileEditError(true);
+        navigate("/", { replace: true });
+      }
+    };
+
+    showToastNotifications();
   }, [searchParams, navigate]);
 
   return (
