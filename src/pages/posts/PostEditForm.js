@@ -36,9 +36,7 @@ function PostEditForm() {
         const { title, content, image, tags, is_owner } = data;
 
         is_owner ? setPostData({ title, content, image, tags }) : navigate("/");
-      } catch (err) {
-        console.log(err);
-      }
+      } catch (err) {}
     };
 
     handleMount();
@@ -81,7 +79,6 @@ function PostEditForm() {
       await axiosReq.put(`/posts/${id}/`, formData);
       navigate(`/posts/${id}/`);
     } catch (err) {
-      console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
