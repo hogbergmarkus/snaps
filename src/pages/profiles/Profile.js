@@ -7,10 +7,12 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import ImageAsset from "../../components/ImageAsset";
 import styles from "../../styles/Profile.module.css";
 import { ProfileOwnerDropdown } from "../../components/ProfileOwnerDropdown";
+import ErrorToastNotification from "../../components/ErrorToastNotification";
 
 function Profile() {
   const { id } = useParams();
   const [profile, setProfile] = useState(null);
+  const [errorShow, setErrorShow] = useState(false);
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === profile?.owner;
 
@@ -23,7 +25,7 @@ function Profile() {
         const { data } = await axiosReq.get(`/profiles/${id}/`);
         setProfile(data);
       } catch (err) {
-        console.log(err);
+        setErrorShow(true);
       }
     };
 
@@ -79,6 +81,13 @@ function Profile() {
           ) : null}
         </Col>
       </Row>
+      {/*Error Toast Notification on fetching profile data */}
+      <ErrorToastNotification
+        show={errorShow}
+        onClose={() => setErrorShow(false)}
+        position="bottom-end"
+        message="There was an error fetching the profile data"
+      />
     </>
   );
 }
