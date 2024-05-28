@@ -32,6 +32,7 @@ by adding posts to your private albums so you can easily find your favorite post
   - [Design](#design)
     - [Wireframes](#wireframes)
     - [Fonts](#fonts)
+    - [Colors](#colors)
 
 ## User Personas
 
@@ -200,3 +201,9 @@ My main font used is "Playfair Display SC" which I used for its elegant style.
 I paired it with "Gelasio" for input fields and areas with more text, for better readability.
 
 I feel that these fonts in conjunction help create a sense of style and class.
+
+### Colors
+
+I mainly relied on a black and white interface, both for a clean look but also to let the colors
+
+of the images on the website really stand out and take the main stage.
