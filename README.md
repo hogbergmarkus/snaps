@@ -23,6 +23,7 @@ by adding posts to your private albums so you can easily find your favorite post
   - [Introduction](#introduction)
   - [Table of Contents](#table-of-contents)
   - [User Personas](#user-personas)
+  - [User Stories](#user-stories)
 
 ## User Personas
 
@@ -45,3 +46,85 @@ by adding posts to your private albums so you can easily find your favorite post
   to show off to family and friends. It has to be easy adding albums and posts,
 
   since they log in often to explore, download and organize their private albums.
+
+## User Stories
+
+My user stories that drove the development of this website can be found in this
+[GitHub Project](https://github.com/users/hogbergmarkus/projects/16).
+
+Each issue contains an Epic, User Story, Acceptance Criteria and Tasks.
+
+Agile methodology was implemented through labels, milestone and GitHub Projects itself to plan my work.
+
+For the full view, please see the Project link, however here are my user stories in short:
+
+- Authentication
+
+  - As a Site User I can access a navbar from every page so that I can navigate the site
+    easily.
+
+  - As a Site User I can register an account so that I can access more features.
+
+  - As a Site User I can sign in so that I get access to additional features.
+
+  - As a Site User I can see my logged in status so that I can log out if I need to.
+
+  - As a Site User I can remain logged in for some time, or until I log out so that I have a
+    good experience.
+
+- Posts
+
+  - As a Site User I can add posts so that I can share my content.
+
+  - As a Site User I can view a single post so that I can interact with it.
+
+  - As a Site User I can like a post so that I can show appreciation.
+
+  - As a Site User I can download a post image so that I can keep it for later.
+
+  - As a Site User I can view a feed of posts so that I can get the latest content.
+
+  - As a Site User I can view posts I have liked so that I can find my way back to them easily.
+
+  - As a Site User I can search for posts so that I can find content I'm looking for.
+
+  - As a Site User I can scroll infinitely so that I never have to click next page to see more
+    posts.
+
+  - As a Site User I can delete my post so that I can remove it if I want.
+
+  - Site User I can edit my post so that I can change it if I want to.
+
+- Comments
+
+  - As a Site User I can add comments to a post so that I can engage with the community.
+
+  - As a Site User I can view comments so that I can read what other users think of the post.
+
+  - As a Site User I can delete my comments so that I can remove them if I want to.
+
+  - As a Site User I can edit my comments so that I can change them if I want to.
+
+  - As a Site User I can like comments so that I can show people I liked what they said.
+
+  - As a Site User I can unlike a comment so that I can change my mind.
+
+- Albums
+
+  - As a Site User I can create albums so that I can get organized.
+
+  - As a Site User I can view my albums so that I can interact with them.
+
+  - As a Site User I can delete my albums so that I can remove them if I want to.
+
+  - As a Site User I can edit my albums so that I can change their names if I want to.
+
+  - As a Site User I can add posts to albums so that I can sort content as I want to.
+
+  - As a Site User I can view posts I have added to my albums so that I can find the posts I want.
+
+- Profiles
+
+  - As a Site User I can visit other users profiles so that I can learn more about them.
+
+  - As a Site User I can edit my profile so that I can change what users see about me.
