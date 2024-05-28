@@ -29,6 +29,8 @@ by adding posts to your private albums so you can easily find your favorite post
     - [Amateur Photographer](#the-amateur-photographer)
     - [The Enthusiast](#the-enthusiast)
   - [Website Owner Goals](#website-owner-goals)
+  - [Design](#design)
+    - [Wireframes](#wireframes)
 
 ## User Personas
 
@@ -169,3 +171,23 @@ This could mean higher add revenues, and potential subscription features.
 The features added have to be selected carefully to not alienate existing users.
 
 The website has to work on both mobile and larger devices for ease of use.
+
+## Design
+
+### Wireframes
+
+The following wireframes were created using [Figma](https://www.figma.com/)
+
+I followed them during my development, though some changes have been made during that process.
+
+![Home](documentation/wireframes/wireframe_1_home.png)
+
+![Sign in](documentation/wireframes/wireframe_2_signin.png)
+
+![Register](documentation/wireframes/wireframe_3_register.png)
+
+![Signed in](documentation/wireframes/wireframe_4_signed_in.png)
+
+![Profile](documentation/wireframes/wireframe_5_profile.png)
+
+![Albums](documentation/wireframes/wireframe_6_albums.png)
