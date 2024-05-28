@@ -31,6 +31,7 @@ by adding posts to your private albums so you can easily find your favorite post
   - [Website Owner Goals](#website-owner-goals)
   - [Design](#design)
     - [Wireframes](#wireframes)
+    - [Fonts](#fonts)
 
 ## User Personas
 
@@ -191,3 +192,11 @@ I followed them during my development, though some changes have been made during
 ![Profile](documentation/wireframes/wireframe_5_profile.png)
 
 ![Albums](documentation/wireframes/wireframe_6_albums.png)
+
+### Fonts
+
+My main font used is "Playfair Display SC" which I used for its elegant style.
+
+I paired it with "Gelasio" for input fields and areas with more text, for better readability.
+
+I feel that these fonts in conjunction help create a sense of style and class.
