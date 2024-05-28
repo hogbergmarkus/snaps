@@ -9,6 +9,7 @@ import ImageAsset from "../../components/ImageAsset";
 import ErrorToastNotification from "../../components/ErrorToastNotification";
 import { useNavigate, useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
+import styles from "../../styles/PostEditForm.module.css";
 
 function PostEditForm() {
   const [errors, setErrors] = useState({});
@@ -90,13 +91,13 @@ function PostEditForm() {
   };
 
   return (
-    <Container>
+    <Container className="pb-5">
       <Form onSubmit={handleSubmit}>
         {/* Title form input */}
         <Row className="justify-content-center">
           <Col xs={12} md={8} lg={6}>
             <Form.Group controlId="title" className="mb-3">
-              <Form.Label className="d-none">Title</Form.Label>
+              <Form.Label visuallyHidden>Title</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Title"
@@ -117,8 +118,9 @@ function PostEditForm() {
         <Row className="justify-content-center">
           <Col xs={12} md={8} lg={6}>
             <Form.Group controlId="content" className="mb-3">
-              <Form.Label className="d-none">Content</Form.Label>
+              <Form.Label visuallyHidden>Content</Form.Label>
               <Form.Control
+                className={`${styles.PostCaption}`}
                 as="textarea"
                 rows={3}
                 placeholder="Content"
@@ -139,7 +141,7 @@ function PostEditForm() {
         <Row className="justify-content-center">
           <Col xs={12} md={8} lg={6}>
             <Form.Group controlId="tags" className="mb-3">
-              <Form.Label className="d-none">Tags</Form.Label>
+              <Form.Label visuallyHidden>Tags</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Tags"
