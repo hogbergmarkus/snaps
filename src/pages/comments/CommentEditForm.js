@@ -4,11 +4,14 @@ import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { axiosRes } from "../../api/axiosDefaults";
+import ErrorToastNotification from "../../components/ErrorToastNotification";
 import styles from "../../styles/CommentEditForm.module.css";
 
 function CommentEditForm(props) {
   const { id, content, setShowEditForm, setComments } = props;
   const [formContent, setFormContent] = useState(content);
+
+  const [editErrorShow, setEditErrorShow] = useState(false);
 
   // Handle form input changes
   const handleChange = (event) => {
@@ -38,7 +41,7 @@ function CommentEditForm(props) {
       }));
       setShowEditForm(false);
     } catch (err) {
-      console.log(err);
+      setEditErrorShow(true);
     }
   };
 
@@ -73,6 +76,14 @@ function CommentEditForm(props) {
           </Form>
         </Col>
       </Row>
+
+      {/* Error Toast Notification for editing comments */}
+      <ErrorToastNotification
+        show={editErrorShow}
+        onClose={() => setEditErrorShow(false)}
+        position="bottom-end"
+        message="There was an error updating your comment!"
+      />
     </>
   );
 }
