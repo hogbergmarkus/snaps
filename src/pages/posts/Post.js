@@ -37,6 +37,7 @@ const Post = (props) => {
   const is_owner = currentUser?.username === owner;
   const navigate = useNavigate();
   const [likeErrorShow, setLikeErrorShow] = useState(false);
+  const [unlikeErrorShow, setUnlikeErrorShow] = useState(false);
 
   // State to control delete confirmation modal
   const [showModal, setShowModal] = useState(false);
@@ -99,7 +100,7 @@ const Post = (props) => {
         }),
       }));
     } catch (err) {
-      console.log(err);
+      setUnlikeErrorShow(true);
     }
   };
 
@@ -255,6 +256,13 @@ const Post = (props) => {
         onClose={() => setLikeErrorShow(false)}
         position="bottom-end"
         message="There was an error liking the post!"
+      />
+      {/* Error Toast Notification for Unlike */}
+      <ErrorToastNotification
+        show={unlikeErrorShow}
+        onClose={() => setUnlikeErrorShow(false)}
+        position="bottom-end"
+        message="There was an error removing the like!"
       />
     </Container>
   );
