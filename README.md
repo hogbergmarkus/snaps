@@ -24,6 +24,11 @@ by adding posts to your private albums so you can easily find your favorite post
   - [Table of Contents](#table-of-contents)
   - [User Personas](#user-personas)
   - [User Stories](#user-stories)
+  - [User Goals](#user-goals)
+    - [The Casual](#the-casual)
+    - [Amateur Photographer](#the-amateur-photographer)
+    - [The Enthusiast](#the-enthusiast)
+  - [Website Owner Goals](#website-owner-goals)
 
 ## User Personas
 
@@ -128,3 +133,39 @@ For the full view, please see the Project link, however here are my user stories
   - As a Site User I can visit other users profiles so that I can learn more about them.
 
   - As a Site User I can edit my profile so that I can change what users see about me.
+
+## User Goals
+
+### The Casual
+
+They are looking to discover new styles of photography and trends.
+
+Relaxation of scrolling is a large part of why they are here.
+
+### The Amateur Photographer
+
+These users are looking to upload and share their content with the community.
+
+Feedback is important, through likes, comments and seeing how many times their work was downloaded.
+
+The site offers them visibility for their work.
+
+### The Enthusiast
+
+The enthusiast is driven by the curation of beautiful works.
+
+They take pride in finding awesome pieces and collecting them in albums.
+
+## Website Owner Goals
+
+The owner is driven by increasing traffic to the website.
+
+The more users that use the website, they can build out features to make existing users happier,
+
+and at the same time attract new users.
+
+This could mean higher add revenues, and potential subscription features.
+
+The features added have to be selected carefully to not alienate existing users.
+
+The website has to work on both mobile and larger devices for ease of use.
