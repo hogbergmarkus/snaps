@@ -34,6 +34,7 @@ by adding posts to your private albums so you can easily find your favorite post
     - [Fonts](#fonts)
     - [Colors](#colors)
   - [Screenshots of Finished Website](#screenshots-of-finished-website)
+  - [Features](#features)
 
 ## User Personas
 
@@ -234,3 +235,59 @@ This is the albums page, where users can manage their albums.
 On the profile page, is the users photo of choice, their username and a bio, followed by all their posts.
 
 ![Profile Page](documentation/screenshots/profile_page.png)
+
+## Features
+
+- Navbar is active, to display where you are on the website.
+
+  This helps make navigation easier.
+
+![Navbar](documentation/screenshots/active_navbar.png)
+
+- Navbar is responsive, and will expand on large screens to reduce clicks, which helps navigate the site.
+
+![Responsive Navbar](documentation/screenshots/responsive_navbar.png)
+
+- When a user is signed in, the links specific to them are consolidated under their name,
+
+  to reduce clutter, which looks nice but also make their things easy to find.
+
+![Navbar User Dropdown](documentation/screenshots/signed_in_user_dropdown_navbar.png)
+
+- The search field is helpful for users who want to find specific content.
+
+![Search](documentation/screenshots/search.png)
+
+- The feeds with posts have an infinite scroll which loads new posts as the user reaches the bottom.
+
+  Useful for the users to not have to click between pages.
+
+![Infinite Scroll](documentation/screenshots/infinite_scroll.png)
+
+- A users avatar can be hovered to see their username right away.
+
+  This helps users se more info with fewer clicks.
+
+![Avatar Hover](documentation/screenshots/avatar_hover.png)
+
+- Under a post additional information can be seen, such as likes, comments, downloads and image description.
+
+  This helps users understand how their posts are performing.
+
+  Moreover this is where users can click to like or download the image, or just read the description.
+
+  It also shows when the post was updated last.
+
+![Post info](documentation/screenshots/post_information.png)
+
+- Further down when viewing a single post, a user can add the post to one of their albums from a dropdown.
+
+  This makes it easy for users so curate their content.
+
+![Add Post to Album](documentation/screenshots/add_post_to_album.png)
+
+- Just below where a post can be added to an album, the comments start.
+
+  This is where users go to add to the conversation about a post.
+
+![Comment Section](documentation/screenshots/comment_section.png)
