@@ -33,6 +33,7 @@ by adding posts to your private albums so you can easily find your favorite post
     - [Wireframes](#wireframes)
     - [Fonts](#fonts)
     - [Colors](#colors)
+  - [Screenshots of Finished Website](#screenshots-of-finished-website)
 
 ## User Personas
 
@@ -207,3 +208,29 @@ I feel that these fonts in conjunction help create a sense of style and class.
 I mainly relied on a black and white interface, both for a clean look but also to let the colors
 
 of the images on the website really stand out and take the main stage.
+
+## Screenshots of Finished Website
+
+This is the home page, with a user signed in.
+
+![Home page](documentation/screenshots/home_page.png)
+
+On the post detail page there are comments and ability to add post to an album.
+
+![Post Detail](documentation/screenshots/post_detail.png)
+
+When you go to add a post, there is a nice preview of your selected photo.
+
+![Add Post](documentation/screenshots/add_post.png)
+
+The dropdown for a signed in user applies both in the main navbar and the offcanvas on small devices.
+
+![Menu Dropdown](documentation/screenshots/menu_expand.png)
+
+This is the albums page, where users can manage their albums.
+
+![Albums Page](documentation/screenshots/albums_page.png)
+
+On the profile page, is the users photo of choice, their username and a bio, followed by all their posts.
+
+![Profile Page](documentation/screenshots/profile_page.png)
