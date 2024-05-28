@@ -54,7 +54,8 @@ const Post = (props) => {
         localStorage.setItem("showPostDeleteToast", "true");
         navigate(`/profiles/${profile_id}`);
       } catch (err) {
-        console.log(err);
+        localStorage.setItem("showErrorPostDeleteToast", "true");
+        navigate(`/profiles/${profile_id}`);
       }
     }
     handleCloseModal();

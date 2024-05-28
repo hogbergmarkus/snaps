@@ -6,17 +6,27 @@ import { useParams } from "react-router-dom";
 import PostsFeed from "../posts/PostsFeed";
 import Profile from "./Profile";
 import SuccessToastNotification from "../../components/SuccessToastNotification";
+import ErrorToastNotification from "../../components/ErrorToastNotification";
 
 const ProfilePage = () => {
   const { id } = useParams();
 
   const [toastShow, setToastShow] = useState(false);
+  const [toastErrorShow, setErrorToastShow] = useState(false);
 
   useEffect(() => {
-    if (localStorage.getItem("showPostDeleteToast") === "true") {
-      setToastShow(true);
-      localStorage.removeItem("showPostDeleteToast");
-    }
+    const showToastNotifications = () => {
+      if (localStorage.getItem("showPostDeleteToast") === "true") {
+        setToastShow(true);
+        localStorage.removeItem("showPostDeleteToast");
+      }
+      if (localStorage.getItem("showErrorPostDeleteToast") === "true") {
+        setErrorToastShow(true);
+        localStorage.removeItem("showErrorPostDeleteToast");
+      }
+    };
+
+    showToastNotifications();
   }, []);
 
   return (
@@ -41,6 +51,13 @@ const ProfilePage = () => {
         onClose={() => setToastShow(false)}
         position="bottom-end"
         message="Post deleted!"
+      />
+      {/* Error Toast Notification on Post delete */}
+      <ErrorToastNotification
+        show={toastErrorShow}
+        onClose={() => setErrorToastShow(false)}
+        position="bottom-end"
+        message="There was an error deleting the post!"
       />
     </Container>
   );
