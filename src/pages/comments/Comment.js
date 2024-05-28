@@ -12,6 +12,7 @@ import Avatar from "../../components/Avatar";
 import CommentEditForm from "./CommentEditForm";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { OwnerDropdown } from "../../components/OwnerDropdown";
+import ErrorToastNotification from "../../components/ErrorToastNotification";
 import { axiosRes } from "../../api/axiosDefaults";
 import styles from "../../styles/Comment.module.css";
 
@@ -36,6 +37,8 @@ const Comment = (props) => {
   const [showEditForm, setShowEditForm] = useState(false);
 
   const [error, setError] = useState(null);
+  const [likeErrorShow, setLikeErrorShow] = useState(false);
+  const [unlikeErrorShow, setUnlikeErrorShow] = useState(false);
 
   // State to control delete confirmation modal
   const [showModal, setShowModal] = useState(false);
@@ -90,7 +93,7 @@ const Comment = (props) => {
         }),
       }));
     } catch (err) {
-      console.log(err);
+      setLikeErrorShow(true);
     }
   };
 
@@ -114,7 +117,7 @@ const Comment = (props) => {
         }),
       }));
     } catch (err) {
-      console.log(err);
+      setUnlikeErrorShow(true);
     }
   };
 
@@ -214,6 +217,21 @@ const Comment = (props) => {
           </Button>
         </Modal.Footer>
       </Modal>
+
+      {/* Error Toast Notification for likes */}
+      <ErrorToastNotification
+        show={likeErrorShow}
+        onClose={() => setLikeErrorShow(false)}
+        position="bottom-end"
+        message="There was an error liking the comment!"
+      />
+      {/* Error Toast Notification for un-like comment */}
+      <ErrorToastNotification
+        show={unlikeErrorShow}
+        onClose={() => setUnlikeErrorShow(false)}
+        position="bottom-end"
+        message="There was an error removing the like!"
+      />
     </Card>
   );
 };
