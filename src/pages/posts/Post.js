@@ -198,19 +198,24 @@ const Post = (props) => {
                 <span>{comments_count}</span>
               </div>
             </Link>
-            <a
-              href={image}
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Go to download post image, opens in a new tab"
-              className={`${styles.Link}`}
-              onClick={handleDownload}
+            <OverlayTrigger
+              placement="top"
+              overlay={<Tooltip>Download, opens a new tab</Tooltip>}
             >
-              <div className={`${styles.Icons}`}>
-                <i className="fa-solid fa-download"></i>{" "}
-                <span>{download_count}</span>
-              </div>
-            </a>
+              <a
+                href={image}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Go to download post image, opens in a new tab"
+                className={`${styles.Link}`}
+                onClick={handleDownload}
+              >
+                <div className={`${styles.Icons}`}>
+                  <i className="fa-solid fa-download"></i>{" "}
+                  <span>{download_count}</span>
+                </div>
+              </a>
+            </OverlayTrigger>
             <div className="d-flex flex-grow-1 align-self-center justify-content-end me-2">
               <span>{updated_at}</span>
             </div>
