@@ -290,4 +290,58 @@ On the profile page, is the users photo of choice, their username and a bio, fol
 
   This is where users go to add to the conversation about a post.
 
+  Comments can be liked. The owner of a comment can edit or delete their comment.
+
 ![Comment Section](documentation/screenshots/comment_section.png)
+
+- This little dropdown arrow toggle is found throughout the website.
+
+  It is a dropdown menu that allows users options to edit or delete their content.
+
+  It only appears at content they are eligible to modify,
+
+  such as posts, comments, albums and their profile.
+
+![Owner Dropdown](documentation/screenshots/owner_dropdown.png)
+
+- In relevant places I have added success toast notifications.
+
+  It helps reassure the user their actions were successful.
+
+![Success Toast](documentation/screenshots/success_toast.png)
+
+- In case of certain errors, a toast notification will let the user know
+
+  that something went wrong. This will help in understanding why their action
+
+  did not seem to do what they expected.
+
+![Error Toast](documentation/screenshots/error_toast.png)
+
+- If a user visits the Liked Posts page, they will find all the posts they have liked.
+
+  This is a faster way of saving content for the user, but can't be organized as well as albums.
+
+![Liked Posts](documentation/screenshots/liked_posts.png)
+
+- If a user wants to save content in an organized manner, the albums page is the place to do so.
+
+  They can create albums here, and then save content to them as they please.
+
+![Albums](documentation/screenshots/albums.png)
+
+- In case a user does not understand what this page is for, there is a dropdown info panel
+
+  that they can click to read more. This will be especially useful to new users.
+
+![Albums Info](documentation/screenshots/albums_info.png)
+
+- Users profiles can be visited. This page holds their profile image, username and bio.
+
+  All posts on this page belong to that profile owner.
+
+  This is useful for many reasons, such as learning more about a user if they chose to add a bio,
+
+  or just find more images from a creator you like.
+
+![User Profiles](documentation/screenshots/user_profiles.png)
