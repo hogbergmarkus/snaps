@@ -6,11 +6,14 @@ import Col from "react-bootstrap/Col";
 import { Link } from "react-router-dom";
 import { axiosRes } from "../../api/axiosDefaults";
 import Avatar from "../../components/Avatar";
+import ErrorToastNotification from "../../components/ErrorToastNotification";
 import styles from "../../styles/CommentCreateForm.module.css";
 
 function CommentCreateForm(props) {
   const { post, setPost, setComments, profileImage, profile_id } = props;
   const [content, setContent] = useState("");
+
+  const [commentErrorShow, setCommentErrorShow] = useState(false);
 
   // Handle form input changes
   const handleChange = (event) => {
@@ -42,7 +45,8 @@ function CommentCreateForm(props) {
       // Clear the comment input after submission
       setContent("");
     } catch (err) {
-      console.log(err);
+      setCommentErrorShow(true);
+      setContent("");
     }
   };
 
@@ -77,6 +81,14 @@ function CommentCreateForm(props) {
           </Form>
         </Col>
       </Row>
+
+      {/* Error Toast Notification for adding comments */}
+      <ErrorToastNotification
+        show={commentErrorShow}
+        onClose={() => setCommentErrorShow(false)}
+        position="bottom-end"
+        message="There was an error adding your comment!"
+      />
     </>
   );
 }
