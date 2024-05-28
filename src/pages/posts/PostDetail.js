@@ -15,6 +15,7 @@ import Post from "./Post";
 import CommentCreateForm from "../comments/CommentCreateForm";
 import Comment from "../comments/Comment";
 import SuccessToastNotification from "../../components/SuccessToastNotification";
+import ErrorToastNotification from "../../components/ErrorToastNotification";
 import styles from "../../styles/PostDetail.module.css";
 
 function PostDetail() {
@@ -31,6 +32,7 @@ function PostDetail() {
   const [toastShow, setToastShow] = useState(false);
   const [albumToastShow, setAlbumToastShow] = useState(false);
   const [commentToastShow, setCommentToastShow] = useState(false);
+  const [albumErrorShow, setAlbumErrorShow] = useState(false);
 
   const currentUser = useCurrentUser();
   const [comments, setComments] = useState({ results: [] });
@@ -94,7 +96,7 @@ function PostDetail() {
       // Clear selected album input
       setSelectedAlbum("");
     } catch (err) {
-      console.log(err);
+      setAlbumErrorShow(true);
     }
   };
 
@@ -226,6 +228,13 @@ function PostDetail() {
         onClose={() => setCommentToastShow(false)}
         position="bottom-end"
         message="Comment deleted!"
+      />
+      {/* Error Toast Notification for adding post to album */}
+      <ErrorToastNotification
+        show={albumErrorShow}
+        onClose={() => setAlbumErrorShow(false)}
+        position="bottom-end"
+        message="There was an error adding the post to your album!"
       />
     </Container>
   );
