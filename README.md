@@ -16,3 +16,9 @@ or just scroll to enjoy what others have created.
 You can also engage in the community through comments and likes, as well as create collections for yourself,
 
 by adding posts to your private albums so you can easily find your favorite posts.
+
+## Table of Contents
+
+- [Snaps](#snaps)
+  - [Introduction](#introduction)
+  - [Table of Contents](#table-of-contents)
