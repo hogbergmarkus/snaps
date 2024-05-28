@@ -13,6 +13,7 @@ import ImageAsset from "../../components/ImageAsset";
 import styles from "../../styles/Post.module.css";
 import Avatar from "../../components/Avatar";
 import { OwnerDropdown } from "../../components/OwnerDropdown";
+import ErrorToastNotification from "../../components/ErrorToastNotification";
 
 const Post = (props) => {
   const {
@@ -35,6 +36,7 @@ const Post = (props) => {
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
   const navigate = useNavigate();
+  const [likeErrorShow, setLikeErrorShow] = useState(false);
 
   // State to control delete confirmation modal
   const [showModal, setShowModal] = useState(false);
@@ -77,7 +79,7 @@ const Post = (props) => {
         }),
       }));
     } catch (err) {
-      console.log(err);
+      setLikeErrorShow(true);
     }
   };
 
@@ -246,6 +248,14 @@ const Post = (props) => {
           </Button>
         </Modal.Footer>
       </Modal>
+
+      {/* Error Toast Notification for likes */}
+      <ErrorToastNotification
+        show={likeErrorShow}
+        onClose={() => setLikeErrorShow(false)}
+        position="bottom-end"
+        message="There was an error liking the post!"
+      />
     </Container>
   );
 };
