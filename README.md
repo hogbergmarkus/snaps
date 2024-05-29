@@ -36,6 +36,17 @@ by adding posts to your private albums so you can easily find your favorite post
   - [Screenshots of Finished Website](#screenshots-of-finished-website)
   - [Features](#features)
   - [Features to Add](#features-to-add)
+  - [React Components](#react-components)
+    - [Reusable Components](#reusable-components)
+    - [Contexts](#contexts)
+    - [Hooks](#hooks)
+    - [API](#api)
+    - [Pages](#pages)
+      - [Albums](#albums)
+      - [Auth](#auth)
+      - [Comments](#comments)
+      - [Posts](#posts)
+      - [Profiles](#profiles)
 
 ## User Personas
 
@@ -380,3 +391,99 @@ scope of this project. Also, this list is of course non exhaustive.
   be added to multiple albums, but simply moving a post to another album, or remove it, is not featured yet.
 
   This is definitely a feature that I would add in the future.
+
+## React Components
+
+### Reusable Components
+
+- **DropdownInfo**: A component that expands when clicked to reveal a longer message.
+
+  Useful for hiding longer texts that would clutter the UI.
+
+- **SuccessToastNotification**: A notification used throughout the application to display
+
+  successful user actions.
+
+- **ErrorToastNotification**: A notification used to display certain errors to the user,
+
+  signaling an action they took has failed.
+
+- **Avatar**: A component used to display the users profile image in any place wanted.
+
+- **ImageAsset**: Used to display post images, and the profile image in the users profile.
+
+- **OwnerDropdown**: A dropdown menu used to give the owner of an item options for further actions.
+
+- **NavBar**: Navigation bar used everywhere in the application.
+
+### Contexts
+
+- **CurrentUserContext**: Helps manage the current user state throughout the application.
+
+### Hooks
+
+- **useToggleNavBar**: A hook used to control the state of the navbar and offcanvas menu.
+
+### API
+
+- **axiosDefaults**: Default settings for easier use when calling out to my API using Axios.
+
+  It configures a base URL and specifies the content type.
+
+  It also enables sending cookies cross-site.
+
+### Pages
+
+#### Albums
+
+The albums page was written into five different components.
+
+- **AlbumCard**: Displays the album itself.
+
+- **AlbumCreateForm**: The form input to create albums.
+
+- **AlbumEditForm**: Displayed when user chooses to edit an album.
+
+- **Albums**: The above components come together in Albums.
+
+- **AlbumDetail**: When a specific album is clicked, the detail view shows the posts inside the album.
+
+#### Auth
+
+- **SignUpForm**: Handles the registration of new users.
+
+- **SignInForm**: Handles the sign in process.
+
+#### Comments
+
+Comments were split up into three different components.
+
+- **CommentCreateForm**: Concerned with adding comments.
+
+- **Comment**: The actual content of a comment.
+
+- **CommentEditForm**: Form for handling editing a comment.
+
+#### Posts
+
+Posts were split into 5 different components.
+
+- **PostCreateForm**: Handles creation of posts.
+
+- **Post**: The actual post itself.
+
+- **PostEditForm**: Form for editing a post.
+
+- **PostDetail**: Shows the post itself, form input for adding it to an album, and comments.
+
+- **PostsFeed**: Used anywhere a feed of posts is needed, for example Home and Liked Posts.
+
+#### Profiles
+
+Profiles was split into three components.
+
+- **Profile**: Holds the profile information such as image, bio, and owner edit option.
+
+- **ProfilePage**: Displays the profile information along with a feed of the profile owners posts.
+
+- **ProfileEditForm**: A form for editing profile information.
