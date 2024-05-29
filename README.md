@@ -47,6 +47,7 @@ by adding posts to your private albums so you can easily find your favorite post
       - [Comments](#comments)
       - [Posts](#posts)
       - [Profiles](#profiles)
+  - [Libraries](#libraries)
 
 ## User Personas
 
@@ -487,3 +488,19 @@ Profiles was split into three components.
 - **ProfilePage**: Displays the profile information along with a feed of the profile owners posts.
 
 - **ProfileEditForm**: A form for editing profile information.
+
+## Libraries
+
+- **Axios**: Used for making requests to my API.
+
+- **React-bootstrap**: Used for its good set of components, styles and ease of use.
+
+- **React-router-dom**: Used for routing features, and additional features such as using
+
+  searchParams, useLocation and useNavigate. This was especially helpful in setting up toast notifications.
+
+  and routing the user between pages.
+
+- **React-infinite-scroll-component**: Since my API sends paginated data, this was helpful in
+
+  setting up a continuous feed for the user.
