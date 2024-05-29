@@ -80,6 +80,7 @@ const NavBar = () => {
         id="offcanvasNavbarDropdown"
         className={styles.NavDropdown}
         drop="down"
+        align="end"
       >
         <NavDropdown.Item
           as={NavLink}
