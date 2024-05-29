@@ -35,6 +35,7 @@ by adding posts to your private albums so you can easily find your favorite post
     - [Colors](#colors)
   - [Screenshots of Finished Website](#screenshots-of-finished-website)
   - [Features](#features)
+  - [Features to Add](#features-to-add)
 
 ## User Personas
 
@@ -345,3 +346,37 @@ On the profile page, is the users photo of choice, their username and a bio, fol
   or just find more images from a creator you like.
 
 ![User Profiles](documentation/screenshots/user_profiles.png)
+
+## Features to Add
+
+This is a list of features I would have liked to add, but they did not make it into the
+
+scope of this project. Also, this list is of course non exhaustive.
+
+- **Keep page scroll**. When a user clicks a post and then returns to the feed,
+
+  they should be returned to where they were in the feed.
+
+- **Standard albums**. When a user creates an account, there could be one or more albums
+
+  added automatically, such as "Favorites" for example.
+
+- **Album naming**. I made a conscious choice to let users create albums without a title.
+
+  The album will then default to "New Album", and they can rename it later.
+
+  However it might be a good idea to not allow albums with the same name for a better user experience,
+
+  so a feature that could be implemented it this:
+
+  If an album receives a title already used by another one of their albums such as "Album",
+
+  the new one could be automatically renamed "Album(1)" for example.
+
+- **Editing posts in albums**. Currently there is no feature to move posts between albums,
+
+  or delete a post from an album. The albums themselves can be renamed or deleted, and a post can
+
+  be added to multiple albums, but simply moving a post to another album, or remove it, is not featured yet.
+
+  This is definitely a feature that I would add in the future.
