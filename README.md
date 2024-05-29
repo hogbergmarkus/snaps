@@ -52,6 +52,7 @@ by adding posts to your private albums so you can easily find your favorite post
   - [Framework and Languages](#framework-and-languages)
   - [Libraries](#libraries)
   - [Deployment](#deployment)
+    - [Cloning and Forking](#cloning-and-forking)
 
 ## User Personas
 
@@ -538,3 +539,28 @@ This part describes the steps I took to deploy this React project.
 6. Search for the repository to deploy, and click connect.
 
 7. Click "Deploy branch".
+
+### Cloning and Forking
+
+If you want to clone or fork this project, you can do it from my [GitHub repository](https://github.com/hogbergmarkus/snaps).
+
+Keep in mind that this is only the front-end and you will need a back-end to run this application.
+
+Take a look at the [Back-end repository](https://github.com/hogbergmarkus/snaps-backend), for more
+information on how to set that up.
+
+You should start by setting up a virtual environment, to avoid conflicts and other potential issues.
+
+**Cloning** the project means you are creating a local copy of the project on your own machine.
+
+This enables you to make changes without affecting the original repository.
+
+**Forking** it means you are creating a copy of the project on your own GitHub account,
+
+which gives you the ability to propose changes to the original project,
+
+or just develop your own modified version of it.
+
+- Since this project uses npm, it is good practice you do the same.
+
+- Make sure you are in the root directory, then run `npm install`
