@@ -7,6 +7,8 @@
 [Snaps](https://snaps-frontend-871b3764ee9c.herokuapp.com/) is a photo sharing website,
 aimed a people who want to share their photos with others.
 
+The backend for this application can be found here: [Snaps Backend](https://github.com/hogbergmarkus/snaps-backend)
+
 As well as uploading your content, all photos uploaded to the website are eligible to be downloaded by any user.
 
 The idea is to create a sharing community where you can either take part in adding content,
