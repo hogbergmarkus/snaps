@@ -8,8 +8,8 @@ import AlbumCreateForm from "./AlbumCreateForm";
 import AlbumCard from "./AlbumCard";
 import { axiosReq } from "../../api/axiosDefaults";
 import AlbumEditForm from "./AlbumEditForm";
-import Accordian from "../../components/Accordian";
 import SuccessToastNotification from "../../components/SuccessToastNotification";
+import DropdownInfo from "../../components/DropdownInfo";
 
 function Albums() {
   const [albums, setAlbums] = useState({ results: [] });
@@ -18,6 +18,8 @@ function Albums() {
   const [albumToEdit, setAlbumToEdit] = useState(null);
   const [toastShow, setToastShow] = useState(false);
   const [error, setError] = useState(null);
+  const accordionMessage =
+    'Add a new album by filling out the form below. When you come across a post you want to save, select an album and click the "Save to Album" button.';
 
   // Fetch all albums
   useEffect(() => {
@@ -64,7 +66,7 @@ function Albums() {
         <Col>
           <h4>Albums</h4>
           <hr />
-          <Accordian />
+          <DropdownInfo accordionMessage={accordionMessage} />
         </Col>
       </Row>
       {/* Form for creating new albums, rendered only if not editing */}
