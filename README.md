@@ -47,6 +47,7 @@ by adding posts to your private albums so you can easily find your favorite post
       - [Comments](#comments)
       - [Posts](#posts)
       - [Profiles](#profiles)
+  - [Framework and Languages](#framework-and-languages)
   - [Libraries](#libraries)
 
 ## User Personas
@@ -488,6 +489,14 @@ Profiles was split into three components.
 - **ProfilePage**: Displays the profile information along with a feed of the profile owners posts.
 
 - **ProfileEditForm**: A form for editing profile information.
+
+## Framework and Languages
+
+This project was built using React 18.3.1
+
+JavaScript and JSX was used to write the code.
+
+The README was written using Markdown.
 
 ## Libraries
 
