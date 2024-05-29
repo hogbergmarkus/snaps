@@ -49,6 +49,7 @@ by adding posts to your private albums so you can easily find your favorite post
       - [Profiles](#profiles)
   - [Framework and Languages](#framework-and-languages)
   - [Libraries](#libraries)
+  - [Deployment](#deployment)
 
 ## User Personas
 
@@ -513,3 +514,25 @@ The README was written using Markdown.
 - **React-infinite-scroll-component**: Since my API sends paginated data, this was helpful in
 
   setting up a continuous feed for the user.
+
+## Deployment
+
+This part describes the steps I took to deploy this React project.
+
+1. In package.json I added `"heroku-prebuild": "npm install -g serve",` in the scripts section.
+
+   Needed to serve this single page application on Heroku.
+
+2. Add a Procfile in the root-directory and add `web: serve -s build` inside.
+
+   Tells Heroku that this is a web process and to serve a our single page application.
+
+3. Go to [Heroku](https://www.heroku.com/) and sign in/register.
+
+4. Create a new app, choose a new name and select your region and click "create app".
+
+5. Go to the "Deploy" tab and connect to GitHub.
+
+6. Search for the repository to deploy, and click connect.
+
+7. Click "Deploy branch".
