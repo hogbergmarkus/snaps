@@ -85,6 +85,8 @@ by adding posts to your private albums so you can easily find your favorite post
       - [Profiles](#profiles-1)
   - [Bugs](#bugs)
     - [Bug 1](#bug-1)
+  - [Bug Fixes](#bug-fixes)
+    - [Bug Fix 1](#bug-fix-1)
 
 ## User Personas
 
@@ -1116,3 +1118,15 @@ I had bug that cut off the dropdown menu in my navbar. It caused some overflow i
 since it fell outside the other content.
 
 ![Bug 1](documentation/screenshots/bug_1.png)
+
+## Bug Fixes
+
+### Bug Fix 1
+
+This caused me quite some frustration, since I did not manage to fix it for some time.
+
+Eventually I found the solution in react-bootstraps library, I had simply missed the `align` prop for dropdowns.
+
+![Bug fix 1 code](documentation/screenshots/bug_fix_1_code.png)
+
+![Bug fix 1 website](documentation/screenshots/bug_fix_1_website.png)
