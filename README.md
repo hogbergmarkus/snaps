@@ -564,3 +564,5 @@ or just develop your own modified version of it.
 - Since this project uses npm, it is good practice you do the same.
 
 - Make sure you are in the root directory, then run `npm install`
+
+- In the src directory, open axiosDefaults.js and change `axios.defaults.baseURL` to your own API url.
