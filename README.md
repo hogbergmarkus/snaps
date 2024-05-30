@@ -53,6 +53,8 @@ by adding posts to your private albums so you can easily find your favorite post
   - [Libraries](#libraries)
   - [Deployment](#deployment)
     - [Cloning and Forking](#cloning-and-forking)
+  - [Testing](#testing)
+    - [Validation](#validation)
 
 ## User Personas
 
@@ -566,3 +568,13 @@ or just develop your own modified version of it.
 - Make sure you are in the root directory, then run `npm install`
 
 - In the src directory, open axiosDefaults.js and change `axios.defaults.baseURL` to your own API url.
+
+## Testing
+
+### Validation
+
+I ran all my pages through the [W3C markup validation service](https://validator.w3.org/#validate_by_uri) with no errors.
+
+My custom CSS was checked using [jigsaw](https://jigsaw.w3.org/css-validator/#validate_by_input) with no errors.
+
+The console and terminal are showing no errors from my JSX and JavaScript.
