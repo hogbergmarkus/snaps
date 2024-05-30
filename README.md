@@ -83,6 +83,8 @@ by adding posts to your private albums so you can easily find your favorite post
       - [Comments](#comments-1)
       - [Albums](#albums-2)
       - [Profiles](#profiles-1)
+  - [Bugs](#bugs)
+    - [Bug 1](#bug-1)
 
 ## User Personas
 
@@ -1104,3 +1106,13 @@ Finally the issue for each user story in my project has been closed if the accep
 | Owner of the profile has a dropdown menu where they can choose to edit |  X  |     |
 | When clicked, they get a form where information can be edited          |  X  |     |
 | When form is submitted, their profile is updated                       |  X  |     |
+
+## Bugs
+
+### Bug 1
+
+I had bug that cut off the dropdown menu in my navbar. It caused some overflow issues
+
+since it fell outside the other content.
+
+![Bug 1](documentation/screenshots/bug_1.png)
