@@ -55,6 +55,7 @@ by adding posts to your private albums so you can easily find your favorite post
     - [Cloning and Forking](#cloning-and-forking)
   - [Testing](#testing)
     - [Validation](#validation)
+    - [Lighthouse Reports](#lighthouse-reports)
 
 ## User Personas
 
@@ -578,3 +579,47 @@ I ran all my pages through the [W3C markup validation service](https://validator
 My custom CSS was checked using [jigsaw](https://jigsaw.w3.org/css-validator/#validate_by_input) with no errors.
 
 The console and terminal are showing no errors from my JSX and JavaScript.
+
+### Lighthouse Reports
+
+Below are lighthouse reports from my pages:
+
+- Home:
+
+![Home lighthouse](documentation/screenshots/home_lighthouse.png)
+
+- Post detail:
+
+![Post detail lighthouse](documentation/screenshots/post_detail_lighthouse.png)
+
+- Post edit:
+
+![Post edit lighthouse](documentation/screenshots/post_edit_lighthouse.png)
+
+- Liked posts:
+
+![Liked posts lighthouse](documentation/screenshots/liked_posts_lighthouse.png)
+
+- Albums:
+
+![Albums lighthouse](documentation/screenshots/albums_lighthouse.png)
+
+- Album detail:
+
+![Album detail lighthouse](documentation/screenshots/album_detail_lighthouse.png)
+
+- Profiles:
+
+![Profiles lighthouse](documentation/screenshots/profiles_lighthouse.png)
+
+- Profile edit:
+
+![Profile edit lighthouse](documentation/screenshots/profile_edit_lighthouse.png)
+
+- Register:
+
+![Register lighthouse](documentation/screenshots/register_lighthouse.png)
+
+- Sign in:
+
+![Sign in lighthouse](documentation/screenshots/sign_in_lighthouse.png)
