@@ -57,6 +57,19 @@ by adding posts to your private albums so you can easily find your favorite post
     - [Validation](#validation)
     - [Lighthouse Reports](#lighthouse-reports)
     - [Responsiveness](#responsiveness)
+    - [Manual Testing](#manual-testing)
+      - [Navbar](#navbar)
+      - [Search Bar](#search-bar)
+      - [Home Page](#home-page)
+      - [Post Detail](#post-detail)
+      - [Edit Post](#edit-post)
+      - [Delete Post](#delete-post)
+      - [Add Post](#add-post)
+      - [Liked Posts](#liked-posts)
+      - [Albums](#albums-1)
+      - [Edit Album](#edit-album)
+      - [Delete Album](#delete-album)
+      - [Album Detail](#album-detail)
 
 ## User Personas
 
@@ -652,3 +665,158 @@ Browsers tested:
 - Microsoft Edge
 
 - Brave
+
+### Manual Testing
+
+Each title under "Works" was tested manually and marked with an X for yes if it works, and no if it does not.
+
+The Final tests marked here was conducted on the deployed version on Heroku.
+
+#### Navbar
+
+| Works                                                              | YES | NO  |
+| ------------------------------------------------------------------ | :-: | --- |
+| "Snaps" lead to Home page when clicked                             |  X  |     |
+| Current page is active                                             |  X  |     |
+| Current page is marked in bold text                                |  X  |     |
+| Navbar collapses to hamburger on smaller screen                    |  X  |     |
+| Hamburger icon expands when clicked                                |  X  |     |
+| Links still work when navbar is collapsed                          |  X  |     |
+| Conditional statement hides user specific links when not signed in |  X  |     |
+
+#### Search Bar
+
+| Works                                       | YES | NO  |
+| ------------------------------------------- | :-: | --- |
+| Search bar is displayed on Home page        |  X  |     |
+| Search bar is displayed on Liked posts page |  X  |     |
+| I can search for image tags                 |  X  |     |
+| I can search for image title                |  X  |     |
+| I can search for image owner                |  X  |     |
+
+#### Home Page
+
+| Works                                                                           | YES | NO  |
+| ------------------------------------------------------------------------------- | :-: | --- |
+| Page loads                                                                      |  X  |     |
+| When I scroll to the bottom, new posts load automatically                       |  X  |     |
+| When I click a post, it takes me to the post detail view                        |  X  |     |
+| I can like a post straight from the post feed                                   |  X  |     |
+| When I like a post, the like count is incremented                               |  X  |     |
+| I can un-like a post straight from the post feed                                |  X  |     |
+| When I un-like a post, the like count is decremented                            |  X  |     |
+| If I click the comments icon, it takes me to the post detail view               |  X  |     |
+| If I click the download icon, it opens a new tab where I can download the image |  X  |     |
+| If I click the download icon, the download count is incremented                 |  X  |     |
+| If I click the owners avatar, I am taken to their profile                       |  X  |     |
+
+#### Post Detail
+
+| Works                                                                                            | YES | NO  |
+| ------------------------------------------------------------------------------------------------ | :-: | --- |
+| Page loads                                                                                       |  X  |     |
+| If I own the post, a dropdown is displayed next to my avatar                                     |  X  |     |
+| The owner dropdown display choices for edit and delete                                           |  X  |     |
+| I can like the post                                                                              |  X  |     |
+| When I like the post, the like count is incremented                                              |  X  |     |
+| I can un-like the post                                                                           |  X  |     |
+| When I un-like the post, the like count is decremented                                           |  X  |     |
+| If I click the comments icon, nothing happens                                                    |  X  |     |
+| If I click the download icon, it opens a new tab where I can download the image                  |  X  |     |
+| If I click the download icon, the download count is incremented                                  |  X  |     |
+| If I click the owners avatar, I am taken to their profile                                        |  X  |     |
+| I can add the post to an album                                                                   |  X  |     |
+| If I have no albums, the "save to album" button is disabled                                      |  X  |     |
+| If I have no albums, the dropdown explains I have no albums yet                                  |  X  |     |
+| If I try adding the post to an album without selecting one, there is an error toast notification |  X  |     |
+| I can leave a comment                                                                            |  X  |     |
+| I can edit my own comment                                                                        |  X  |     |
+| I can delete my own comment                                                                      |  X  |     |
+| I can like a comment                                                                             |  X  |     |
+| When I like a comment, the like count increments                                                 |  X  |     |
+| I can un-like a comment                                                                          |  X  |     |
+| When I un-like a comment, the like count decrements                                              |  X  |     |
+
+#### Edit Post
+
+| Works                                                                    | YES | NO  |
+| ------------------------------------------------------------------------ | :-: | --- |
+| Page loads                                                               |  X  |     |
+| A preview of my post image is displayed                                  |  X  |     |
+| My old title is prefilled                                                |  X  |     |
+| My old caption is prefilled                                              |  X  |     |
+| My old tags are prefilled                                                |  X  |     |
+| Cancel button takes me back to the post detail view                      |  X  |     |
+| The form displays error messages if I do something wrong                 |  X  |     |
+| When submitted my changes are saved                                      |  X  |     |
+| When submitted I am taken back to the post detail view to see my changes |  X  |     |
+
+#### Delete Post
+
+| Works                                                           | YES | NO  |
+| --------------------------------------------------------------- | :-: | --- |
+| When selecting to delete my post, there is a confirmation modal |  X  |     |
+| If i click cancel in the modal, it closes and nothing happens   |  X  |     |
+| If I confirm the deletion, the post is deleted                  |  X  |     |
+| After the post is deleted I am redirected to my profile         |  X  |     |
+| After the deletion, a toast notification confirms the deletion  |  X  |     |
+
+#### Add Post
+
+| Works                                                                | YES | NO  |
+| -------------------------------------------------------------------- | :-: | --- |
+| Page loads                                                           |  X  |     |
+| If a non logged in user tries to access the page they are redirected |  X  |     |
+| Form displays messages to alert users of mistakes                    |  X  |     |
+| Cancel button takes me back to the previous page I was on            |  X  |     |
+| Uploaded image has a preview                                         |  X  |     |
+| When the form is submitted I am redirected to the post detail view   |  X  |     |
+| When the form is submitted there is a success toast notification     |  X  |     |
+
+#### Liked Posts
+
+| Works                                               | YES | NO  |
+| --------------------------------------------------- | :-: | --- |
+| Page loads                                          |  X  |     |
+| The page filters to display only posts I have liked |  X  |     |
+
+#### Albums
+
+| Works                                                                | YES | NO  |
+| -------------------------------------------------------------------- | :-: | --- |
+| Page loads                                                           |  X  |     |
+| Page displays a dropdown with an explanation of how to use albums    |  X  |     |
+| When the explanation dropdown is clicked it expands to show the text |  X  |     |
+| If the dropdown is expanded and clicked, it collapses                |  X  |     |
+| New albums can be created                                            |  X  |     |
+| When an album is created I am redirected to the album detail view    |  X  |     |
+| When an album is created there is a success toast notification       |  X  |     |
+| Albums have a dropdown menu with edit and delete options             |  X  |     |
+| Clicking an album takes me to the album detail view                  |  X  |     |
+
+#### Edit Album
+
+| Works                                                 | YES | NO  |
+| ----------------------------------------------------- | :-: | --- |
+| When choosing to edit an album, an edit form displays |  X  |     |
+| The edit form has the old title prefilled             |  X  |     |
+| Clicking cancel closes the form without changes       |  X  |     |
+| Clicking save updates the album title                 |  X  |     |
+| Clicking save closes the edit form                    |  X  |     |
+
+#### Delete Album
+
+| Works                                                           | YES | NO  |
+| --------------------------------------------------------------- | :-: | --- |
+| When choosing to delete an album, there is a confirmation modal |  X  |     |
+| Clicking cancel in the modal, closes the modal                  |  X  |     |
+| Clicking delete in the modal deletes the album                  |  X  |     |
+| Clicking delete in the modal closes the modal                   |  X  |     |
+| At deleting the album a success toast notification shows up     |  X  |     |
+
+#### Album Detail
+
+| Works                                               | YES | NO  |
+| --------------------------------------------------- | :-: | --- |
+| Page loads                                          |  X  |     |
+| The album detail displays posts added to that album |  X  |     |
