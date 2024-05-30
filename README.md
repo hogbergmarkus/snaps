@@ -74,6 +74,15 @@ by adding posts to your private albums so you can easily find your favorite post
       - [Edit Profile](#edit-profile)
       - [Register](#register)
       - [Sign In](#sign-in)
+    - [User Stories Testing](#user-stories-testing)
+      - [Navigation](#navigation)
+      - [Authentication](#authentication)
+      - [Posts](#posts-1)
+      - [Search](#search)
+      - [Infinite Scroll](#infinite-scroll)
+      - [Comments](#comments-1)
+      - [Albums](#albums-2)
+      - [Profiles](#profiles-1)
 
 ## User Personas
 
@@ -869,3 +878,229 @@ The Final tests marked here was conducted on the deployed version on Heroku.
 | The form will not allow any blank fields                    |  X  |     |
 | On successful sign in I am taken to the home page           |  X  |     |
 | On successful sign in I can see my username in the navbar   |  X  |     |
+
+### User Stories Testing
+
+Here I have viewed the user stories in my GitHub project, and carefully gone through my acceptance criteria for each user story.
+
+If the criteria is met, it is marked in these tables below.
+
+Finally the issue for each user story in my project has been closed if the acceptance criteria was met.
+
+#### Navigation
+
+- As a Site User I can access a navbar from every page so that I can navigate the site easily.
+
+| Acceptance criteria met           | YES | NO  |
+| --------------------------------- | :-: | --- |
+| Nav bar is present on all pages   |  X  |     |
+| Navbar can be used for navigation |  X  |     |
+
+#### Authentication
+
+- As a Site User I can register an account so that I can access more features.
+
+| Acceptance criteria met                       | YES | NO  |
+| --------------------------------------------- | :-: | --- |
+| I can access the page to register an account. |  X  |     |
+| There is a form that I can use to sign up.    |  X  |     |
+| The form creates an account when submitted.   |  X  |     |
+
+- As a Site User I can sign in so that I get access to additional features.
+
+| Acceptance criteria met            | YES | NO  |
+| ---------------------------------- | :-: | --- |
+| Sign in page is accessible         |  X  |     |
+| Sign in page has a form to sign in |  X  |     |
+| A registered user can sign in      |  X  |     |
+
+- As a Site User I can see my logged in status so that I can log out if I need to.
+
+| Acceptance criteria met                                        | YES | NO  |
+| -------------------------------------------------------------- | :-: | --- |
+| When I am logged in it is reflected with my name in the navbar |  X  |     |
+| I get access to additional links                               |  X  |     |
+
+- As a Site User I can remain logged in for some time, or until I log out so that I have a good experience.
+
+| Acceptance criteria met                             | YES | NO  |
+| --------------------------------------------------- | :-: | --- |
+| After signing in, I stay signed in until I sign out |  X  |     |
+
+#### Posts
+
+- As a Site User I can add posts so that I can share my content.
+
+| Acceptance criteria met                       | YES | NO  |
+| --------------------------------------------- | :-: | --- |
+| I can access Add Post when logged in          |  X  |     |
+| Add Post has a form to create a post          |  X  |     |
+| When the form is submitted my post is created |  X  |     |
+
+- As a Site User I can view a single post so that I can interact with it.
+
+| Acceptance criteria met                       | YES | NO  |
+| --------------------------------------------- | :-: | --- |
+| When visiting the URL of a post I can view it |  X  |     |
+
+- As a Site User I can like a post so that I can show appreciation.
+
+| Acceptance criteria met                                          | YES | NO  |
+| ---------------------------------------------------------------- | :-: | --- |
+| When viewing a post I can like it                                |  X  |     |
+| If I change my mind and click it again the post will be un-liked |  X  |     |
+
+- As a Site User I can download a post image so that I can keep it for later.
+
+| Acceptance criteria met                                      | YES | NO  |
+| ------------------------------------------------------------ | :-: | --- |
+| When viewing a post there is a download button               |  X  |     |
+| The button takes me to a page where I can download the image |  X  |     |
+| Download count is incremented                                |  X  |     |
+
+- As a Site User I can view a feed of posts so that I can get the latest content.
+
+| Acceptance criteria met                         | YES | NO  |
+| ----------------------------------------------- | :-: | --- |
+| When on the homepage a feed of posts are loaded |  X  |     |
+
+- As a Site User I can view posts I have liked so that I can find my way back to them easily.
+
+| Acceptance criteria met                              | YES | NO  |
+| ---------------------------------------------------- | :-: | --- |
+| On the liked posts page I can see posts I have liked |  X  |     |
+
+- As a Site User I can delete my post so that I can remove it if I want to.
+
+| Acceptance criteria met                                   | YES | NO  |
+| --------------------------------------------------------- | :-: | --- |
+| A signed in user can delete their own posts               |  X  |     |
+| There should be a confirmation before the post is deleted |  X  |     |
+
+- As a Site User I can edit my post so that I can change it if I want to.
+
+| Acceptance criteria met                                                              | YES | NO  |
+| ------------------------------------------------------------------------------------ | :-: | --- |
+| When viewing a post as the owner, I can choose to edit the post                      |  X  |     |
+| When clicking edit post, I get taken to a form that is pre-filled with the post data |  X  |     |
+| When submitting the updated data, my post is updated                                 |  X  |     |
+
+#### Search
+
+- As a Site User I can search for posts so that I can find content I'm looking for.
+
+| Acceptance criteria met                                                   | YES | NO  |
+| ------------------------------------------------------------------------- | :-: | --- |
+| A search bar exists                                                       |  X  |     |
+| Typing in the search bar will return results based on User, tags or title |  X  |     |
+
+#### Infinite Scroll
+
+- As a Site User I can scroll infinitely so that I never have to click next page to see more posts.
+
+| Acceptance criteria met                                           | YES | NO  |
+| ----------------------------------------------------------------- | :-: | --- |
+| When I reach the bottom of the page more posts load automatically |  X  |     |
+
+#### Comments
+
+- As a Site User I can add comments to a post so that I can engage with the community.
+
+| Acceptance criteria met                     | YES | NO  |
+| ------------------------------------------- | :-: | --- |
+| A signed in user can add comments to a post |  X  |     |
+| A signed out user can not add comments      |  X  |     |
+
+- As a Site User I can view comments so that I can read what other users think of the post.
+
+| Acceptance criteria met                                   | YES | NO  |
+| --------------------------------------------------------- | :-: | --- |
+| When a user is viewing a post, they can also see comments |  X  |     |
+
+- As a Site User I can delete my comments so that I can remove them if I want to.
+
+| Acceptance criteria met                                            | YES | NO  |
+| ------------------------------------------------------------------ | :-: | --- |
+| When a user views their comment, they have the option to delete it |  X  |     |
+| Deleting a comment decrements the comments count by 1              |  X  |     |
+| Deleting a comment removes the comment                             |  X  |     |
+
+- As a Site User I can edit my comments so that I can change them if I want to.
+
+| Acceptance criteria met                                                             | YES | NO  |
+| ----------------------------------------------------------------------------------- | :-: | --- |
+| A user can choose to edit their comments                                            |  X  |     |
+| When they choose to do so, they are presented with their comment content pre-filled |  X  |     |
+| When submitted, the comment is updated                                              |  X  |     |
+
+- As a Site User I can like comments so that I can show people I liked what they said.
+
+| Acceptance criteria met                       | YES | NO  |
+| --------------------------------------------- | :-: | --- |
+| A signed in user can like a comment           |  X  |     |
+| A signed out user cannot like a comment       |  X  |     |
+| When a user creates a like, likes count go up |  X  |     |
+
+- As a Site User I can unlike a comment so that I can change my mind.
+
+| Acceptance criteria met                                            | YES | NO  |
+| ------------------------------------------------------------------ | :-: | --- |
+| When a user has liked a comment, they can click it again to unlike |  X  |     |
+
+#### Albums
+
+- As a Site User I can create albums so that I can get organized.
+
+| Acceptance criteria met                                               | YES | NO  |
+| --------------------------------------------------------------------- | :-: | --- |
+| User can fill out a form to create albums                             |  X  |     |
+| The creation form should be on the same page as the albums are listed |  X  |     |
+
+- As a Site User I can view my albums so that I can interact with them
+
+| Acceptance criteria met                                 | YES | NO  |
+| ------------------------------------------------------- | :-: | --- |
+| When navigating to Albums the user can see their albums |  X  |     |
+
+- As a Site User I can delete my albums so that I can remove them if I want to.
+
+| Acceptance criteria met                           | YES | NO  |
+| ------------------------------------------------- | :-: | --- |
+| A user is able to delete albums they have created |  X  |     |
+
+- As a Site User I can edit my albums so that I can change their names if I want to.
+
+| Acceptance criteria met                          | YES | NO  |
+| ------------------------------------------------ | :-: | --- |
+| Users are able to edit the title of their albums |  X  |     |
+
+- As a Site User I can add posts to albums so that I can sort content as I want to.
+
+| Acceptance criteria met                                              | YES | NO  |
+| -------------------------------------------------------------------- | :-: | --- |
+| When a user is viewing a post, they can choose to add it to an album |  X  |     |
+| The user must first have created the album                           |  X  |     |
+
+- As a Site User I can view posts I have added to my albums so that I can find the posts I want.
+
+| Acceptance criteria met                                                              | YES | NO  |
+| ------------------------------------------------------------------------------------ | :-: | --- |
+| If a user has albums with posts added, they can click their albums to view the posts |  X  |     |
+
+#### Profiles
+
+- As a Site User I can visit other users profiles so that I can learn more about them.
+
+| Acceptance criteria met                                                                                             | YES | NO  |
+| ------------------------------------------------------------------------------------------------------------------- | :-: | --- |
+| When visiting a users profile their profile image is visible                                                        |  X  |     |
+| When visiting a users profile there is a field where I can read about the profile owner if they have added anything |  X  |     |
+| Their username is displayed                                                                                         |  X  |     |
+
+- As a Site User I can edit my profile so that I can change what users see about me.
+
+| Acceptance criteria met                                                | YES | NO  |
+| ---------------------------------------------------------------------- | :-: | --- |
+| Owner of the profile has a dropdown menu where they can choose to edit |  X  |     |
+| When clicked, they get a form where information can be edited          |  X  |     |
+| When form is submitted, their profile is updated                       |  X  |     |
