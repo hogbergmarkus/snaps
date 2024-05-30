@@ -71,6 +71,9 @@ by adding posts to your private albums so you can easily find your favorite post
       - [Delete Album](#delete-album)
       - [Album Detail](#album-detail)
       - [Profile](#profile)
+      - [Edit Profile](#edit-profile)
+      - [Register](#register)
+      - [Sign In](#sign-in)
 
 ## User Personas
 
@@ -833,3 +836,36 @@ The Final tests marked here was conducted on the deployed version on Heroku.
 | If user has added a bio it is displayed                        |  X  |     |
 | Profile owner posts can be searched                            |  X  |     |
 | Profile owners posts are shown in a feed                       |  X  |     |
+
+#### Edit Profile
+
+| Works                                           | YES | NO  |
+| ----------------------------------------------- | :-: | --- |
+| Page loads                                      |  X  |     |
+| Username is prefilled                           |  X  |     |
+| Old profile image is displayed                  |  X  |     |
+| Cancel button takes me back to my profile       |  X  |     |
+| Username can not be empty                       |  X  |     |
+| Image upload shows new image in preview         |  X  |     |
+| When I press save my new information is saved   |  X  |     |
+| When I press save I am taken back to my profile |  X  |     |
+
+#### Register
+
+| Works                                                     | YES | NO  |
+| --------------------------------------------------------- | :-: | --- |
+| Page loads                                                |  X  |     |
+| The link to the sign in page takes me to the sign in page |  X  |     |
+| The form will not allow any blank fields                  |  X  |     |
+| The passwords must match                                  |  X  |     |
+| On successful sign up I am taken to the sign in page      |  X  |     |
+
+#### Sign In
+
+| Works                                                       | YES | NO  |
+| ----------------------------------------------------------- | :-: | --- |
+| Page loads                                                  |  X  |     |
+| The link to the register page takes me to the sign register |  X  |     |
+| The form will not allow any blank fields                    |  X  |     |
+| On successful sign in I am taken to the home page           |  X  |     |
+| On successful sign in I can see my username in the navbar   |  X  |     |
