@@ -70,6 +70,7 @@ by adding posts to your private albums so you can easily find your favorite post
       - [Edit Album](#edit-album)
       - [Delete Album](#delete-album)
       - [Album Detail](#album-detail)
+      - [Profile](#profile)
 
 ## User Personas
 
@@ -820,3 +821,15 @@ The Final tests marked here was conducted on the deployed version on Heroku.
 | --------------------------------------------------- | :-: | --- |
 | Page loads                                          |  X  |     |
 | The album detail displays posts added to that album |  X  |     |
+
+#### Profile
+
+| Works                                                          | YES | NO  |
+| -------------------------------------------------------------- | :-: | --- |
+| Page loads                                                     |  X  |     |
+| Profile image is displayed                                     |  X  |     |
+| Username is displayed                                          |  X  |     |
+| If I own the profile, a dropdown with edit option is displayed |  X  |     |
+| If user has added a bio it is displayed                        |  X  |     |
+| Profile owner posts can be searched                            |  X  |     |
+| Profile owners posts are shown in a feed                       |  X  |     |
