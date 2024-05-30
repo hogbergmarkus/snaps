@@ -56,6 +56,7 @@ by adding posts to your private albums so you can easily find your favorite post
   - [Testing](#testing)
     - [Validation](#validation)
     - [Lighthouse Reports](#lighthouse-reports)
+    - [Responsiveness](#responsiveness)
 
 ## User Personas
 
@@ -623,3 +624,31 @@ Below are lighthouse reports from my pages:
 - Sign in:
 
 ![Sign in lighthouse](documentation/screenshots/sign_in_lighthouse.png)
+
+### Responsiveness
+
+The website was tested throughout development, to function well on any screen size.
+
+The main devices used for testing during development were:
+
+- Desktop
+
+- Iphone 12 pro
+
+- Google pixel 7
+
+- Ipad
+
+After deploying to Heroku, I have tested further on my own:
+
+- Google pixel 8 pro
+
+- My own desktop computer.
+
+Browsers tested:
+
+- Google Chrome
+
+- Microsoft Edge
+
+- Brave
