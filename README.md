@@ -87,6 +87,10 @@ by adding posts to your private albums so you can easily find your favorite post
     - [Bug 1](#bug-1)
   - [Bug Fixes](#bug-fixes)
     - [Bug Fix 1](#bug-fix-1)
+  - [Credits](#credits)
+    - [Projects](#projects)
+    - [Websites](#websites)
+    - [People](#people)
 
 ## User Personas
 
@@ -1130,3 +1134,41 @@ Eventually I found the solution in react-bootstraps library, I had simply missed
 ![Bug fix 1 code](documentation/screenshots/bug_fix_1_code.png)
 
 ![Bug fix 1 website](documentation/screenshots/bug_fix_1_website.png)
+
+## Credits
+
+### Projects
+
+This project was inspired by the [Moments](https://github.com/Code-Institute-Solutions/moments/tree/304244f540308ff4dd3c961352f55a633a4b3bed) project, and as a consequence,
+
+any code that is identical or similar is because of this reason.
+
+Although the two projects differ in appearance and functionality, certain features remain the same.
+
+Here are two examples of code that is the same:
+
+- `fetchMoreData`: a helper function for the react-infinite-scroll-component.
+
+  I needed the same functionality and this implementation met my requirements.
+
+  Located in src/utils/utils.js.
+
+- `CurrentUserContext`: contains almost identical code to that in the the moments project.
+
+  The functionality to easily access and set user data was essential, and the implementation suited my needs.
+
+These examples are meant to be representative of several instances where similar code exists between the two projects.
+
+The similarities were driven by functional requirements, and the original code fulfilling those requirements in certain places.
+
+### Websites
+
+[favicon.io](https://favicon.io/) used to create my favicon.
+
+[am I responsive](https://ui.dev/amiresponsive) used for creating the images of my website, placed at the top of this README.
+
+### People
+
+Thank you to my mentor Luke Buchanan, specifically for the tip of using queryParams which led me to searchParams,
+
+which I then used to display toast notifications to users.
