@@ -87,6 +87,7 @@ by adding posts to your private albums so you can easily find your favorite post
     - [Bug 1](#bug-1)
   - [Bug Fixes](#bug-fixes)
     - [Bug Fix 1](#bug-fix-1)
+  - [Remaining Bugs](#remaining-bugs)
   - [Credits](#credits)
     - [Projects](#projects)
     - [Websites](#websites)
@@ -1134,6 +1135,10 @@ Eventually I found the solution in react-bootstraps library, I had simply missed
 ![Bug fix 1 code](documentation/screenshots/bug_fix_1_code.png)
 
 ![Bug fix 1 website](documentation/screenshots/bug_fix_1_website.png)
+
+## Remaining Bugs
+
+Currently I have no bugs remaining that I am aware of.
 
 ## Credits
 
