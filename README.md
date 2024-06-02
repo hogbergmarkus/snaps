@@ -85,8 +85,10 @@ by adding posts to your private albums so you can easily find your favorite post
       - [Profiles](#profiles-1)
   - [Bugs](#bugs)
     - [Bug 1](#bug-1)
+    - [Bug 2](#bug-2)
   - [Bug Fixes](#bug-fixes)
     - [Bug Fix 1](#bug-fix-1)
+    - [Bug Fix 2](#bug-fix-2)
   - [Remaining Bugs](#remaining-bugs)
   - [Credits](#credits)
     - [Projects](#projects)
@@ -1124,6 +1126,14 @@ since it fell outside the other content.
 
 ![Bug 1](documentation/screenshots/bug_1.png)
 
+### Bug 2
+
+When a profile owner edited their username and saved the profile, the dropdown menu for their profile
+
+would not reappear until after a manual refresh of the page.
+
+![Bug 2](documentation/screenshots/bug_2.png)
+
 ## Bug Fixes
 
 ### Bug Fix 1
@@ -1135,6 +1145,18 @@ Eventually I found the solution in react-bootstraps library, I had simply missed
 ![Bug fix 1 code](documentation/screenshots/bug_fix_1_code.png)
 
 ![Bug fix 1 website](documentation/screenshots/bug_fix_1_website.png)
+
+### Bug Fix 2
+
+I figured out that I was probably not updating the state of the current user as the form was submitted.
+
+Since a manual refresh worked, meant that the server was receiving the correct information,
+
+but the current user on the front end did not.
+
+By updating the username on form submission the issue was fixed.
+
+![Bug fix 2](documentation/screenshots/bug_fix_2.png)
 
 ## Remaining Bugs
 
