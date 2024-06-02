@@ -45,7 +45,7 @@ function App() {
             path="/liked-posts"
             element={
               <PostsFeed
-                message="You have not liked any posts yet."
+                message="No posts found."
                 filter={`likes__owner__profile=${profile_id}&ordering=-likes__created_at&`}
               />
             }

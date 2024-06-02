@@ -40,7 +40,7 @@ const ProfilePage = () => {
         <Col>
           <PostsFeed
             filter={`owner__profile__id=${id}&`}
-            message="You have not added any posts yet."
+            message="No posts found."
           />
         </Col>
       </Row>
