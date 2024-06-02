@@ -1167,6 +1167,8 @@ The similarities were driven by functional requirements, and the original code f
 
 [am I responsive](https://ui.dev/amiresponsive) used for creating the images of my website, placed at the top of this README.
 
+This page on [Stack Overflow](https://stackoverflow.com/questions/73437875/react-navigate-conditionally-with-usesearchparams) helped me eventually get searchParams working.
+
 ### People
 
 Thank you to my mentor Luke Buchanan, specifically for the tip of using queryParams which led me to searchParams,
