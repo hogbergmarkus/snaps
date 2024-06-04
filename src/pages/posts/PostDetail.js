@@ -17,6 +17,7 @@ import Comment from "../comments/Comment";
 import SuccessToastNotification from "../../components/SuccessToastNotification";
 import ErrorToastNotification from "../../components/ErrorToastNotification";
 import styles from "../../styles/PostDetail.module.css";
+import Report from "../../components/Report";
 
 function PostDetail() {
   // Access id of post in the url
@@ -121,51 +122,59 @@ function PostDetail() {
 
       {/* Display form for adding post to an album if user is logged in */}
       {currentUser ? (
-        <Row className="justify-content-center my-4">
-          <Col xs={12} lg={8}>
-            <p>Add this post to an album</p>
-            <Form onSubmit={handleSubmit}>
-              <Form.Group controlId="title">
-                <Form.Label visuallyHidden>Select Album</Form.Label>
-                <Form.Control
-                  as="select"
-                  className={`${styles.AlbumSelect}`}
-                  value={selectedAlbum}
-                  onChange={(event) => setSelectedAlbum(event.target.value)}
-                >
-                  {/* Conditionally render options depending on if user has albums */}
-                  <option value="">Choose an Album...</option>
-                  {albums.results.length === 0 ? (
-                    <option value="" disabled>
-                      You have not added any albums yet
-                    </option>
-                  ) : (
-                    albums.results.map((album) => (
-                      <option key={album.id} value={album.id}>
-                        {album.title}
+        <>
+          <Row className="justify-content-center my-4">
+            <Col xs={12} lg={8}>
+              <Report />
+            </Col>
+          </Row>
+
+          <Row className="justify-content-center my-4">
+            <Col xs={12} lg={8}>
+              <p>Add this post to an album</p>
+              <Form onSubmit={handleSubmit}>
+                <Form.Group controlId="title">
+                  <Form.Label visuallyHidden>Select Album</Form.Label>
+                  <Form.Control
+                    as="select"
+                    className={`${styles.AlbumSelect}`}
+                    value={selectedAlbum}
+                    onChange={(event) => setSelectedAlbum(event.target.value)}
+                  >
+                    {/* Conditionally render options depending on if user has albums */}
+                    <option value="">Choose an Album...</option>
+                    {albums.results.length === 0 ? (
+                      <option value="" disabled>
+                        You have not added any albums yet
                       </option>
-                    ))
-                  )}
-                </Form.Control>
-              </Form.Group>
-              {/* Display submit button if user has albums, else disable it */}
-              {albums.results.length > 0 ? (
-                <Button variant="primary" type="submit" className="mt-2">
-                  Save to Album
-                </Button>
-              ) : (
-                <Button
-                  variant="primary"
-                  type="submit"
-                  className="mt-2"
-                  disabled
-                >
-                  Save to Album
-                </Button>
-              )}
-            </Form>
-          </Col>
-        </Row>
+                    ) : (
+                      albums.results.map((album) => (
+                        <option key={album.id} value={album.id}>
+                          {album.title}
+                        </option>
+                      ))
+                    )}
+                  </Form.Control>
+                </Form.Group>
+                {/* Display submit button if user has albums, else disable it */}
+                {albums.results.length > 0 ? (
+                  <Button variant="primary" type="submit" className="mt-2">
+                    Save to Album
+                  </Button>
+                ) : (
+                  <Button
+                    variant="primary"
+                    type="submit"
+                    className="mt-2"
+                    disabled
+                  >
+                    Save to Album
+                  </Button>
+                )}
+              </Form>
+            </Col>
+          </Row>
+        </>
       ) : null}
 
       {/* Display comment form if user is logged in */}
