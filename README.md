@@ -339,6 +339,10 @@ On the profile page, is the users photo of choice, their username and a bio, fol
 
 ![Post info](documentation/screenshots/post_information.png)
 
+- Users can report posts that they find inappropriate, which is useful to keep the site user friendly.
+
+![Report Post](documentation/screenshots/report_post.png)
+
 - Further down when viewing a single post, a user can add the post to one of their albums from a dropdown.
 
   This makes it easy for users so curate their content.
