@@ -764,6 +764,8 @@ The Final tests marked here was conducted on the deployed version on Heroku.
 | When I like a comment, the like count increments                                                 |  X  |     |
 | I can un-like a comment                                                                          |  X  |     |
 | When I un-like a comment, the like count decrements                                              |  X  |     |
+| When I report a post, there is a success notification if the form submits                        |  X  |     |
+| When I report a post, there is an error notification if the form does not submit                 |  X  |     |
 
 #### Edit Post
 
