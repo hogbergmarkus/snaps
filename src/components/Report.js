@@ -5,11 +5,13 @@ import Alert from "react-bootstrap/Alert";
 import Accordion from "react-bootstrap/Accordion";
 import { axiosRes } from "../api/axiosDefaults";
 import ErrorToastNotification from "./ErrorToastNotification";
+import SuccessToastNotification from "./SuccessToastNotification";
 
 const Report = ({ postId, currentUser }) => {
   const [content, setContent] = useState("");
   const [errors, setErrors] = useState({});
   const [reportErrorShow, setReportErrorShow] = useState(false);
+  const [reportSuccessShow, setReportSuccessShow] = useState(false);
 
   // Handle form input changes
   const handleChange = (event) => {
@@ -23,6 +25,7 @@ const Report = ({ postId, currentUser }) => {
       const data = { user: currentUser.pk, post: postId, reason: content };
       await axiosRes.post("/reports/", data);
       setContent("");
+      setReportSuccessShow(true);
     } catch (err) {
       setErrors(err);
       setReportErrorShow(true);
@@ -59,12 +62,19 @@ const Report = ({ postId, currentUser }) => {
         </Accordion.Item>
       </Accordion>
 
-      {/* Error Toast Notification for adding comments */}
+      {/* Error Toast Notification for reporting post */}
       <ErrorToastNotification
         show={reportErrorShow}
         onClose={() => setReportErrorShow(false)}
         position="bottom-end"
         message={"There was an error reporting this post!"}
+      />
+      {/* Success Toast Notification for reporting post */}
+      <SuccessToastNotification
+        show={reportSuccessShow}
+        onClose={() => setReportSuccessShow(false)}
+        position="bottom-end"
+        message={"Your report has been submitted!"}
       />
     </>
   );
