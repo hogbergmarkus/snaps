@@ -125,7 +125,7 @@ function PostDetail() {
         <>
           <Row className="justify-content-center my-4">
             <Col xs={12} lg={8}>
-              <Report />
+              <Report postId={id} currentUser={currentUser} />
             </Col>
           </Row>
 
