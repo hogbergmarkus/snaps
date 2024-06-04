@@ -6,6 +6,7 @@ import Accordion from "react-bootstrap/Accordion";
 import { axiosRes } from "../api/axiosDefaults";
 import ErrorToastNotification from "./ErrorToastNotification";
 import SuccessToastNotification from "./SuccessToastNotification";
+import styles from "../styles/Report.module.css";
 
 const Report = ({ postId, currentUser }) => {
   const [content, setContent] = useState("");
@@ -42,6 +43,7 @@ const Report = ({ postId, currentUser }) => {
               <Form.Group controlId="reason">
                 <Form.Label visuallyHidden>Report reason</Form.Label>
                 <Form.Control
+                  className={`${styles.ReportContent}`}
                   as="textarea"
                   placeholder="Report reason"
                   value={content}
