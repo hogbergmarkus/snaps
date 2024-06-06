@@ -86,6 +86,7 @@ by adding posts to your private albums so you can easily find your favorite post
   - [Bugs](#bugs)
     - [Bug 1](#bug-1)
     - [Bug 2](#bug-2)
+    - [Bug 3](#bug-3)
   - [Bug Fixes](#bug-fixes)
     - [Bug Fix 1](#bug-fix-1)
     - [Bug Fix 2](#bug-fix-2)
@@ -1141,6 +1142,18 @@ When a profile owner edited their username and saved the profile, the dropdown m
 would not reappear until after a manual refresh of the page.
 
 ![Bug 2](documentation/screenshots/bug_2.png)
+
+### Bug 3
+
+When my components were mounting, a function was immediately trying to fetch the current user.
+
+This resulted in a flood of 401 unauthorized errors in the console, as it was trying to refresh access tokens for every request.
+
+This only happened when a signed out user accessed any page, but not when a signed in user did the same.
+
+In the console I could see it was coming from the CurrentUserContext.js file.
+
+![Bug 3](documentation/screenshots/bug_3_console.png)
 
 ## Bug Fixes
 
