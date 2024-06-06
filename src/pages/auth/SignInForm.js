@@ -114,7 +114,7 @@ const SignInForm = () => {
       <Row className="justify-content-center">
         <Col xs={12} md={8} lg={6}>
           <p className={`${styles.SignUpText}`}>
-            Don't have an account? Then please,{" "}
+            Don&apos;t have an account? Then please,{" "}
             <Link to="/register">Register</Link>
           </p>
         </Col>
