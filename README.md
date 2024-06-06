@@ -40,6 +40,7 @@ by adding posts to your private albums so you can easily find your favorite post
   - [Features to Add](#features-to-add)
   - [React Components](#react-components)
     - [Reusable Components](#reusable-components)
+    - [Report Component](#report-component)
     - [Contexts](#contexts)
     - [Hooks](#hooks)
     - [API](#api)
@@ -469,6 +470,10 @@ scope of this project. Also, this list is of course non exhaustive.
 - **OwnerDropdown**: A dropdown menu used to give the owner of an item options for further actions.
 
 - **NavBar**: Navigation bar used everywhere in the application.
+
+### Report Component
+
+- **Report**: Component used for handling a form, to report inappropriate posts.
 
 ### Contexts
 
