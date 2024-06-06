@@ -110,7 +110,7 @@ function Albums() {
           </>
         ) : (
           <div className="mt-5 ms-1">
-            <p>You don't have any albums yet...</p>
+            <p>You don&apos;t have any albums yet...</p>
           </div>
         )}
       </Row>
