@@ -736,6 +736,7 @@ The Final tests marked here was conducted on the deployed version on Heroku.
 | If I click the comments icon, it takes me to the post detail view               |  X  |     |
 | If I click the download icon, it opens a new tab where I can download the image |  X  |     |
 | If I click the download icon, the download count is incremented                 |  X  |     |
+| Unauthenticated users cannot press the download button                          |  X  |     |
 | If I click the owners avatar, I am taken to their profile                       |  X  |     |
 
 #### Post Detail
@@ -752,6 +753,7 @@ The Final tests marked here was conducted on the deployed version on Heroku.
 | If I click the comments icon, nothing happens                                                    |  X  |     |
 | If I click the download icon, it opens a new tab where I can download the image                  |  X  |     |
 | If I click the download icon, the download count is incremented                                  |  X  |     |
+| Unauthenticated users cannot press the download button                                           |  X  |     |
 | If I click the owners avatar, I am taken to their profile                                        |  X  |     |
 | I can add the post to an album                                                                   |  X  |     |
 | If I have no albums, the "save to album" button is disabled                                      |  X  |     |
