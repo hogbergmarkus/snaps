@@ -121,7 +121,10 @@ const Post = (props) => {
             : post;
         }),
       }));
-    } catch (err) {}
+    } catch (err) {
+      /* eslint-disable no-empty */
+      // This block is empty intentionally
+    }
   };
 
   // Set like button content based on user state
