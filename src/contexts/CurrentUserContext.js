@@ -37,6 +37,9 @@ export const CurrentUserProvider = ({ children }) => {
   useMemo(() => {
     axiosReq.interceptors.request.use(
       async (config) => {
+        if (!currentUser) {
+          return config;
+        }
         try {
           await axios.post("/dj-rest-auth/token/refresh/");
         } catch (err) {
@@ -58,7 +61,7 @@ export const CurrentUserProvider = ({ children }) => {
     axiosRes.interceptors.response.use(
       (response) => response,
       async (err) => {
-        if (err.response?.status === 401) {
+        if (err.response?.status === 401 && currentUser) {
           try {
             await axios.post("/dj-rest-auth/token/refresh/");
           } catch (err) {
@@ -74,7 +77,7 @@ export const CurrentUserProvider = ({ children }) => {
         return Promise.reject(err);
       }
     );
-  }, [navigate]);
+  }, [currentUser, navigate]);
 
   return (
     // Provide current user data through context to child components
