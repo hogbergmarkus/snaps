@@ -155,6 +155,42 @@ const Post = (props) => {
     );
   }
 
+  // Set download button content based on user state
+  let downloadButtonContent = null;
+  if (!currentUser) {
+    downloadButtonContent = (
+      <OverlayTrigger
+        placement="top"
+        overlay={<Tooltip>Sign in to download</Tooltip>}
+      >
+        <div className={`${styles.Icons}`}>
+          <i className="fa-solid fa-download"></i> <span>{download_count}</span>
+        </div>
+      </OverlayTrigger>
+    );
+  } else {
+    downloadButtonContent = (
+      <OverlayTrigger
+        placement="top"
+        overlay={<Tooltip>Download, opens a new tab</Tooltip>}
+      >
+        <a
+          href={image}
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Go to download post image, opens in a new tab"
+          className={`${styles.Link}`}
+          onClick={handleDownload}
+        >
+          <div className={`${styles.Icons}`}>
+            <i className="fa-solid fa-download"></i>{" "}
+            <span>{download_count}</span>
+          </div>
+        </a>
+      </OverlayTrigger>
+    );
+  }
+
   return (
     <Container fluid>
       {/* Image title, Avatar and dropdown menu for post owner goes here */}
@@ -202,24 +238,7 @@ const Post = (props) => {
                 <span>{comments_count}</span>
               </div>
             </Link>
-            <OverlayTrigger
-              placement="top"
-              overlay={<Tooltip>Download, opens a new tab</Tooltip>}
-            >
-              <a
-                href={image}
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Go to download post image, opens in a new tab"
-                className={`${styles.Link}`}
-                onClick={handleDownload}
-              >
-                <div className={`${styles.Icons}`}>
-                  <i className="fa-solid fa-download"></i>{" "}
-                  <span>{download_count}</span>
-                </div>
-              </a>
-            </OverlayTrigger>
+            {downloadButtonContent}
             <div className="d-flex flex-grow-1 align-self-center justify-content-end me-2">
               <span>{updated_at}</span>
             </div>
