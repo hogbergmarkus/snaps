@@ -1,3 +1,4 @@
+import React from "react";
 import { useState, useEffect, createContext, useContext, useMemo } from "react";
 import axios from "axios";
 import { axiosRes, axiosReq } from "../api/axiosDefaults";
@@ -21,7 +22,10 @@ export const CurrentUserProvider = ({ children }) => {
     try {
       const { data } = await axiosRes.get("/dj-rest-auth/user/");
       setCurrentUser(data);
-    } catch (err) {}
+    } catch (err) {
+      /* eslint-disable no-empty */
+      // This block is empty intentionally
+    }
   };
 
   // Call handleMount when component mounts
