@@ -194,7 +194,12 @@ function PostDetail() {
           {/* Display comments with infinite scroll */}
           {comments.results.length ? (
             <InfiniteScroll
-              children={comments.results.map((comment) => (
+              dataLength={comments.results.length}
+              loader={<Spinner animation="grow" />}
+              hasMore={!!comments.next}
+              next={() => fetchMoreData(comments, setComments)}
+            >
+              {comments.results.map((comment) => (
                 <Comment
                   key={comment.id}
                   {...comment}
@@ -203,11 +208,7 @@ function PostDetail() {
                   onDelete={() => setCommentToastShow(true)}
                 />
               ))}
-              dataLength={comments.results.length}
-              loader={<Spinner animation="grow" />}
-              hasMore={!!comments.next}
-              next={() => fetchMoreData(comments, setComments)}
-            />
+            </InfiniteScroll>
           ) : // Display message if there are no comments
           currentUser ? (
             <span>No comments yet, be the first to comment!</span>
