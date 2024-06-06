@@ -95,14 +95,15 @@ function PostsFeed({ message = "No posts found.", filter = "" }) {
             </div>
           ) : posts.results && posts.results.length > 0 ? (
             <InfiniteScroll
-              children={posts.results.map((post) => (
-                <Post key={post.id} {...post} setPosts={setPosts} />
-              ))}
               dataLength={posts.results.length}
               loader={<Spinner animation="grow" />}
               hasMore={!!posts.next}
               next={() => fetchMoreData(posts, setPosts)}
-            />
+            >
+              {posts.results.map((post) => (
+                <Post key={post.id} {...post} setPosts={setPosts} />
+              ))}
+            </InfiniteScroll>
           ) : (
             <div className="d-flex justify-content-center">
               <Alert variant="info">{message}</Alert>
