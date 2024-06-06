@@ -620,7 +620,7 @@ I ran all my pages through the [W3C markup validation service](https://validator
 
 My custom CSS was checked using [jigsaw](https://jigsaw.w3.org/css-validator/#validate_by_input) with no errors.
 
-The console and terminal are showing no errors from my JSX and JavaScript.
+My JavaScript and JSX was validated using [eslint](https://eslint.org/docs/latest/use/getting-started), passing.
 
 ### Lighthouse Reports
 
