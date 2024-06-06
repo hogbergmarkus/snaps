@@ -16,6 +16,8 @@ const CustomToggle = forwardRef(({ onClick }, ref) => (
   </div>
 ));
 
+CustomToggle.displayName = "CustomToggle";
+
 // Dropdown menu for post owner
 export const OwnerDropdown = ({ handleEdit, handleDelete }) => {
   return (
