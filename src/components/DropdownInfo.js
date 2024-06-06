@@ -1,3 +1,4 @@
+import React from "react";
 import Accordion from "react-bootstrap/Accordion";
 import styles from "../styles/DropdownInfo.module.css";
 
