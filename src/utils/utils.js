@@ -13,5 +13,8 @@ export const fetchMoreData = async (resource, setResource) => {
           : [...acc, cur];
       }, prevResource.results),
     }));
-  } catch (err) {}
+  } catch (err) {
+    /* eslint-disable no-empty */
+    // This block is empty intentionally
+  }
 };
