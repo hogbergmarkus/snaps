@@ -92,6 +92,7 @@ by adding posts to your private albums so you can easily find your favorite post
     - [Bug Fix 2](#bug-fix-2)
     - [Bug Fix 3](#bug-fix-3)
   - [Remaining Bugs](#remaining-bugs)
+    - [Search Bar Issue](#search-bar-issue)
   - [Credits](#credits)
     - [Projects](#projects)
     - [Websites](#websites)
@@ -1192,7 +1193,19 @@ This image in from CurrentUserContext.js, where the issue was. The red circles s
 
 ## Remaining Bugs
 
-Currently I have no bugs remaining that I am aware of.
+### Search Bar Issue
+
+The search bar initially works as expected, displaying images that match the search query.
+
+However, an issue arises where after initially displaying the correct images, it suddenly reverts back to showing all images.
+
+If you continue typing another character into the search bar, the search functionality starts working correctly again.
+
+**Example:**
+
+Typing "TIG" might initially display the correct images but then reverts to showing all images.
+
+Continuing to type "TIGE" will then accurately display the images matching the query.
 
 ## Credits
 
