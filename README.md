@@ -90,6 +90,7 @@ by adding posts to your private albums so you can easily find your favorite post
   - [Bug Fixes](#bug-fixes)
     - [Bug Fix 1](#bug-fix-1)
     - [Bug Fix 2](#bug-fix-2)
+    - [Bug Fix 3](#bug-fix-3)
   - [Remaining Bugs](#remaining-bugs)
   - [Credits](#credits)
     - [Projects](#projects)
@@ -1178,6 +1179,16 @@ but the current user on the front end did not.
 By updating the username on form submission the issue was fixed.
 
 ![Bug fix 2](documentation/screenshots/bug_fix_2.png)
+
+### Bug Fix 3
+
+I figured out that I could check for the current user, before trying to refresh the access token,
+
+and thereby preventing the 401 errors.
+
+This image in from CurrentUserContext.js, where the issue was. The red circles show what changes I made.
+
+![Bug fix 3](documentation/screenshots/bug_fix_3.png)
 
 ## Remaining Bugs
 
