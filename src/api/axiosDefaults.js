@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // Set axios defaults
-axios.defaults.baseURL = "https://snaps-2a8aec1abfbd.herokuapp.com/";
+axios.defaults.baseURL = "http://127.0.0.1:8000/";
 axios.defaults.headers.post["Content-Type"] = "multipart/form-data";
 axios.defaults.withCredentials = true;
 
