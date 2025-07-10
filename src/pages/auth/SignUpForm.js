@@ -35,6 +35,7 @@ const SignUpForm = () => {
     event.preventDefault();
     try {
       await axios.post("/dj-rest-auth/registration/", formData);
+      localStorage.setItem("showSignUpToast", "true");
       navigate("/sign-in");
     } catch (err) {
       setErrors(err.response?.data);

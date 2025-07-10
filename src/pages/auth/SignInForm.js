@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
@@ -8,6 +8,7 @@ import Alert from "react-bootstrap/Alert";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
+import SuccessToastNotification from "../../components/SuccessToastNotification";
 import styles from "../../styles/SignInForm.module.css";
 
 const SignInForm = () => {
@@ -23,8 +24,17 @@ const SignInForm = () => {
   const { username, password } = formData;
 
   const [errors, setErrors] = useState({});
+  const [toastSignUpShow, setToastSignUpShow] = useState(false);
 
   const navigate = useNavigate();
+
+  // Check for sign-up success toast on component mount
+  useEffect(() => {
+    if (localStorage.getItem("showSignUpToast") === "true") {
+      setToastSignUpShow(true);
+      localStorage.removeItem("showSignUpToast");
+    }
+  }, []);
 
   // Handle form input changes
   const handleChange = (event) => {
@@ -119,6 +129,14 @@ const SignInForm = () => {
           </p>
         </Col>
       </Row>
+
+      {/* Success Toast Notification for Sign Up */}
+      <SuccessToastNotification
+        show={toastSignUpShow}
+        onClose={() => setToastSignUpShow(false)}
+        position="bottom-end"
+        message="Account created successfully! Please sign in."
+      />
     </Container>
   );
 };
